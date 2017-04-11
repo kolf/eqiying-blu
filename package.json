@@ -10,8 +10,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "vue": "^2.2.2",
-    "vue-router": "^2.3.0"
+    "vue-router": "^2.3.0",
+    "vue-blu": "^0.1.9"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -42,7 +44,6 @@
     "shelljs": "^0.7.6",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
-    "vue-blu": "^0.1.9",
     "vue-loader": "^11.1.4",
     "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.2.4",
