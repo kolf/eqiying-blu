@@ -22,10 +22,10 @@
 					<a class="nav-item is-tab is-hidden-tablet">积分商城</a>
 					<a class="nav-item is-tab is-hidden-tablet">个人中心</a>
 					<a class="nav-item is-tab" @click="toggle">
-						<figure class="image is-16x16" style="margin-right: 8px;">
-							<img src="http://bulma.io/images/jgthms.png">
-						</figure>
-						登陆
+<!-- 						<span class="icon">
+			              <i class="fa fa-user-circle"></i>
+			            </span>  -->
+			            登陆
 					</a>
 					<a class="nav-item is-tab">注册</a>
 				</div>
