@@ -4,6 +4,17 @@
       background-color: whitesmoke
 }
 
+.pad{
+    &-h{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        &-x2{
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    }
+}
+
 // Navbar =====================================================================
 
 

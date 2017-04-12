@@ -11,7 +11,7 @@
       </ul>
     </div>
 
-    <p class="title">母婴</p>
+    <h2 class="title">母婴</h2>
     <div class="tile is-ancestor">
       <div class="tile is-3 is-parent">
         <div class="tile is-child notification is-primary">
@@ -29,11 +29,12 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class="">可获 <span class="title is-4">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -48,11 +49,12 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -67,11 +69,31 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+              </div>
+            </div>
+          </div>
+        </div><div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -86,11 +108,12 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -105,11 +128,12 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -124,16 +148,16 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
-        </div>
-        <div class="column is-one-quarter">
+        </div><div class="column is-one-quarter">
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
@@ -143,30 +167,12 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -191,11 +197,11 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class=""><span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -210,11 +216,11 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class=""><span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -229,11 +235,11 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class=""><span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -248,11 +254,11 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class=""><span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -267,11 +273,11 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class=""><span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -286,11 +292,11 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class=""><span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -305,11 +311,11 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class=""><span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
@@ -324,11 +330,11 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走公益活动一个鸡蛋的暴走</p>
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
                 </div>
               </div>
               <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分<a class="button is-primary is-outlined is-pulled-right" href="">点击兑换</a></p>
+                <p class=""><span class="title is-3">420</span> 积分</p>
               </div>
             </div>
           </div>
