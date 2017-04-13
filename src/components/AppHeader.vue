@@ -6,10 +6,10 @@
 					<a class="nav-item is-brand">
 						<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
 					</a>
-					<router-link class="nav-item is-tab is-hidden-mobile" to="/index"><a>首页</a></router-link>
-					<router-link class="nav-item is-tab is-hidden-mobile" to="/projects"><a>活动专区</a></router-link>
-					<router-link class="nav-item is-tab is-hidden-mobile" to="/mall"><a>积分商城</a></router-link>
-					<router-link class="nav-item is-tab is-hidden-mobile" to="/user"><a>个人中心</a></router-link>
+					<router-link class="nav-item is-tab is-hidden-mobile" to="/index">首页</router-link>
+					<router-link class="nav-item is-tab is-hidden-mobile" to="/projects">活动专区</router-link>
+					<router-link class="nav-item is-tab is-hidden-mobile" to="/mall">积分商城</router-link>
+					<router-link class="nav-item is-tab is-hidden-mobile" to="/user">个人中心</router-link>
 				</div>
 				<span class="nav-toggle">
 					<span></span>
@@ -22,12 +22,9 @@
 					<a class="nav-item is-tab is-hidden-tablet">积分商城</a>
 					<a class="nav-item is-tab is-hidden-tablet">个人中心</a>
 					<a class="nav-item is-tab" @click="toggle">
-<!-- 						<span class="icon">
-			              <i class="fa fa-user-circle"></i>
-			            </span>  -->
 			            登陆
 					</a>
-					<a class="nav-item is-tab">注册</a>
+					<router-link class="nav-item is-tab is-hidden-mobile" to="/signup">注册</router-link>
 				</div>
 			</div>
 		</nav>

@@ -1,345 +1,183 @@
 <template>
-<div class="projects-page pad-h-x2">
+<div class="projects-page section is-gray">
   <div class="container">
-    <div class="tabs is-toggle is-centered">
-      <ul>
-        <li class="is-active"><a>母婴</a></li>
-        <li><a>快消</a></li>
-        <li><a>IT</a></li>
-        <li><a>汽车</a></li>
-        <li><a>金融</a></li>
-      </ul>
+    <div class="columns">
+      <div class="column">
+        <tabs type="toggle" class="is-centered">
+          <tab-item label="全部" icon="th-list">全部</tab-item>
+          <tab-item label="母婴" icon="asl-interpreting">母婴</tab-item>
+          <tab-item label="快消品" icon="mortar-board">快消品</tab-item>
+          <tab-item label="IT" icon="desktop">IT</tab-item>
+          <tab-item label="汽车" icon="automobile">汽车</tab-item>
+          <tab-item label="金融" icon="balance-scale">金融</tab-item>
+        </tabs>
+      </div>
     </div>
 
-    <h2 class="title">母婴</h2>
-    <div class="tile is-ancestor">
-      <div class="tile is-3 is-parent">
-        <div class="tile is-child notification is-primary">
-
+    <div class="columns is-multiline">
+      <div class="column is-one-quarter">
+        <div class="card  is-fullwidth">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="../assets/event184125.jpg" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                <small>11:09 PM - 1 Jan 2016</small>
+              </div>
+            </div>
+            <div class="content">
+              <p class="">可获 <span class="title is-4">420</span> 积分</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="tile columns is-multiline is-parent">
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
+      <div class="column is-one-quarter">
+        <div class="card  is-fullwidth">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="../assets/event184125.jpg" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                <small>11:09 PM - 1 Jan 2016</small>
+              </div>
             </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-4">420</span> 积分</p>
-              </div>
+            <div class="content">
+              <p class="">可获 <span class="title is-3">420</span> 积分</p>
             </div>
           </div>
         </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
+      </div>
+      <div class="column is-one-quarter">
+        <div class="card  is-fullwidth">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="../assets/event184125.jpg" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                <small>11:09 PM - 1 Jan 2016</small>
+              </div>
             </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
+            <div class="content">
+              <p class="">可获 <span class="title is-3">420</span> 积分</p>
             </div>
           </div>
         </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
+      </div><div class="column is-one-quarter">
+        <div class="card  is-fullwidth">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="../assets/event184125.jpg" alt="Image">
+            </figure>
           </div>
-        </div><div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                <small>11:09 PM - 1 Jan 2016</small>
+              </div>
             </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
+            <div class="content">
+              <p class="">可获 <span class="title is-3">420</span> 积分</p>
             </div>
           </div>
         </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
+      </div>
+      <div class="column is-one-quarter">
+        <div class="card  is-fullwidth">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="../assets/event184125.jpg" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                <small>11:09 PM - 1 Jan 2016</small>
+              </div>
             </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
+            <div class="content">
+              <p class="">可获 <span class="title is-3">420</span> 积分</p>
             </div>
           </div>
         </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
+      </div>
+      <div class="column is-one-quarter">
+        <div class="card  is-fullwidth">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="../assets/event184125.jpg" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                <small>11:09 PM - 1 Jan 2016</small>
+              </div>
             </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
+            <div class="content">
+              <p class="">可获 <span class="title is-3">420</span> 积分</p>
             </div>
           </div>
         </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
+      </div>
+      <div class="column is-one-quarter">
+        <div class="card  is-fullwidth">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="../assets/event184125.jpg" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                <small>11:09 PM - 1 Jan 2016</small>
+              </div>
             </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
+            <div class="content">
+              <p class="">可获 <span class="title is-3">420</span> 积分</p>
             </div>
           </div>
-        </div><div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
+        </div>
+      </div><div class="column is-one-quarter">
+        <div class="card  is-fullwidth">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="../assets/event184125.jpg" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                <small>11:09 PM - 1 Jan 2016</small>
+              </div>
             </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
+            <div class="content">
+              <p class="">可获 <span class="title is-3">420</span> 积分</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <p class="title">母婴</p>
-    <div class="tile is-ancestor">
-      <div class="tile is-3 is-parent">
-        <div class="tile is-child notification is-primary">
+    </div>
 
-        </div>
-      </div>
-      <div class="tile columns is-multiline is-parent">
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                </div>
-              </div>
-              <div class="content">
-                <p class=""><span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="pad-h-x2">
+      <pagination :total="800" layout="pager"></pagination>
     </div>
 
   </div>
@@ -351,7 +189,7 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
-      imgUrl: 'http://lorempixel.com/400/400/sports/6/'
+      imgUrl: '../assets/event184125.jpg'
     }
   }
 }

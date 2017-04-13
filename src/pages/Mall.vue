@@ -1,12 +1,12 @@
 <template>
-  <div class="mall section is-light">
+  <div class="mall-page section is-gray">
     <div class="container">
       <div class="columns is-multiline">
         <div class="column is-3">
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -25,7 +25,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -43,7 +43,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -62,7 +62,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -80,7 +80,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -99,7 +99,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -117,7 +117,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -136,7 +136,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -154,7 +154,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -173,7 +173,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -191,7 +191,7 @@
           <div class="card	is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -210,7 +210,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="http://lorempixel.com/400/400/sports/6/" alt="Image">
+                <img src="../assets/event184125.jpg" alt="Image">
               </figure>
             </div>
             <div class="card-content">
@@ -228,6 +228,9 @@
 
       </div>
 
+      <div class="pad-h-x2">
+        <pagination :total="800" layout="pager"></pagination>
+      </div>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="user-page pad-h-x2">
     <div class="container">
         <div class="user-profile">
             <div class="profile-header-background"><img src="http://demo.thedevelovers.com/dashboard/queenadmin-1.2/assets/img/city.jpg" alt="Profile Header Background"></div>
@@ -103,7 +103,7 @@ export default {
 }
 
 .profile-header-background {
-  margin: 0 0 15px 0;
+  margin: -40px 0 15px 0;
 }
 .profile-header-background img {
   width: 100%;
