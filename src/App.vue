@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <nprogress-container></nprogress-container>
   	<app-header v-bind:page="$route.name"></app-header>
     <router-view class="page"></router-view>
     <app-footer></app-footer>
@@ -7,14 +8,35 @@
 </template>
 
 <script>
+import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
 import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
-
+import { mapGetters, mapActions } from 'vuex'
 export default {
-  name: 'app',
   components: {
-  	'app-header': AppHeader,
-  	'app-footer': AppFooter
+    AppHeader,
+    AppFooter,
+    NprogressContainer
+  },
+  methods: mapActions([
+    'toggleDevice',
+    'toggleMenu'
+  ]),
+  beforeMount () {
+    const { body } = document
+    const WIDTH = 768
+    const RATIO = 3
+    const handler = () => {
+      if (!document.hidden) {
+        let rect = body.getBoundingClientRect()
+        let isMobile = rect.width - RATIO < WIDTH
+        this.toggleDevice(isMobile ? 'mobile' : 'other')
+        this.toggleMenu(!isMobile)
+      }
+    }
+    document.addEventListener('visibilitychange', handler)
+    window.addEventListener('DOMContentLoaded', handler)
+    window.addEventListener('resize', handler)
   }
 }
 </script>

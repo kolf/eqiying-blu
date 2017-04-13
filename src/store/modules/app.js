@@ -10,7 +10,7 @@ const state = {
     isMobile: false,
     isTablet: false
   },
-  sidebar: {
+  menu: {
     opened: false,
     hidden: false
   },
@@ -29,11 +29,11 @@ const mutations = {
     state.current.page = pageName
   },
 
-  [types.TOGGLE_SIDEBAR] (state, opened) {
+  [types.TOGGLE_MENU] (state, opened) {
     if (state.device.isMobile) {
-      state.sidebar.opened = opened
+      state.menu.opened = opened
     } else {
-      state.sidebar.opened = true
+      state.menu.opened = true
     }
   },
 

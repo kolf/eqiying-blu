@@ -3,6 +3,11 @@
       <div class="hero-body">
         <div class="container">
           <div class="has-text-centered">
+						<div class="icons">
+							<a href=""><i class="iconfont icon-youjian1"></i></a>
+							<a href=""><i class="iconfont icon-weixin1"></i></a>
+							<a href=""><i class="iconfont icon-weibo1"></i></a>
+						</div>
 						<div class="links">
 							<a href="#">网站声明</a>
 							<a href="#">隐私保护条款</a>
@@ -47,15 +52,25 @@ export default {
 
 <style lang="scss">
 	.footer{
-		background: #333;
+		background-color: #000;
+	}
+	.icons{
+		padding-bottom: 10px;
+		&>a{
+			color:#999;
+			margin: 1em;
+			.iconfont{
+				font-size: 4em;
+			}
+		}
 	}
 	.links{
 		// text-align: center;
 		padding: 10px 0;
 		a{
 			display: inline-block;
-			color: #ccc;
-			padding: 0 5px;
+			color: #999;
+			padding: 0 10px;
 		}
 	}
 </style>

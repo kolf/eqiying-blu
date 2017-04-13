@@ -1,6 +1,6 @@
 import * as types from './mutation-types'
 
-export const toggleSidebar = ({ commit }, opened) => commit(types.TOGGLE_SIDEBAR, opened)
+export const toggleMenu = ({ commit }, opened) => commit(types.TOGGLE_MENU, opened)
 
 export const togglePage = ({ commit }, pageName) => commit(types.TOGGLE_PAGE, pageName)
 

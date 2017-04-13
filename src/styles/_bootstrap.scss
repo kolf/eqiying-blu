@@ -1,4 +1,9 @@
 
+.header{
+  &>nav{
+    // height: 64px;
+  }
+}
 
 .is-light{
       background-color: whitesmoke
@@ -21,11 +26,8 @@
     }
 }
 
-// Navbar =====================================================================
-
-
 // box
-.box, .card{
+.box, .card, .menu{
   box-shadow: none;
 }
 

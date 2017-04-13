@@ -11,19 +11,17 @@
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/mall">积分商城</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/user">个人中心</router-link>
 				</div>
-				<span class="nav-toggle">
+				<span class="nav-toggle" :class="{'is-active': device.isMobile && menu.opened}" @click="toggleMenu(!menu.opened)">
 					<span></span>
 					<span></span>
 					<span></span>
 				</span>
-				<div class="nav-right nav-menu">
-					<a class="nav-item is-tab is-hidden-tablet is-active">首页</a>
-					<a class="nav-item is-tab is-hidden-tablet">活动专区</a>
-					<a class="nav-item is-tab is-hidden-tablet">积分商城</a>
-					<a class="nav-item is-tab is-hidden-tablet">个人中心</a>
-					<a class="nav-item is-tab" @click="toggle">
-			            登陆
-					</a>
+				<div class="nav-right nav-menu" :class="{'is-active': device.isMobile && menu.opened}">
+					<router-link class="nav-item is-tab is-hidden-tablet" to="/index">首页{{isMobile}}</router-link>
+					<router-link class="nav-item is-tab is-hidden-tablet" to="/projects">活动专区{{menu.opened}}</router-link>
+					<router-link class="nav-item is-tab is-hidden-tablet" to="/mall">积分商城</router-link>
+					<router-link class="nav-item is-tab is-hidden-tablet" to="/user">个人中心</router-link>
+					<a class="nav-item is-tab" @click="toggle">登陆</a>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/signup">注册</router-link>
 				</div>
 			</div>
@@ -59,6 +57,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
 	components: {
 
@@ -70,9 +70,12 @@ export default {
   },
 	props: ['page'],
 	methods: {
-    toggle() {
-      this.isShow = !this.isShow;
-    },
+		...mapActions([
+			'toggleMenu'
+		]),
+		toggle() {
+			this.isShow = true
+		},
     okCb() {
       this.$notify.open({
         type: 'success',
@@ -90,6 +93,13 @@ export default {
         this.toggle();
       }, 2000);
     },
-  }
+  },
+	computed: {
+    ...mapGetters({
+      current: 'current',
+      device: 'device',
+      menu: 'menu'
+    })
+  },
 }
 </script>

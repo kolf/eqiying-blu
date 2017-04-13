@@ -1,186 +1,225 @@
 <template>
-<div class="projects-page section is-gray">
-  <div class="container">
-    <div class="columns">
-      <div class="column">
-        <tabs type="toggle" class="is-centered">
-          <tab-item label="全部" icon="th-list">全部</tab-item>
-          <tab-item label="母婴" icon="asl-interpreting">母婴</tab-item>
-          <tab-item label="快消品" icon="mortar-board">快消品</tab-item>
-          <tab-item label="IT" icon="desktop">IT</tab-item>
-          <tab-item label="汽车" icon="automobile">汽车</tab-item>
-          <tab-item label="金融" icon="balance-scale">金融</tab-item>
-        </tabs>
+<div class="projects-page">
+  <section class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+          <h1 class="title">活动专区</h1>
       </div>
     </div>
-
-    <div class="columns is-multiline">
-      <div class="column is-one-quarter">
-        <div class="card  is-fullwidth">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="../assets/event184125.jpg" alt="Image">
-            </figure>
+  </section>
+  <div class="section is-gray">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="tabs is-centered is-toggle">
+            <ul>
+              <li class="is-active">
+                <a>
+                  <span class="icon is-small"><i class="fa fa-th-list"></i></span>
+                  <span>全部</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="icon is-small"><i class="fa fa-asl-interpreting"></i></span>
+                  <span>母婴</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="icon is-small"><i class="fa fa-mortar-board"></i></span>
+                  <span>快消品</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="icon is-small"><i class="fa fa-desktop"></i></span>
+                  <span>IT</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="icon is-small"><i class="fa fa-automobile"></i></span>
+                  <span>汽车</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="icon is-small"><i class="fa fa-balance-scale"></i></span>
+                  <span>金融</span>
+                </a>
+              </li>
+            </ul>
           </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                <small>11:09 PM - 1 Jan 2016</small>
+        </div>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="../assets/event184125.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-4">420</span> 积分</p>
               </div>
             </div>
-            <div class="content">
-              <p class="">可获 <span class="title is-4">420</span> 积分</p>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="../assets/event184125.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="../assets/event184125.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+              </div>
+            </div>
+          </div>
+        </div><div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="../assets/event184125.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="../assets/event184125.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="../assets/event184125.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="../assets/event184125.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+              </div>
+            </div>
+          </div>
+        </div><div class="column is-one-quarter">
+          <div class="card  is-fullwidth">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="../assets/event184125.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
+                                  <small>11:09 PM - 1 Jan 2016</small>
+                </div>
+              </div>
+              <div class="content">
+                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="column is-one-quarter">
-        <div class="card  is-fullwidth">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="../assets/event184125.jpg" alt="Image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                <small>11:09 PM - 1 Jan 2016</small>
-              </div>
-            </div>
-            <div class="content">
-              <p class="">可获 <span class="title is-3">420</span> 积分</p>
-            </div>
-          </div>
-        </div>
+      <div class="box is-gray">
+        <pagination :total="800" layout="pager"></pagination>
       </div>
-      <div class="column is-one-quarter">
-        <div class="card  is-fullwidth">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="../assets/event184125.jpg" alt="Image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                <small>11:09 PM - 1 Jan 2016</small>
-              </div>
-            </div>
-            <div class="content">
-              <p class="">可获 <span class="title is-3">420</span> 积分</p>
-            </div>
-          </div>
-        </div>
-      </div><div class="column is-one-quarter">
-        <div class="card  is-fullwidth">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="../assets/event184125.jpg" alt="Image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                <small>11:09 PM - 1 Jan 2016</small>
-              </div>
-            </div>
-            <div class="content">
-              <p class="">可获 <span class="title is-3">420</span> 积分</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div class="card  is-fullwidth">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="../assets/event184125.jpg" alt="Image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                <small>11:09 PM - 1 Jan 2016</small>
-              </div>
-            </div>
-            <div class="content">
-              <p class="">可获 <span class="title is-3">420</span> 积分</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div class="card  is-fullwidth">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="../assets/event184125.jpg" alt="Image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                <small>11:09 PM - 1 Jan 2016</small>
-              </div>
-            </div>
-            <div class="content">
-              <p class="">可获 <span class="title is-3">420</span> 积分</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-one-quarter">
-        <div class="card  is-fullwidth">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="../assets/event184125.jpg" alt="Image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                <small>11:09 PM - 1 Jan 2016</small>
-              </div>
-            </div>
-            <div class="content">
-              <p class="">可获 <span class="title is-3">420</span> 积分</p>
-            </div>
-          </div>
-        </div>
-      </div><div class="column is-one-quarter">
-        <div class="card  is-fullwidth">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="../assets/event184125.jpg" alt="Image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                <small>11:09 PM - 1 Jan 2016</small>
-              </div>
-            </div>
-            <div class="content">
-              <p class="">可获 <span class="title is-3">420</span> 积分</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-    </div>
-
-    <div class="pad-h-x2">
-      <pagination :total="800" layout="pager"></pagination>
-    </div>
-
   </div>
+
 </div>
 </template>
 

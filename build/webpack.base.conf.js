@@ -9,7 +9,8 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: ['./src/main.js'],
+    vendor: ['vue', 'vue-router', 'vuex']
   },
   output: {
     path: config.build.assetsRoot,
@@ -21,8 +22,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+       src: path.resolve(__dirname, '../src'),
+       assets: path.resolve(__dirname, '../src/assets'),
+       components: path.resolve(__dirname, '../src/components'),
+       views: path.resolve(__dirname, '../src/views'),
+       'vuex-store': path.resolve(__dirname, '../src/store')
     }
   },
   module: {

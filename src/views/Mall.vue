@@ -1,5 +1,13 @@
 <template>
-  <div class="mall-page section is-gray">
+  <div class="mall-page">
+    <section class="hero is-medium is-primary is-bold">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">积分商城</h1>
+        </div>
+      </div>
+    </section>
+    <div class="section is-gray">
     <div class="container">
       <div class="columns is-multiline">
         <div class="column is-3">
@@ -225,13 +233,12 @@
             </div>
           </div>
         </div>
-
       </div>
-
-      <div class="pad-h-x2">
+      <div class="box is-gray">
         <pagination :total="800" layout="pager"></pagination>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
