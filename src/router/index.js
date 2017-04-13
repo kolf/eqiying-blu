@@ -1,39 +1,41 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/Home'
-import User from '@/pages/User'
-import Projects from '@/pages/Projects'
-import Mall from '@/pages/Mall'
-import Signup from '@/pages/Signup'
-
+import {loadView} from 'src/utils/lazyLoading'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'hash',
   linkActiveClass: 'is-active',
+  scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
+      name: 'Home',
       path: '/index',
-      name: 'home',
-      component: Home
-    },{
+      component: loadView('Home')
+    },
+    {
+      name: 'User',
       path: '/user',
-      name: 'user',
-      component: User
-    },{
+      component: loadView('User')
+    },    
+    {
+      name: 'Projects',
       path: '/projects',
-      name: 'projects',
-      component: Projects
-    },{
+      component: loadView('Projects')
+    },    
+    {
+      name: 'Mall',
       path: '/mall',
-      name: 'mall',
-      component: Mall
-    },{
+      component: loadView('Mall')
+    },    
+    {
+      name: 'Signup',
       path: '/signup',
-      name: 'signup',
-      component: Signup
-    },{
-	    path: '*',
-    	component: Home
+      component: loadView('Signup')
+    },
+    {
+      path: '*',
+      redirect: '/index'
     }
   ]
 })
