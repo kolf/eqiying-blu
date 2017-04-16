@@ -9,29 +9,38 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
-      name: 'Home',
       path: '/index',
       component: loadView('Home')
     },
     {
-      name: 'User',
       path: '/user',
-      component: loadView('User')
-    },    
+      component: loadView('User'),
+      children:[{
+        path: '',
+        component: loadView('UserInfo')
+      },{
+        path: '/activity/log',
+        component: loadView('ActivityLog')
+      },{
+        path: '/present/log',
+        component: loadView('PresentLog')
+      }]
+    },
     {
-      name: 'Projects',
       path: '/projects',
       component: loadView('Projects')
-    },    
+    },
     {
-      name: 'Mall',
-      path: '/mall',
-      component: loadView('Mall')
-    },    
+      path: '/present',
+      component: loadView('Present')
+    },
     {
-      name: 'Signup',
       path: '/signup',
       component: loadView('Signup')
+    },
+    {
+      path: '/signin',
+      component: loadView('Signin')
     },
     {
       path: '*',

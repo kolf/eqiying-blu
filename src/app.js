@@ -15,7 +15,12 @@ Promise.polyfill()
 Vue.use(NProgress)
 Validator.addLocale(zh)
 Vue.use(VueBlu)
-Vue.use(VueLazyload)
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  // error: 'dist/error.png',
+  // loading: 'dist/loading.gif',
+  attempt: 1
+})
 Vue.use(VeeValidate, {
   locale: 'zh_CN'
 })

@@ -25,10 +25,6 @@
                   苏果
                 </label>
                 <label class="radio">
-                  <input type="radio" name="type" value="To00001" v-model="userForm.PanelType">
-                  Tesco会员
-                </label>
-                <label class="radio">
                   <input type="radio" name="type" value="1" v-model="userForm.PanelType">
                   非会员
                 </label>

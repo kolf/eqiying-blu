@@ -3,8 +3,7 @@ import router from 'src/router'
 
 const state = {
   current: {
-    page: '',
-    lang: 'zh-CN'
+    page: ''
   },
   device: {
     isMobile: false,
@@ -41,15 +40,7 @@ const mutations = {
     for (let name in effectItem) {
       state.effect[name] = effectItem[name]
     }
-  },
-
-  [types.TOGGLE_LANG] (state, lang) {
-    if (state.current.lang === lang) return
-
-    router.push(router.currentRoute.path.replace(state.current.lang, lang))
-    state.current.lang = lang
   }
-
 }
 
 export default {
