@@ -1,12 +1,10 @@
 <template>
   <div class="present-page">
-    <section class="hero is-medium is-primary is-bold">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-            <h1 class="title">积分商城</h1>
-        </div>
-      </div>
-    </section>
+    <article class="banner">
+        <lory class="js_rewind" :options="{ enableMouseEvents: true, }">
+          <item v-lazy:background-image="banner.PresentAnnouncePic" v-for="banner in banners"></item>
+        </lory>
+    </article>
     <div class="section is-gray">
       <div class="container">
         <div class="columns is-multiline">
@@ -55,20 +53,45 @@
 
 <script>
 import api from 'src/api/index.js'
+import { Lory, Item, Prev, Next } from 'vue-lory'
 
 export default {
+  components: {
+    Lory,
+    Item,
+    Prev,
+    Next
+  },
   data () {
     return {
       presents: [],
       isShowModal: false,
       curPresent: {},
-      changeNum: 1
+      changeNum: 1,
+      banners: [],
+      // imgUrl: 'http://minigame.qq.com/common_manage/381/big_image_8cf953f75f1c4903c246c6cf6d48f867.jpg'
     }
   },
   created(){
     this.queryPresent(1)
+    this.queryPresentBanner()
   },
   methods: {
+    queryPresentBanner(){
+      api.queryPresentBanner().then(res => {
+        const {msg, result, data} = res.data
+        if(result!=='ok'){
+          this.$notify.warning({content: msg})
+          return false
+        }
+
+        this.banners = data ? data.map(item => {
+          item.PresentAnnouncePic = 'http://show.eqiying.com' + item.PresentAnnouncePic;
+          return item
+        }) : []
+
+      })
+    },
     queryPresent(pageNum){
       api.queryPresent(pageNum).then(res => {
         const {msg, result, data} = res.data
@@ -107,5 +130,14 @@ export default {
 <style lang="scss">
 .image{
   background-color:#eee
+}
+.banner{
+  // height: 380px;
+  overflow: hidden;
+}
+.js_slide{
+  background-color: #fff;
+  height: 380px;
+  background-position: center;
 }
 </style>

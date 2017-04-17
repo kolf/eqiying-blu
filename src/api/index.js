@@ -57,5 +57,12 @@ export default {
 			startIndex: pageNum,
 			CheckStatus: 1
 		}))
+	},
+	queryPresentBanner(pageNum){
+		return axios.post(apis.present, qs.stringify({
+			action: 'getLastPresent',
+			top: 5,
+			filedOrder: 'CreateTime Desc'
+		}))
 	}
 }

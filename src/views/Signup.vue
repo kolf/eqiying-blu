@@ -59,7 +59,7 @@
               </p>
               <label class="label">个人介绍</label>
               <p class="control">
-                <textarea type="text" v-model="userForm.PanelRemark" class="input" placeholder="请填写真实姓名" />
+                <textarea type="text" row="3" v-model="userForm.PanelRemark" class="textarea" placeholder="请填写个人介绍" />
               </p>
               <p class="control">
                 <button class="button is-primary">提交</button>
@@ -103,14 +103,15 @@ export default {
         api.signup(this.userForm).then(res => {
           const {msg, result} = res.data;
           if(result!=='ok'){
-            this.$toasted.error(msg);
+            this.$notify.warning({content: msg || '注册失败'});
             return false;
           }
 
-          this.$toasted.success(msg)
+          this.$notify.success({content: msg || '注册成功'});
+          this.$router.push({ path: '/signin' })
+        }).catch((error) => {
+          console.log(error)
         })
-      }).catch((error) => {
-        console.log(error)
       })
     }
   }

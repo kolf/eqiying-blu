@@ -19,10 +19,10 @@ export default new Router({
         path: '',
         component: loadView('UserInfo')
       },{
-        path: '/activity/log',
+        path: 'activity',
         component: loadView('ActivityLog')
       },{
-        path: '/present/log',
+        path: 'present',
         component: loadView('PresentLog')
       }]
     },
