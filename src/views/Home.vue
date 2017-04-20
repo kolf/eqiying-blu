@@ -1,17 +1,11 @@
 <template>
   <div class="home">
     <section class="hero is-primary is-large">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title">
-            Large title
-          </h1>
-          <h2 class="subtitle">
-            Large subtitle
-          </h2>
-        </div>
-      </div>
+      <img src="../assets/index.jpg" alt="">
     </section>
+    <div class="section">
+      <div class="container">公告： 天下第啊</div>
+    </div>
     <div class="section is-gray">
       <div class="container">
         <div class="columns">
@@ -29,43 +23,46 @@
     </div>
     <div class="section steps-section">
       <div class="container has-text-centered">
-        <h2 class="steps-header title box">活动参与流程</h2>
+        <div class="steps-header box">
+          <h1 class="title">活动参与流程</h1>
+          <h2 class="subtitle">Activities involved in the process</h2>
+        </div>
         <ul class="steps columns">
           <li class="column step-item">
-            <h3 class="step-title">发送邀请</h3>
+            <h3 class="step-title">发送邀请 <span>点击发送邀请</span></h3>
             <span class="icon is-large">
-  <i class="fa fa-fighter-jet"></i>
-</span>
+              <i class="fa fa-fighter-jet"></i>
+            </span>
           </li>
           <li class="column step-item">
-            <h3 class="step-title">参与活动</h3>
+            <h3 class="step-title">参与活动 <span>查看活动并参与</span></h3>
             <span class="icon is-large">
-  <i class="fa fa-american-sign-language-interpreting"></i>
-</span>
+              <i class="fa fa-american-sign-language-interpreting"></i>
+            </span>
           </li>
           <li class="column step-item">
-            <h3 class="step-title">获取积分</h3>
+            <h3 class="step-title">获取积分 <span>根据积分规则获取积分</span></h3>
             <span class="icon is-large">
-  <i class="fa fa-bitcoin"></i>
-</span>
+              <i class="fa fa-bitcoin"></i>
+            </span>
           </li>
           <li class="column step-item">
-            <h3 class="step-title">积分兑换</h3>
+            <h3 class="step-title">积分兑换 <span>使用积分兑换礼品</span></h3>
             <span class="icon is-large">
-  <i class="fa fa-pie-chart"></i>
-</span>
+              <i class="fa fa-pie-chart"></i>
+            </span>
           </li>
           <li class="column step-item">
-            <h3 class="step-title">礼品审核</h3>
+            <h3 class="step-title">礼品审核 <span>管理员进行审核</span></h3>
             <span class="icon is-large">
-  <i class="fa fa-low-vision"></i>
-</span>
+              <i class="fa fa-low-vision"></i>
+            </span>
           </li>
           <li class="column step-item">
-            <h3 class="step-title">礼品发放</h3>
+            <h3 class="step-title">礼品发放 <span>礼品发放</span></h3>
             <span class="icon is-large">
-  <i class="fa fa-gift"></i>
-</span>
+              <i class="fa fa-gift"></i>
+            </span>
           </li>
         </ul>
         <!-- <div class="columns steps">
@@ -76,7 +73,6 @@
           <div class="column">礼品审核</div>
           <div class="column">礼品发放</div>
         </div> -->
-
       </div>
     </div>
   </div>
@@ -100,6 +96,12 @@ export default {
 <style lang="scss" scoped>
 .notification{
   height: 300px
+}
+.index{
+  &-banner{
+    background: url(../assets/index.jpg) no-repeat center;
+    height: 600px;
+  }
 }
 .steps{
   padding-bottom: 20px;
@@ -134,6 +136,12 @@ export default {
   &-title{
     font-size: 20px;
     margin-bottom: 20px;
+    color: #333;
+    &>span{
+      display: block;
+      font-size: 14px;
+      color: #999
+    }
   }
 }
 </style>

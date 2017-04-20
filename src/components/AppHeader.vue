@@ -122,3 +122,10 @@ export default {
   },
 }
 </script>
+<style lang="scss">
+.header{
+  &>.nav{
+    height: 60px
+  }
+}
+</style>
