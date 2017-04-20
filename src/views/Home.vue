@@ -3,20 +3,20 @@
     <section class="hero is-primary is-large">
       <img src="../assets/index.jpg" alt="">
     </section>
-    <div class="section">
-      <div class="container">公告： 天下第啊</div>
+    <div class="section announcement-section">
+      <div class="container">公告： 通过搜索 GitHub 等网站解决变量命名问题，支持中文搜索</div>
     </div>
-    <div class="section is-gray">
+    <div class="section is-gray ">
       <div class="container">
         <div class="columns">
           <div class="column">
-            <p class="notification is-info">Auto</p>
+            <img src="../assets/c2.jpg" alt="">
           </div>
           <div class="column">
-            <p class="notification is-warning">Auto</p>
+            <img src="../assets/c3.jpg" alt="">
           </div>
           <div class="column">
-            <p class="notification is-danger">Auto</p>
+            <img src="../assets/c1.jpg" alt="">
           </div>
         </div>
       </div>
@@ -93,10 +93,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.notification{
-  height: 300px
+<style lang="scss">
+.announcement{
+  &-section{
+    padding: 12px 0;
+  }
 }
+
 .index{
   &-banner{
     background: url(../assets/index.jpg) no-repeat center;

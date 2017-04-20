@@ -9,8 +9,7 @@ const apis = {
 	login: API_ROOT + 'Handler/UserLogin.ashx',
 	validateCode: API_ROOT + 'Tools/ShowValidateCode.aspx',
 	present: API_ROOT + 'Handler/Present.ashx',
-	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx',
-	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx',
+	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx'
 }
 
 export default {
@@ -41,8 +40,8 @@ export default {
 	exchange(PresentId, ChangeTotal) {
 		return axios.post(apis.present, qs.stringify({
 			action: 'ChangeByPresentIdPanelId',
-			PresentId: PresentId,
-			ChangeTotal: ChangeTotal
+			PresentId,
+			ChangeTotal
 		}))
 	},
 	getUserInfo() {
