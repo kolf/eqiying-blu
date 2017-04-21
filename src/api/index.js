@@ -1,6 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-const {API_ROOT} = process.env
+const { API_ROOT } = process.env
 
 // axios.defaults.baseURL = process.env.API_ROOT
 const apis = {
@@ -9,17 +9,16 @@ const apis = {
 	login: API_ROOT + 'Handler/UserLogin.ashx',
 	validateCode: API_ROOT + 'Tools/ShowValidateCode.aspx',
 	present: API_ROOT + 'Handler/Present.ashx',
-	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx',
-	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx',
+	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx'
 }
 
 export default {
 	queryAnnounce() {
 		return axios.post(apis.announce, qs.stringify({
-      action:'queryByAgencyIdType',
-      startIndex:1,
-      endIndex:999999
-    }))
+			action: 'queryByAgencyIdType',
+			startIndex: 1,
+			endIndex: 999999
+		}))
 	},
 	signup(param) {
 		return axios.post(apis.signup, qs.stringify(param))
@@ -28,7 +27,7 @@ export default {
 		return axios.post(apis.login, qs.stringify(param))
 	},
 	validateCode(param) {
-		return apis.validateCode  + '?cc=' + Date.now()
+		return apis.validateCode + '?cc=' + Date.now()
 	},
 	queryPresent(pageNum) {
 		return axios.post(apis.present, qs.stringify({
@@ -41,16 +40,16 @@ export default {
 	exchange(PresentId, ChangeTotal) {
 		return axios.post(apis.present, qs.stringify({
 			action: 'ChangeByPresentIdPanelId',
-			PresentId: PresentId,
-			ChangeTotal: ChangeTotal
+			PresentId,
+			ChangeTotal
 		}))
 	},
-	getUserInfo(){
+	getUserInfo() {
 		return axios.post(apis.signup, qs.stringify({
 			action: 'getPanelInfoById'
 		}))
 	},
-	queryPresentLog(pageNum){
+	queryPresentLog(pageNum) {
 		return axios.post(apis.present, qs.stringify({
 			action: 'queryHistoryByPanelId',
 			endIndex: 20,
@@ -58,7 +57,7 @@ export default {
 			CheckStatus: 1
 		}))
 	},
-	queryPresentBanner(pageNum){
+	queryPresentBanner(pageNum) {
 		return axios.post(apis.present, qs.stringify({
 			action: 'getLastPresent',
 			top: 5,
