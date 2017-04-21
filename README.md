@@ -18,6 +18,3 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-"# eqiying-blu"  git init git add README.md git commit -m "first commit" git remote add origin https://github.com/kolf/eqiying-blu.git git push -u origin master
-"# eqiying-blu" 

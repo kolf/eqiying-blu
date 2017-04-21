@@ -2,14 +2,16 @@
   "name": "eqiying",
   "version": "1.0.0",
   "description": "''",
-  "author": "石先康 <xiankang.shi@visualchina.com>",
+  "author": "Kolf",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build:ftp": "node build/build.js && ax-ftp"
   },
   "dependencies": {
+    "ax-ftp": "^1.1.4",
     "axios": "^0.16.1",
     "es6-promise": "^4.1.0",
     "font-awesome": "^4.7.0",
