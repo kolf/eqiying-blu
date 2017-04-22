@@ -15,6 +15,9 @@ export default new Router({
     {
       path: '/user',
       component: loadView('User'),
+      meta: {
+          requireAuth: true,
+      },
       children:[{
         path: 'main',
         component: loadView('UserInfo')
@@ -28,11 +31,17 @@ export default new Router({
     },
     {
       path: '/projects',
-      component: loadView('Projects')
+      component: loadView('Projects'),
+      meta: {
+          requireAuth: true,
+      }
     },
     {
       path: '/present',
-      component: loadView('Present')
+      component: loadView('Present'),
+      meta: {
+          requireAuth: true,
+      }
     },
     {
       path: '/signup',

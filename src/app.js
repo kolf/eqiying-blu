@@ -9,9 +9,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { TOGGLE_PAGE, TOGGLE_MENU } from 'vuex-store/mutation-types'
-import Promise from 'es6-promise'
+import storage from 'src/utils/localStorage'
 
-Promise.polyfill()
 Vue.use(NProgress)
 Validator.addLocale(zh)
 Vue.use(VueBlu)
@@ -33,12 +32,25 @@ const nprogress = new NProgress({ parent: '.nprogress-container' })
 
 const { state } = store
 
-router.beforeEach((route, redirect, next) => {
-	store.commit(TOGGLE_PAGE, route.path.split('/')[1])
+router.beforeEach((to, from, next) => {
+	store.commit(TOGGLE_PAGE, to.path.split('/')[1])
 	if (state.app.device.isMobile && state.app.menu.opened) {
 		store.commit(TOGGLE_MENU, false)
 	}
-	next()
+
+	if (to.matched.some(r => r.meta.requireAuth)) {
+      if (storage.has('isLogin')) {
+          next();
+      } else {
+          next({
+              path: '/signin',
+              query: {redirect: to.fullPath}
+          })
+      }
+  }
+  else {
+      next();
+  }
 })
 
 const app = new Vue({

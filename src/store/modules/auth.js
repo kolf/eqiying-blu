@@ -1,4 +1,5 @@
 import * as types from '../mutation-types'
+import storage from 'src/utils/localStorage'
 
 const state = {
   user: null
@@ -7,14 +8,15 @@ const state = {
 const mutations = {
   [types.GET_USER_INFO] (state) {
     console.log(state);
+    // storage.set('user', )
   },
 
   [types.LOGIN] (state) {
-    console.log(state);
+
   },
 
   [types.LOGOUT] (state) {
-    console.log(state);
+    storage.removeAll()
   }
 }
 

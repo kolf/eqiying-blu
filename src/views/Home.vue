@@ -23,7 +23,7 @@
                 <!-- <i class="iconfont icon-wuyinying-2"></i> -->
               </div>
               <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
-              <a href="" class="button">点击进入</a>
+              <router-link class="button" to="/projects">点击进入</router-link>
             </div>
             <!-- <img src="../assets/c2.jpg" alt=""> -->
           </div>
@@ -40,7 +40,7 @@
               <div class="user-icon"><i class="iconfont icon--2"></i></div>
               <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
               <div class="bg"></div>
-              <a href="" class="button">点击进入</a>
+              <router-link class="button" to="/user/main">点击进入</router-link>
             </div>
             <!-- <img src="../assets/c1.jpg" alt=""> -->
           </div>
@@ -53,42 +53,30 @@
           <h1 class="title">活动参与流程</h1>
           <h2 class="subtitle">Activities involved in the process</h2>
         </div>
-        <ul class="steps columns">
-          <li class="column step-item">
+        <ul class="steps columns is-multiline is-mobile">
+          <li class="column is-half-mobile step-item">
             <h3 class="step-title">发送邀请 <span>点击发送邀请</span></h3>
-            <span class="icon is-large">
-              <i class="fa fa-fighter-jet"></i>
-            </span>
+            <i class="iconfont icon-fasongyaoqing"></i>
           </li>
-          <li class="column step-item">
+          <li class="column is-half-mobile step-item">
             <h3 class="step-title">参与活动 <span>查看活动并参与</span></h3>
-            <span class="icon is-large">
-              <i class="fa fa-american-sign-language-interpreting"></i>
-            </span>
+            <i class="iconfont icon-canyuhuodong"></i>
           </li>
-          <li class="column step-item">
+          <li class="column is-half-mobile step-item">
             <h3 class="step-title">获取积分 <span>根据积分规则获取积分</span></h3>
-            <span class="icon is-large">
-              <i class="fa fa-bitcoin"></i>
-            </span>
+            <i class="iconfont icon-huoqujifen"></i>
           </li>
-          <li class="column step-item">
+          <li class="column is-half-mobile step-item">
             <h3 class="step-title">积分兑换 <span>使用积分兑换礼品</span></h3>
-            <span class="icon is-large">
-              <i class="fa fa-pie-chart"></i>
-            </span>
+            <i class="iconfont icon-jifenduihuan"></i>
           </li>
-          <li class="column step-item">
+          <li class="column is-half-mobile step-item">
             <h3 class="step-title">礼品审核 <span>管理员进行审核</span></h3>
-            <span class="icon is-large">
-              <i class="fa fa-low-vision"></i>
-            </span>
+            <i class="iconfont icon-lipinshenhe"></i>
           </li>
-          <li class="column step-item">
+          <li class="column is-half-mobile step-item">
             <h3 class="step-title">礼品发放 <span>礼品发放</span></h3>
-            <span class="icon is-large">
-              <i class="fa fa-gift"></i>
-            </span>
+            <i class="iconfont icon-lipinfafang"></i>
           </li>
         </ul>
         <!-- <div class="columns steps">
@@ -120,13 +108,15 @@ export default {
 </script>
 
 <style lang="scss">
+$primary: #6bafdc;
+
 .announcement{
   &-section{
     padding: 12px 0;
   }
 }
 .feature{
-  padding-top: 140%;
+  padding-top: 450px;
   width: 100%;
   background-color: #fff;
   position: relative;
@@ -358,6 +348,7 @@ export default {
 }
 .steps{
   padding-bottom: 20px;
+  margin: 0 -20px;
 }
 .step{
   &-item{
@@ -368,27 +359,23 @@ export default {
         content: ''
       }
     }
-    &:before{
-      content: "\F105";
-      font: normal normal normal 30px/1 FontAwesome;
-      position: absolute;
-      margin-top: -10px;
-      right:0;
-      top:50%;
-    }
-    .icon{
-      // font-size: 60px;
-      color: #fff;
-      background-color: #6bafdc;
-      border-radius: 50%;
-      line-height: 80px;
-      height: 80px;
-      width: 80px
+    // &:before{
+    //   content: "\F105";
+    //   font: normal normal normal 30px/1 FontAwesome;
+    //   position: absolute;
+    //   margin-top: -10px;
+    //   right:0;
+    //   top:50%;
+    // }
+    .iconfont{
+      font-size: 120px;
+      line-height: 1;
+      color: $primary
     }
   }
   &-title{
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #333;
     &>span{
       display: block;

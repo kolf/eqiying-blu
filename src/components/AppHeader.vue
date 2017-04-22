@@ -82,18 +82,11 @@ export default {
 			validateCode: ''
     }
   },
-	props: ['page'],
+	props: ['page', 'show'],
 	methods: {
 		...mapActions([
 			'toggleMenu'
 		]),
-    // onLogin() {
-    //   // this.$notify.open({
-    //   //   type: 'success',
-    //   //   title: `ok回调`,
-    //   // });
-		//
-    // }
 		validateForm(){
 			this.$validator.validateAll().then(() => {
 				api.login(this.loginForm).then(res => {
@@ -123,9 +116,20 @@ export default {
 }
 </script>
 <style lang="scss">
+@import '~bulma/sass/utilities/variables';
+@import '~bulma/sass/utilities/mixins';
+
 .header{
   &>.nav{
-    height: 60px
+    height: 64px
   }
+	.nav-left{
+		.nav-item{
+			&.is-brand{padding-right: 20px;}
+			font-size: 16px;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
 }
 </style>

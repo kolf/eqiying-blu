@@ -9,7 +9,8 @@ const apis = {
 	login: API_ROOT + 'Handler/UserLogin.ashx',
 	validateCode: API_ROOT + 'Tools/ShowValidateCode.aspx',
 	present: API_ROOT + 'Handler/Present.ashx',
-	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx'
+	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx',
+	projectColumn: API_ROOT + 'Handler/ProjectColumn.ashx',
 }
 
 export default {
@@ -62,6 +63,11 @@ export default {
 			action: 'getLastPresent',
 			top: 5,
 			filedOrder: 'CreateTime Desc'
+		}))
+	},
+	queryColumns() {
+		return axios.post(apis.projectColumn, qs.stringify({
+			action: 'getAllPcAndPjInfo'
 		}))
 	}
 }

@@ -68,6 +68,7 @@ export default {
 
           this.getUserInfo((userInfo) => {
             storage.set('user', userInfo)
+            storage.set('isLogin', 1)
             this.$notify.success({content: msg})
             this.$router.push({ path: '/projects' })
           })

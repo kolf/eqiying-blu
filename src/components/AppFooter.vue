@@ -38,12 +38,12 @@ export default {
 .footer a:not(.icon), .footer a:visited:not(.icon){
 	border-bottom: none;
 	text-decoration: none;
+	&:hover{
+		color: #999
+	}
 }
 	.footer{
 		background-color: #333;
-		a{
-			color:#eee
-		}
 	}
 	.icons{
 		padding-bottom: 10px;

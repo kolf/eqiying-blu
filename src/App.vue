@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nprogress-container></nprogress-container>
-  	<app-header v-bind:page="$route.name"></app-header>
+  	<app-header v-bind:page="$route.name" :show="menu.opened && !menu.hidden"></app-header>
     <router-view class="page"></router-view>
     <app-footer></app-footer>
   </div>
@@ -18,10 +18,6 @@ export default {
     AppFooter,
     NprogressContainer
   },
-  methods: mapActions([
-    'toggleDevice',
-    'toggleMenu'
-  ]),
   beforeMount () {
     const { body } = document
     const WIDTH = 768
@@ -37,7 +33,14 @@ export default {
     document.addEventListener('visibilitychange', handler)
     window.addEventListener('DOMContentLoaded', handler)
     window.addEventListener('resize', handler)
-  }
+  },
+  computed: mapGetters({
+    menu: 'menu'
+  }),
+  methods: mapActions([
+    'toggleDevice',
+    'toggleMenu'
+  ])
 }
 </script>
 <style lang="sass">
