@@ -16,7 +16,7 @@ export default new Router({
       path: '/user',
       component: loadView('User'),
       children:[{
-        path: '',
+        path: 'main',
         component: loadView('UserInfo')
       },{
         path: 'activity',

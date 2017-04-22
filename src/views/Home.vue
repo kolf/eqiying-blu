@@ -4,19 +4,45 @@
       <img src="../assets/index.jpg" alt="">
     </section>
     <div class="section announcement-section">
-      <div class="container">公告： 通过搜索 GitHub 等网站解决变量命名问题，支持中文搜索</div>
+      <div class="container has-text-centered">公告： 通过搜索 GitHub 等网站解决变量命名问题，支持中文搜索</div>
     </div>
-    <div class="section is-gray ">
+    <div class="section is-gray">
       <div class="container">
-        <div class="columns">
+        <div class="columns has-text-centered">
           <div class="column">
-            <img src="../assets/c2.jpg" alt="">
+            <div class="feature feature-1">
+              <h2 class="title feature-title">活动专区 <small>Activity zone</small></h2>
+              <div class="box">
+                <i class="iconfont icon--3"></i>
+                <i class="iconfont icon--7"></i>
+                <i class="iconfont icon--6"></i>
+                <i class="iconfont icon--5"></i>
+                <i class="iconfont icon--4"></i>
+                <i class="iconfont icon--8"></i>
+                <!-- <span class="icon-wuyinying"></span> -->
+                <!-- <i class="iconfont icon-wuyinying-2"></i> -->
+              </div>
+              <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
+              <a href="" class="button">点击进入</a>
+            </div>
+            <!-- <img src="../assets/c2.jpg" alt=""> -->
           </div>
           <div class="column">
-            <img src="../assets/c3.jpg" alt="">
+            <div class="feature feature-2">
+              <h2 class="title feature-title">积分商城 <small>Points mall</small></h2>
+            </div>
+            <!-- <img src="../assets/c3.jpg" alt=""> -->
           </div>
           <div class="column">
-            <img src="../assets/c1.jpg" alt="">
+            <div class="feature feature-3">
+              <h2 class="title feature-title">个人中心 <small>Personal center</small></h2>
+              <div class="box">积分<small>Integral</small>活跃度<small>Activity</small></div>
+              <div class="user-icon"><i class="iconfont icon--2"></i></div>
+              <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
+              <div class="bg"></div>
+              <a href="" class="button">点击进入</a>
+            </div>
+            <!-- <img src="../assets/c1.jpg" alt=""> -->
           </div>
         </div>
       </div>
@@ -99,6 +125,230 @@ export default {
     padding: 12px 0;
   }
 }
+.feature{
+  padding-top: 140%;
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  // box-shadow: 0 8px 20px #eee;
+  border-radius: 4px;
+  &-title{
+    font-size: 36px;
+    position: absolute;
+    width: 100%;
+    top: 16%;
+    small{
+      display: block;
+      font-size: 20px;
+      color: #999;
+      margin-top: 10px
+    }
+  }
+  &-1{
+    transition: all .3s;
+    &:hover{
+      background-color: #6bafdc;
+      .title {
+        transition: all .3s;
+        color: #eee;
+        top:10%;
+        small{
+          color: #eee;
+        }
+      }
+      .box{
+        background-color: transparent;
+        border: none;
+        box-shadow: 0 0 0 #fff;
+      }
+      .iconfont{
+        top: -70px !important;
+        color: #eee !important;
+        &.icon--3{
+          opacity: 0;
+          color: #fff;
+          top: 400px !important;
+        }
+        &.icon--5{
+          left: 60px !important;
+        }
+        &.icon--7{
+          left: 160px !important;
+        }
+      }
+      .text{
+        top: 250px;
+      }
+      .button{
+        top: 350px;
+      }
+    }
+    .text{
+      position: absolute;
+      transition: all .3s;
+      color: #eee;
+      font-size: 20px;
+      width: 100%;
+      padding: 0 40px;
+    }
+    .button{
+      position: absolute;
+      transition: all .4s;
+      // top: -100px;
+      width: 80%;
+      left: 10%;
+      height: 50px;
+      font-size: 18px;
+      border: none;
+    }
+    .box{
+      margin-top: -68%;
+      border: 6px solid #fff;
+      box-shadow: 0 0 30px #b0defb;
+      width: 270px;
+      height: 270px;
+      // width: 80%;
+      // box-sizing: border-box;
+      // padding: 80% 0 0 0;
+      background-color: #eee;
+      display: inline-block;
+      border-radius: 50%;
+      position: relative;
+      .iconfont{
+        transition: all .3s;
+        position: absolute;
+        font-size: 40px;
+        color: #cacaca;
+
+        &.icon--6{
+          left:10px;
+          top: 100px;
+        }
+        &.icon--5{
+          left:38px;
+          top: 32px;
+        }
+        &.icon--7{
+          left: 180px;
+          top: 32px;
+        }
+        &.icon--8{
+          left: 208px;
+          top: 100px;
+        }
+        &.icon--4{
+          left: 110px;
+          top: 0px;
+        }
+        &.icon--3{
+          font-size: 160px;
+          left: 53px;
+          top:18px;
+          color:#6bafdc
+        }
+      }
+    }
+  }
+  &-3{
+    transition: all .3s;
+    &:hover{
+      background-color: #6bafdc;
+      .title{
+        transition: all .3s;
+        top:10%;
+        color: #eee;
+        small{
+          color: #eee;
+        }
+      }
+      .user-icon{
+        transition: all .3s;
+        margin-top: -98%;
+        .icon--2{
+          color: #eee;
+          font-size: 100px;
+        }
+      }
+      .text{
+        transition: all .3s;
+        top: 250px;
+      }
+      .button{
+        transition: all .3s;
+        top: 350px;
+      }
+      .bg{
+        transition: all .3s;
+        top:600px;
+      }
+      .box{
+        transition: all .3s;
+        top:500px;
+      }
+    }
+    .user-icon{
+      margin-top: -60%;
+      .icon--2{
+        color: #6bafdc;
+        font-size: 160px;
+        line-height: 1;
+      }
+    }
+    .text{
+      position: absolute;
+      transition: all .3s;
+      color: #eee;
+      font-size: 20px;
+      width: 100%;
+      padding: 0 40px;
+    }
+    .button{
+      position: absolute;
+      transition: all .4s;
+      // top: -100px;
+      width: 80%;
+      left: 10%;
+      height: 50px;
+      font-size: 18px;
+      border: none;
+    }
+    .box{
+      position: absolute;
+      background-color: transparent;
+      text-align: right;
+      width: 100%;
+      right: 0;
+      top:305px;
+      font-size: 20px;
+      z-index: 10;
+      small{
+        font-size: 20px;
+        display: block;
+        color: #999;
+      }
+    }
+
+    .bg{
+      z-index: 9;
+      background-color: #eee;
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      left: 30px;
+      top: 330px;
+      transform: rotate(71deg);
+      box-shadow: 0 0 30px #7fc0e8;
+    }
+  }
+}
+// <i class="iconfont icon--3"></i>
+// <i class="iconfont icon--7"></i>
+// <i class="iconfont icon--6"></i>
+// <i class="iconfont icon--5"></i>
+// <i class="iconfont icon--4"></i>
+// <i class="iconfont icon--8"></i>
 
 .index{
   &-banner{
