@@ -8,7 +8,7 @@
 					</a>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/index">首页</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/projects">活动专区</router-link>
-					<router-link class="nav-item is-tab is-hidden-mobile" to="/present">积分商城</router-link>
+					<router-link class="nav-item is-tab is-hidden-mobile" to="/presents">积分商城</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/user/main">个人中心</router-link>
 				</div>
 				<span class="nav-toggle" :class="{'is-active': device.isMobile && menu.opened}" @click="toggleMenu(!menu.opened)">
@@ -19,7 +19,7 @@
 				<div class="nav-right nav-menu" :class="{'is-active': device.isMobile && menu.opened}">
 					<router-link class="nav-item is-tab is-hidden-tablet" to="/index">首页</router-link>
 					<router-link class="nav-item is-tab is-hidden-tablet" to="/projects">活动专区</router-link>
-					<router-link class="nav-item is-tab is-hidden-tablet" to="/present">积分商城</router-link>
+					<router-link class="nav-item is-tab is-hidden-tablet" to="/presents">积分商城</router-link>
 					<router-link class="nav-item is-tab is-hidden-tablet" to="/user/main">个人中心</router-link>
 					<!-- <a class="nav-item is-tab" @click="showlogin=true">登陆</a> -->
 					<router-link class="nav-item is-tab" to="/signin">登陆</router-link>
@@ -116,7 +116,6 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~bulma/sass/utilities/variables';
 @import '~bulma/sass/utilities/mixins';
 
 .header{

@@ -11,12 +11,13 @@ const apis = {
 	present: API_ROOT + 'Handler/Present.ashx',
 	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx',
 	projectColumn: API_ROOT + 'Handler/ProjectColumn.ashx',
+	projectInfo: API_ROOT + 'Handler/ProjectInfo.ashx',
 }
 
 export default {
 	queryAnnounce() {
 		return axios.post(apis.announce, qs.stringify({
-			action: 'queryByAgencyIdType',
+			action: 'queryByProjectColumnIdType',
 			startIndex: 1,
 			endIndex: 999999
 		}))
@@ -32,7 +33,7 @@ export default {
 	},
 	queryPresent(pageNum) {
 		return axios.post(apis.present, qs.stringify({
-			action: 'queryPageByAgencyId',
+			action: 'queryPageByProjectColumnId',
 			startIndex: pageNum,
 			endIndex: 12,
 			PresentType: 2
@@ -68,6 +69,22 @@ export default {
 	queryColumns() {
 		return axios.post(apis.projectColumn, qs.stringify({
 			action: 'getAllPcAndPjInfo'
+		}))
+	},
+	queryProjectInfoByUserRole({ProjectColumnId, pageNum}){
+		let params = {
+			action: 'queryProjectInfoByUserRole',
+			startIndex: pageNum,
+			endIndex: 12
+		}
+		if(ProjectColumnId) params.ProjectColumnId = ProjectColumnId
+		return axios.post(apis.projectInfo, qs.stringify(params))
+	},
+	queryProjectLog({pageNum}){
+		return axios.post(apis.projectUsers, qs.stringify({
+			action: 'queryByPanelId',
+			endIndex: 20,
+			startIndex: pageNum
 		}))
 	}
 }

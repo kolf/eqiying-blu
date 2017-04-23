@@ -21,8 +21,8 @@
                           <aside class="menu">
                             <ul class="menu-list">
                               <li><router-link  to="/user/main">个人资料</router-link></li>
-                              <li><router-link  to="/user/activity">活动参与记录</router-link></li>
-                              <li><router-link  to="/user/present">礼品兑换记录</router-link></li>
+                              <li><router-link  to="/user/projects">活动参与记录</router-link></li>
+                              <li><router-link  to="/user/presents">礼品兑换记录</router-link></li>
                             </ul>
                           </aside>
                       </div>

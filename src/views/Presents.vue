@@ -1,10 +1,18 @@
 <template>
   <div class="present-page">
-    <article class="banner">
+    <!-- <article class="banner">
         <lory class="js_rewind" :options="{ enableMouseEvents: true, }">
-          <item v-lazy:background-image="banner.PresentAnnouncePic" v-for="banner in banners"></item>
+          <item v-lazy:background-image="banner.PresentAnnouncePic" v-for="(banner, index) in banners"></item>
         </lory>
-    </article>
+    </article> -->
+    <section class="hero is-medium is-primary is-bold">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">积分商城</h1>
+        </div>
+      </div>
+    </section>
+
     <div class="section is-gray">
       <div class="container">
         <div class="columns is-multiline">
@@ -52,7 +60,7 @@
 </template>
 
 <script>
-import api from 'src/api/index.js'
+import api from 'src/api'
 import { Lory, Item, Prev, Next } from 'vue-lory'
 
 export default {

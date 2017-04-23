@@ -1,12 +1,22 @@
 export default {
-  get (key) {
-    return JSON.parse(window.localStorage.getItem(key))
+  get (key, exp) {
+    const {value, time} = JSON.parse(window.localStorage.getItem(key))
+    if(value){
+      if(exp && Date.now()-time>exp){
+        this.remove(key)
+        return null
+      }else{
+        return value
+      }
+    }else{
+      return null
+    }
   },
   set (key, data) {
-    window.localStorage.setItem(key, JSON.stringify(data))
+    window.localStorage.setItem(key, JSON.stringify({value: data, time: Date.now()}))
   },
-  has (key) {
-    return this.get(key)
+  has (key, exp) {
+    return this.get(key, exp)
   },
   remove (key) {
     window.localStorage.removeItem(key)

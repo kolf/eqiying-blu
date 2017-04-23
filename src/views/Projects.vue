@@ -13,40 +13,16 @@
         <div class="column">
           <div class="tabs is-centered is-toggle">
             <ul>
-              <li class="is-active">
+              <li class="is-active" @click="queryList('')">
                 <a>
-                  <span class="icon is-small"><i class="fa fa-th-list"></i></span>
+                  <!-- <span class="icon is-small"><i class="fa fa-th-list"></i></span> -->
                   <span>全部</span>
                 </a>
               </li>
-              <li>
+              <li v-for="(column, index) in columns" @click="queryList(column.ProjectColumnId)">
                 <a>
-                  <span class="icon is-small"><i class="fa fa-asl-interpreting"></i></span>
-                  <span>母婴</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span class="icon is-small"><i class="fa fa-mortar-board"></i></span>
-                  <span>快消品</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span class="icon is-small"><i class="fa fa-desktop"></i></span>
-                  <span>IT</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span class="icon is-small"><i class="fa fa-automobile"></i></span>
-                  <span>汽车</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span class="icon is-small"><i class="fa fa-balance-scale"></i></span>
-                  <span>金融</span>
+                  <!-- <span class="icon is-small"><i class="fa fa-th-list"></i></span> -->
+                  <span>{{column.ProjectColumnName}}</span>
                 </a>
               </li>
             </ul>
@@ -54,168 +30,30 @@
         </div>
       </div>
       <div class="columns is-multiline">
-        <div class="column is-one-quarter">
+        <div class="column is-one-quarter" v-for="(project, index) in projects">
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img src="../assets/event184125.jpg" alt="Image">
+                <img v-lazy="project.ProjectPicPath" alt="project.ProjectName">
               </figure>
             </div>
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
+                  <p class="subtitle">{{project.ProjectName}}</p>
+                  <small>{{project.StartTime}}</small>
                 </div>
               </div>
               <div class="content">
-                <p class="">可获 <span class="title is-4">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="../assets/event184125.jpg" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="../assets/event184125.jpg" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div><div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="../assets/event184125.jpg" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="../assets/event184125.jpg" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="../assets/event184125.jpg" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="../assets/event184125.jpg" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
-              </div>
-            </div>
-          </div>
-        </div><div class="column is-one-quarter">
-          <div class="card  is-fullwidth">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="../assets/event184125.jpg" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p>公益活动一个鸡蛋的暴走公益活动一个鸡...</p>
-                                  <small>11:09 PM - 1 Jan 2016</small>
-                </div>
-              </div>
-              <div class="content">
-                <p class="">可获 <span class="title is-3">420</span> 积分</p>
+                <p class="">可获 <span class="title is-4">{{project.Cpoint}}</span> 积分</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="box is-gray">
-        <pagination :total="800" layout="pager"></pagination>
-      </div>
+      <!-- <div class="box is-gray">
+        <pagination :total="projects.length" layout="pager"></pagination>
+      </div> -->
       </div>
     </div>
   </div>
@@ -224,11 +62,48 @@
 </template>
 
 <script>
+import api from 'src/api'
+
 export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
-      imgUrl: '../assets/event184125.jpg'
+      imgUrl: '../assets/event184125.jpg',
+      columns: [],
+      projects: [],
+      ProjectColumnId: ''
+    }
+  },
+  created(){
+    this.queryProjectColumn()
+    this.queryList('')
+  },
+  methods: {
+    queryList(ProjectColumnId){
+      this.ProjectColumnId = ProjectColumnId
+      this.queryProject(1)
+    },
+    queryProjectColumn(){
+      api.queryColumns().then(res => {
+        const {msg, result, data} = res.data
+        if(result!=='ok'){
+          this.$notify.warning({content: msg})
+          return false
+        }
+
+        this.columns = data.projectColumnList
+      })
+    },
+    queryProject(pageNum){
+      api.queryProjectInfoByUserRole({pageNum, ProjectColumnId: this.ProjectColumnId}).then(res => {
+        const {msg, result, data} = res.data
+        if(result!=='ok'){
+          this.$notify.warning({content: msg})
+          return false
+        }
+
+        this.projects=data;
+      })
     }
   }
 }

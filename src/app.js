@@ -39,7 +39,7 @@ router.beforeEach((to, from, next) => {
 	}
 
 	if (to.matched.some(r => r.meta.requireAuth)) {
-      if (storage.has('isLogin')) {
+      if (storage.has('isLogin', 1000*60*20)) {
           next();
       } else {
           next({

@@ -22,11 +22,11 @@ export default new Router({
         path: 'main',
         component: loadView('UserInfo')
       },{
-        path: 'activity',
-        component: loadView('ActivityLog')
+        path: 'projects',
+        component: loadView('ProjectLogs')
       },{
-        path: 'present',
-        component: loadView('PresentLog')
+        path: 'presents',
+        component: loadView('PresentLogs')
       }]
     },
     {
@@ -37,8 +37,8 @@ export default new Router({
       }
     },
     {
-      path: '/present',
-      component: loadView('Present'),
+      path: '/presents',
+      component: loadView('Presents'),
       meta: {
           requireAuth: true,
       }
