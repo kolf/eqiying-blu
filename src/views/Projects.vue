@@ -34,7 +34,7 @@
           <div class="card  is-fullwidth">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img v-lazy="project.ProjectPicPath" alt="project.ProjectName">
+                <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
               </figure>
             </div>
             <div class="card-content">
@@ -51,9 +51,9 @@
           </div>
         </div>
       </div>
-      <!-- <div class="box is-gray">
-        <pagination :total="projects.length" layout="pager"></pagination>
-      </div> -->
+      <div class="box is-gray">
+        <pagination :total="total" layout="pager" :change="queryProject"></pagination>
+      </div>
       </div>
     </div>
   </div>
@@ -71,7 +71,8 @@ export default {
       imgUrl: '../assets/event184125.jpg',
       columns: [],
       projects: [],
-      ProjectColumnId: ''
+      ProjectColumnId: '',
+      total: 1
     }
   },
   created(){
@@ -96,13 +97,14 @@ export default {
     },
     queryProject(pageNum){
       api.queryProjectInfoByUserRole({pageNum, ProjectColumnId: this.ProjectColumnId}).then(res => {
-        const {msg, result, data} = res.data
+        const {msg, result, data, recordCount} = res.data
         if(result!=='ok'){
           this.$notify.warning({content: msg})
           return false
         }
 
-        this.projects=data;
+        this.projects=data
+        this.total=recordCount || data.length
       })
     }
   }

@@ -33,10 +33,10 @@ export default {
 	},
 	queryPresent(pageNum) {
 		return axios.post(apis.present, qs.stringify({
-			action: 'queryPageByProjectColumnId',
+			action: 'queryPageByAgencyId',
 			startIndex: pageNum,
 			endIndex: 12,
-			PresentType: 2
+			PresentType: 1
 		}))
 	},
 	exchange(PresentId, ChangeTotal) {

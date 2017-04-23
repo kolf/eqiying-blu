@@ -20,7 +20,7 @@
             <div class="card  is-fullwidth">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img v-lazy="present.PresentPic" alt="Image">
+                  <img v-lazy="'http://show.eqiying.com' + present.PresentPic" alt="Image">
                 </figure>
               </div>
               <div class="card-content">
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="box is-gray">
-          <pagination :total="presents.length" layout="pager"></pagination>
+          <pagination :total="total" layout="pager" :change="queryPresent"></pagination>
         </div>
       </div>
     </div>
@@ -73,6 +73,7 @@ export default {
   data () {
     return {
       presents: [],
+      total: 0,
       isShowModal: false,
       curPresent: {},
       changeNum: 1,
@@ -102,13 +103,14 @@ export default {
     },
     queryPresent(pageNum){
       api.queryPresent(pageNum).then(res => {
-        const {msg, result, data} = res.data
+        const {msg, result, data, recordCount} = res.data
         if(result!=='ok'){
           this.$notify.warning({content: msg})
           return false
         }
 
         this.presents = data || []
+        this.total = recordCount || 0
       })
     },
     showModal(present){

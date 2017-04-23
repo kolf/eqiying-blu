@@ -63,7 +63,7 @@
             <i class="iconfont icon-canyuhuodong"></i>
           </li>
           <li class="column is-half-mobile step-item">
-            <h3 class="step-title">获取积分 <span>根据积分规则获取积分</span></h3>
+            <h3 class="step-title">获取积分 <span>根据规则获取积分</span></h3>
             <i class="iconfont icon-huoqujifen"></i>
           </li>
           <li class="column is-half-mobile step-item">
