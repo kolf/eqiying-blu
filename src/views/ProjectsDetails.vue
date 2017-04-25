@@ -7,57 +7,20 @@
       </div>
     </div>
   </section>
-  <div class="section is-gray">
-    <div class="container">
-      <div class="columns">
-        <div class="column">
-          <div class="tabs is-centered is-toggle">
-            <ul>
-              <li :class="{'is-active': ProjectColumnId==''}" @click="queryList('')">
-                <a>
-                  <!-- <span class="icon is-small"><i class="fa fa-th-list"></i></span> -->
-                  <span>全部</span>
-                </a>
-              </li>
-              <li :class="{'is-active': ProjectColumnId==column.ProjectColumnId}" v-for="(column, index) in columns" @click="queryList(column.ProjectColumnId)">
-                <a>
-                  <!-- <span class="icon is-small"><i class="fa fa-th-list"></i></span> -->
-                  <span>{{column.ProjectColumnName}}</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="columns is-multiline">
-        <div class="column is-one-quarter" v-for="(project, index) in projects">
-          <div class="card  is-fullwidth">
-            <router-link class="card-image" :to="'/projects/' + project.PjId">
-              <figure class="image is-4by3">
-                <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
-              </figure>
-            </router-link>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p><router-link class="card-image" :to="'/projects/' + project.PjId">{{project.ProjectName}}</router-link></p>
-                  <small>{{project.StartTime}}</small>
-                </div>
-              </div>
+  <div class="section">
+      <div class="container">
+        <div class="section">
+          <div class="columns is-desktop">
+            <div class="column is-10 is-offset-1">
+              <h1 class="title">{{projectInfo.ProjectName}}</h1>
               <div class="content">
-                <p class="">可获 <span class="title is-4">{{project.Cpoint}}</span> 积分</p>
+                <p>{{projectInfo.ProjectDesc}}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="box is-gray">
-        <pagination :total="total" layout="pager" :change="queryProject"></pagination>
-      </div>
-      </div>
-    </div>
   </div>
-
 </div>
 </template>
 
@@ -67,44 +30,23 @@ import api from 'src/api'
 export default {
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      imgUrl: '../assets/event184125.jpg',
-      columns: [],
-      projects: [],
-      ProjectColumnId: '',
-      total: 1
+      projectInfo: {}
     }
   },
   created(){
-    this.queryProjectColumn()
-    this.queryList('')
+    const {id} = this.$route.params
+    this.getProjectInfo(id)
   },
   methods: {
-    queryList(ProjectColumnId){
-      this.ProjectColumnId = ProjectColumnId
-      this.queryProject(1)
-    },
-    queryProjectColumn(){
-      api.queryColumns().then(res => {
+    getProjectInfo(id){
+      api.getProjectInfo({id}).then(res => {
         const {msg, result, data} = res.data
         if(result!=='ok'){
           this.$notify.warning({content: msg})
           return false
         }
 
-        this.columns = data.projectColumnList
-      })
-    },
-    queryProject(pageNum){
-      api.queryProjectInfoByUserRole({pageNum, ProjectColumnId: this.ProjectColumnId}).then(res => {
-        const {msg, result, data, recordCount} = res.data
-        if(result!=='ok'){
-          this.$notify.warning({content: msg})
-          return false
-        }
-
-        this.projects=data
-        this.total=recordCount || data.length
+        this.projectInfo = data.Project_Info
       })
     }
   }

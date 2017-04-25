@@ -37,8 +37,22 @@ export default new Router({
       }
     },
     {
+      path: '/projects/:id',
+      component: loadView('ProjectsDetails'),
+      meta: {
+          requireAuth: true,
+      }
+    },
+    {
       path: '/presents',
       component: loadView('Presents'),
+      meta: {
+          requireAuth: true,
+      }
+    },
+    {
+      path: '/presents/:id',
+      component: loadView('PresentsDetails'),
       meta: {
           requireAuth: true,
       }

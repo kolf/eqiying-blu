@@ -18,15 +18,15 @@
         <div class="columns is-multiline">
           <div class="column is-3" v-for="present in presents">
             <div class="card  is-fullwidth">
-              <div class="card-image">
+              <router-link class="card-image" :to="'/presents/' + present.PresentId">
                 <figure class="image is-4by3">
                   <img v-lazy="'http://show.eqiying.com' + present.PresentPic" alt="Image">
                 </figure>
-              </div>
+              </router-link>
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p>{{present.PresentName}}</p>
+                    <p><router-link :to="'/presents/' + present.PresentId">{{present.PresentName}}</router-link></p>
                   </div>
                 </div>
                 <div class="content">

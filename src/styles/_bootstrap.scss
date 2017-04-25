@@ -10,6 +10,12 @@
   max-width: 1000px;
 }
 
+.content{
+  p{
+    word-wrap: break-word;
+  }
+}
+
 .is-light{
       background-color: whitesmoke
 }

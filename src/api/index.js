@@ -86,5 +86,17 @@ export default {
 			endIndex: 20,
 			startIndex: pageNum
 		}))
+	},
+	getProjectInfo({id}){
+		return axios.post(apis.projectInfo, qs.stringify({
+			action: 'queryByPjId',
+			PjId: id
+		}))
+	},
+	getPresentInfo({id}){
+		return axios.post(apis.present, qs.stringify({
+			action: 'queryByPresentId',
+			PresentId: id
+		}))
 	}
 }
