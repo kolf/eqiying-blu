@@ -5,21 +5,15 @@
           <item v-lazy:background-image="banner.PresentAnnouncePic" v-for="(banner, index) in banners"></item>
         </lory>
     </article> -->
-    <section class="hero is-medium is-primary is-bold">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-            <h1 class="title">积分商城</h1>
-        </div>
-      </div>
-    </section>
+    <section class="hero is-medium banner user-banner"></section>
 
-    <div class="section is-gray">
+    <div class="section is-gray main">
       <div class="container">
         <div class="columns is-multiline">
           <div class="column is-3" v-for="present in presents">
             <div class="card  is-fullwidth">
               <router-link class="card-image" :to="'/presents/' + present.PresentId">
-                <figure class="image is-4by3">
+                <figure class="image is-1by1">
                   <img v-lazy="'http://show.eqiying.com' + present.PresentPic" alt="Image">
                 </figure>
               </router-link>
@@ -36,7 +30,7 @@
             </div>
           </div>
         </div>
-        <div class="box is-gray">
+        <div class="box is-gray" v-show="presents.length>0">
           <pagination :total="total" layout="pager" :change="queryPresent"></pagination>
         </div>
       </div>

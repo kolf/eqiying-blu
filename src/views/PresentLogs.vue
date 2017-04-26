@@ -23,7 +23,7 @@
               </tr>
             </tbody>
         </table>
-        <div class="box">
+        <div class="box" v-show="presentLogs.length>0">
           <pagination :total="total" layout="pager"></pagination>
         </div>
   </div>

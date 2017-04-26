@@ -119,6 +119,9 @@ export default {
 @import '~bulma/sass/utilities/mixins';
 
 .header{
+	+desktop{
+		background:red
+	}
   &>.nav{
     height: 64px
   }

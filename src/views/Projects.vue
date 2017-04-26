@@ -1,13 +1,7 @@
 <template>
 <div class="projects-page">
-  <section class="hero is-medium is-primary is-bold">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-          <h1 class="title">活动专区</h1>
-      </div>
-    </div>
-  </section>
-  <div class="section is-gray">
+  <section class="hero is-medium banner user-banner"></section>
+  <div class="section is-gray main">
     <div class="container">
       <div class="columns">
         <div class="column">
@@ -33,7 +27,7 @@
         <div class="column is-one-quarter" v-for="(project, index) in projects">
           <div class="card  is-fullwidth">
             <router-link class="card-image" :to="'/projects/' + project.PjId">
-              <figure class="image is-4by3">
+              <figure class="image is-1by1">
                 <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
               </figure>
             </router-link>
@@ -51,7 +45,7 @@
           </div>
         </div>
       </div>
-      <div class="box is-gray">
+      <div class="box is-gray" v-show="projects.length>0">
         <pagination :total="total" layout="pager" :change="queryProject"></pagination>
       </div>
       </div>

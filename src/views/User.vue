@@ -1,11 +1,7 @@
 <template>
   <div class="user-page">
-    <section class="hero is-medium is-primary is-bold">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-            <h1 class="title">个人中心</h1>
-        </div>
-      </div>
+    <section class="hero is-medium banner user-banner">
+      
     </section>
     <div class="section">
       <div class="container">
@@ -15,7 +11,7 @@
                       <div class="profile-info-left">
                           <div class="has-text-centered block">
                               <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar">
-                              <h1 class="title">王毅</h1>
+                              <h1 class="title">{{userInfo.PanelLoginName}}</h1>
                               <p>这位同学很懒，木有签名的说～</p>
                           </div>
                           <aside class="menu">
@@ -41,16 +37,28 @@
 </template>
 
 <script>
+import storage from 'src/utils/localStorage'
+
 export default {
-  data () {
+    data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      userInfo: {}
     }
+  },
+  created(){
+    this.userInfo = storage.get('user')
   }
 }
 </script>
 
 <style lang="scss">
+.user{
+  &-banner{
+    background-image:url(../assets/startup-banner-3c5415c78064da11455c3ab9b352e04c.jpg);
+    background-position: center;
+  }
+}
+
 .user-profile {
   // padding-bottom: 30px;
 }
