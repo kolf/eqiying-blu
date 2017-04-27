@@ -1,8 +1,6 @@
 <template>
   <div class="user-page">
-    <section class="hero is-medium banner user-banner">
-      
-    </section>
+    <section class="hero is-medium banner user-banner"></section>
     <div class="section">
       <div class="container">
           <div class="user-profile">
@@ -88,10 +86,10 @@ border-radius: 6px;
   // background-color: transparent;
 }
 @media screen and (max-width: 768px) {
-.profile-info-right {
-  position: relative;
-  top: -70px;
-}
+  .profile-info-right {
+    position: relative;
+    top: -70px;
+  }
 }
 
 </style>

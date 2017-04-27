@@ -44,6 +44,13 @@
     }
 }
 
+// button
+.button{
+    &.is-large{
+        font-size: 18px
+    }
+}
+
 // nav
 .nav {
     &-toggle {

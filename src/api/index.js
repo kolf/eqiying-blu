@@ -12,6 +12,7 @@ const apis = {
 	projectUsers: API_ROOT + 'Handler/ProjectUsers.ashx',
 	projectColumn: API_ROOT + 'Handler/ProjectColumn.ashx',
 	projectInfo: API_ROOT + 'Handler/ProjectInfo.ashx',
+	paramsInfo: API_ROOT + 'Handler/ParamsInfo.ashx',
 }
 
 export default {
@@ -97,6 +98,13 @@ export default {
 		return axios.post(apis.present, qs.stringify({
 			action: 'queryByPresentId',
 			PresentId: id
+		}))
+	},
+	queryByParenterCode({ParenterCode, typeCode}){ //查询省市
+		return axios.post(apis.paramsInfo, qs.stringify({
+			action: 'queryByParenterCode',
+			ParenterCode,
+			typeCode: 'AC0001'
 		}))
 	}
 }

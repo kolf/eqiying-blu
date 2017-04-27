@@ -10,25 +10,6 @@
              <p>嗨！只需要短短一分钟的时间既可让您在社区上注册。仅仅需要一个用户名、一个密码以及一个电子邮件地址。
 如已注册，则可以在此登录。</p>
               </div>
-              <label class="label">会员类型</label>
-              <p class="control">
-                <label class="radio">
-                  <input type="radio" name="type" value="0" v-model="userForm.PanelType">
-                  乐购
-                </label>
-                <label class="radio">
-                  <input type="radio" name="type" value="3" v-model="userForm.PanelType">
-                  华润
-                </label>
-                <label class="radio">
-                  <input type="radio" name="type" value="4" v-model="userForm.PanelType">
-                  苏果
-                </label>
-                <label class="radio">
-                  <input type="radio" name="type" value="1" v-model="userForm.PanelType">
-                  非会员
-                </label>
-              </p>
               <label class="label">登录名</label>
               <p class="control">
                 <input name="PanelLoginName" class="input" :class="{'is-danger': errors.has('PanelLoginName')}" type="text" v-model="userForm.PanelLoginName" v-validate="'required'" placeholder="请输入登录名">
@@ -49,13 +30,25 @@
                 <input name="emall" :class="{'is-danger': errors.has('emall')}" v-model="userForm.PanelEmail" v-validate="'required'" type="email" class="input" placeholder="请填写电子邮件">
                 <span class="help is-danger" v-show="errors.has('emall')">{{ errors.first('emall') }}</span>
               </p>
-              <label class="label">会员卡号</label>
-              <p class="control">
-                <input type="text" v-model="userForm.PanelCode" class="input" placeholder="请填写会员卡号">
-              </p>
               <label class="label">真实姓名</label>
               <p class="control">
                 <input type="text" v-model="userForm.PanelRealName" class="input" placeholder="请填写真实姓名">
+              </p>
+              <label class="label">所在省市</label>
+              <p class="control">
+                <span class="select">
+                  <select v-model="userForm.panelprovince" @change="queryByParenterCode(userForm.panelprovince)">
+                    <option value="">请选择省</option>
+                    <option :value="item.value" v-for="(item, index) in provinceOptions">{{item.label}}</option>
+                  </select>
+                </span>
+                <span class="select">
+                  <select name="PanelCity" v-model="userForm.PanelCity" v-validate="'required'" >
+                    <option value="">请选择市</option>
+                    <option :value="item.value" v-for="(item, index) in cityOptions">{{item.label}}</option>
+                  </select>
+                </span>
+                <!--<span class="help" v-show="errors.has('PanelCity')">{{ errors.first('PanelCity') }}</span>-->
               </p>
               <label class="label">个人介绍</label>
               <p class="control">
@@ -63,7 +56,7 @@
               </p>
               <p class="control">
                 <button class="button is-primary">提交</button>
-                <button class="button is-link">重置</button>
+                <button class="button">重置</button>
               </p>
             </form>
           </div>
@@ -89,13 +82,17 @@ export default {
         PanelRemark: '',
         PanelWebId: '1',
         PanelType: 1,
-        action: 'panelRegister'
-      }
+        action: 'panelRegister',
+        panelprovince: '',
+        PanelCity: ''
+      },
+      provinceOptions: [],
+      cityOptions: []
     }
   },
 
   created(){
-
+    this.queryByParenterCode('100000')
   },
   methods: {
     validateForm(){
@@ -113,6 +110,29 @@ export default {
           console.log(error)
         })
       })
+    },
+    queryByParenterCode(ParenterCode){
+      api.queryByParenterCode({ParenterCode}).then(res => {
+        const {msg, result, data} = res.data
+        if(result!=='ok'){
+          this.$notify.warning({content: msg || '查询省市失败'});
+          return false;
+        }
+
+        const options = data.map(item => {
+          return {
+            value: item.ParamsValues,
+            label: item.ParamsName
+          }
+        })
+        // this.provinceOptions = 
+        if(ParenterCode === '100000'){
+            this.provinceOptions = options
+            this.userForm.PanelCity = ''
+        }else{
+            this.cityOptions = options
+        }
+      })
     }
   }
 }
@@ -122,6 +142,12 @@ export default {
   .signup{
     &-page{
       padding: 30px 0;
+    }
+  }
+
+  .select{
+    select{
+      width: 160px
     }
   }
 </style>

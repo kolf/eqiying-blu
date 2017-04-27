@@ -1,12 +1,6 @@
 <template>
   <div class="projects-page">
-    <section class="hero is-medium is-primary is-bold">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title">活动专区</h1>
-        </div>
-      </div>
-    </section>
+    <section class="hero is-medium banner user-banner"></section>
     <div class="section is-gray">
       <div class="container">
         <div class="columns">
@@ -33,7 +27,7 @@
           <div class="column is-one-quarter" v-for="(project, index) in projects">
             <div class="card  is-fullwidth">
               <router-link class="card-image" :to="'/projects/' + project.PjId">
-                <figure class="image is-4by3">
+                <figure class="image is-1by1">
                   <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
                 </figure>
               </router-link>
@@ -84,7 +78,7 @@ export default {
   methods: {
     queryList(ProjectColumnId) {
       this.ProjectColumnId = ProjectColumnId
-      this.queryProject(1)
+      // this.queryProject(1) // 作废
     },
     queryProjectColumn() {
       api.queryColumns().then(res => {
@@ -93,19 +87,18 @@ export default {
           this.$notify.warning({ content: msg })
           return false
         }
+        
 
-        this.columns = data.projectColumnList
-        this.projects = data.projectColumnList.reduce((result, item) => {
+        const projects = data.projectColumnList.reduce((result, item) => {
           if (item.projectInfoList) {
-            console.log(item.projectInfoList)
-            result.concat(item.projectInfoList)
+            result = result.concat(item.projectInfoList)
           }
           return result
         }, [])
 
-        console.log(this.projects)
-
-        this.total = this.projects.length
+        this.columns = data.projectColumnList
+        this.projects = projects
+        this.total = projects.length
       })
     },
     queryProject(pageNum) {
