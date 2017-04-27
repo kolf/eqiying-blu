@@ -93,6 +93,14 @@ export default {
         }
 
         this.columns = data.projectColumnList
+        this.projects = data.projectColumnList.reduce((result, item) => {
+          if(item.projectInfoList){
+            result.concat(item.projectInfoList)
+          }
+          return result
+        }, [])
+
+        this.total = this.projects.length
       })
     },
     queryProject(pageNum){
@@ -103,8 +111,8 @@ export default {
           return false
         }
 
-        this.projects=data
-        this.total=recordCount || data.length
+        // this.projects=data
+        // this.total=recordCount || data.length
       })
     }
   }

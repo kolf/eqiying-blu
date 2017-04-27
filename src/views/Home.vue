@@ -80,13 +80,13 @@
           </li>
         </ul>
         <!-- <div class="columns steps">
-          <div class="column">发送邀请</div>
-          <div class="column">参与活动</div>
-          <div class="column">获取积分</div>
-          <div class="column">积分兑换</div>
-          <div class="column">礼品审核</div>
-          <div class="column">礼品发放</div>
-        </div> -->
+              <div class="column">发送邀请</div>
+              <div class="column">参与活动</div>
+              <div class="column">获取积分</div>
+              <div class="column">积分兑换</div>
+              <div class="column">礼品审核</div>
+              <div class="column">礼品发放</div>
+            </div> -->
       </div>
     </div>
   </div>
@@ -96,12 +96,12 @@
 import api from '../api/index.js'
 
 export default {
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  created () {
+  created() {
     api.queryAnnounce()
   }
 }
@@ -110,72 +110,72 @@ export default {
 <style lang="scss">
 $primary: #6bafdc;
 
-.announcement{
-  &-section{
+.announcement {
+  &-section {
     padding: 12px 0;
   }
 }
-.feature{
+
+.feature {
   padding-top: 450px;
   width: 100%;
   background-color: #fff;
   position: relative;
   overflow: hidden;
-  height: 0;
-  // box-shadow: 0 8px 20px #eee;
+  height: 0; // box-shadow: 0 8px 20px #eee;
   border-radius: 4px;
-  &-title{
+  &-title {
     font-size: 36px;
     position: absolute;
     width: 100%;
     top: 16%;
-    small{
+    small {
       display: block;
       font-size: 20px;
       color: #999;
       margin-top: 10px
     }
   }
-  &-1{
+  &-1 {
     transition: all .3s;
-    &:hover{
+    &:hover {
       background-color: #6bafdc;
       .title {
         transition: all .3s;
         color: #eee;
-        top:10%;
-        small{
+        top: 10%;
+        small {
           color: #eee;
         }
       }
-      .box{
+      .box {
         background-color: transparent;
         border: none;
         box-shadow: 0 0 0 #fff;
       }
-      .iconfont{
+      .iconfont {
         top: -70px !important;
         color: #eee !important;
-        &.icon--3{
+        &.icon--3 {
           opacity: 0;
           color: #fff;
           top: 400px !important;
         }
-        &.icon--5{
+        &.icon--5 {
           left: 60px !important;
         }
-        &.icon--7{
+        &.icon--7 {
           left: 160px !important;
         }
       }
-      .text{
+      .text {
         top: 250px;
       }
-      .button{
+      .button {
         top: 350px;
       }
     }
-    .text{
+    .text {
       position: absolute;
       transition: all .3s;
       color: #eee;
@@ -183,110 +183,108 @@ $primary: #6bafdc;
       width: 100%;
       padding: 0 40px;
     }
-    .button{
+    .button {
       position: absolute;
-      transition: all .4s;
-      // top: -100px;
+      transition: all .4s; // top: -100px;
       width: 80%;
       left: 10%;
       height: 50px;
       font-size: 18px;
       border: none;
     }
-    .box{
+    .box {
       margin-top: -68%;
       border: 6px solid #fff;
       box-shadow: 0 0 30px #b0defb;
       width: 270px;
-      height: 270px;
-      // width: 80%;
+      height: 270px; // width: 80%;
       // box-sizing: border-box;
       // padding: 80% 0 0 0;
       background-color: #eee;
       display: inline-block;
       border-radius: 50%;
       position: relative;
-      .iconfont{
+      .iconfont {
         transition: all .3s;
         position: absolute;
         font-size: 40px;
         color: #cacaca;
 
-        &.icon--6{
-          left:10px;
+        &.icon--6 {
+          left: 10px;
           top: 100px;
         }
-        &.icon--5{
-          left:38px;
+        &.icon--5 {
+          left: 38px;
           top: 32px;
         }
-        &.icon--7{
+        &.icon--7 {
           left: 180px;
           top: 32px;
         }
-        &.icon--8{
+        &.icon--8 {
           left: 208px;
           top: 100px;
         }
-        &.icon--4{
+        &.icon--4 {
           left: 110px;
           top: 0px;
         }
-        &.icon--3{
+        &.icon--3 {
           font-size: 160px;
           left: 53px;
-          top:18px;
-          color:#6bafdc
+          top: 18px;
+          color: #6bafdc
         }
       }
     }
   }
-  &-3{
+  &-3 {
     transition: all .3s;
-    &:hover{
+    &:hover {
       background-color: #6bafdc;
-      .title{
+      .title {
         transition: all .3s;
-        top:10%;
+        top: 10%;
         color: #eee;
-        small{
+        small {
           color: #eee;
         }
       }
-      .user-icon{
+      .user-icon {
         transition: all .3s;
         margin-top: -98%;
-        .icon--2{
+        .icon--2 {
           color: #eee;
           font-size: 100px;
         }
       }
-      .text{
+      .text {
         transition: all .3s;
         top: 250px;
       }
-      .button{
+      .button {
         transition: all .3s;
         top: 350px;
       }
-      .bg{
+      .bg {
         transition: all .3s;
-        top:600px;
+        top: 600px;
       }
-      .box{
+      .box {
         transition: all .3s;
-        top:500px;
+        top: 500px;
       }
     }
-    .user-icon{
+    .user-icon {
       margin-top: -60%;
-      .icon--2{
+      .icon--2 {
         color: #6bafdc;
         font-size: 160px;
         line-height: 1;
       }
     }
-    .text{
+    .text {
       position: absolute;
       transition: all .3s;
       color: #eee;
@@ -294,33 +292,32 @@ $primary: #6bafdc;
       width: 100%;
       padding: 0 40px;
     }
-    .button{
+    .button {
       position: absolute;
-      transition: all .4s;
-      // top: -100px;
+      transition: all .4s; // top: -100px;
       width: 80%;
       left: 10%;
       height: 50px;
       font-size: 18px;
       border: none;
     }
-    .box{
+    .box {
       position: absolute;
       background-color: transparent;
       text-align: right;
       width: 100%;
       right: 0;
-      top:305px;
+      top: 305px;
       font-size: 20px;
       z-index: 10;
-      small{
+      small {
         font-size: 20px;
         display: block;
         color: #999;
       }
     }
 
-    .bg{
+    .bg {
       z-index: 9;
       background-color: #eee;
       position: absolute;
@@ -333,33 +330,34 @@ $primary: #6bafdc;
     }
   }
 }
+
 // <i class="iconfont icon--3"></i>
 // <i class="iconfont icon--7"></i>
 // <i class="iconfont icon--6"></i>
 // <i class="iconfont icon--5"></i>
 // <i class="iconfont icon--4"></i>
 // <i class="iconfont icon--8"></i>
-
-.index{
-  &-banner{
+.index {
+  &-banner {
     background: url(../assets/index.jpg) no-repeat center;
     height: 600px;
   }
 }
-.steps{
+
+.steps {
   padding-bottom: 20px;
   margin: 0 -20px;
 }
-.step{
-  &-item{
+
+.step {
+  &-item {
     color: #999;
     position: relative;
-    &:last-child{
-      &:before{
+    &:last-child {
+      &:before {
         content: ''
       }
-    }
-    // &:before{
+    } // &:before{
     //   content: "\F105";
     //   font: normal normal normal 30px/1 FontAwesome;
     //   position: absolute;
@@ -367,17 +365,17 @@ $primary: #6bafdc;
     //   right:0;
     //   top:50%;
     // }
-    .iconfont{
+    .iconfont {
       font-size: 120px;
       line-height: 1;
       color: $primary
     }
   }
-  &-title{
+  &-title {
     font-size: 20px;
     margin-bottom: 10px;
     color: #333;
-    &>span{
+    &>span {
       display: block;
       font-size: 14px;
       color: #999
