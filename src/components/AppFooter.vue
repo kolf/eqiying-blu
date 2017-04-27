@@ -35,33 +35,34 @@ export default {
 </script>
 
 <style lang="scss">
-.footer a:not(.icon), .footer a:visited:not(.icon){
-	border-bottom: none;
-	text-decoration: none;
-	&:hover{
-		color: #999
+.footer{
+	background-color: #333;
+	*{
+		color: #999 !important;
+	}
+	a{
+		border-bottom: none !important;
+		&:hover{
+			color:#eee !important;
+		}
 	}
 }
-	.footer{
-		background-color: #333;
-	}
-	.icons{
-		padding-bottom: 10px;
-		&>a{
-			color:#999;
-			margin: 1em;
-			.iconfont{
-				font-size: 4em;
-			}
+.icons{
+	padding-bottom: 10px;
+	&>a{
+		color:#999;
+		margin: 1em;
+		.iconfont{
+			font-size: 4em;
 		}
 	}
-	.links{
-		// text-align: center;
-		padding: 10px 0;
-		a{
-			display: inline-block;
-			color: #999;
-			padding: 0 10px;
-		}
+}
+.links{
+	// text-align: center;
+	padding: 10px 0;
+	a{
+		display: inline-block;
+		padding: 0 10px;
 	}
+}
 </style>

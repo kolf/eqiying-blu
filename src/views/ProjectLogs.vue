@@ -21,7 +21,7 @@
               </tr>
             </tbody>
         </table>
-        <div class="box">
+        <div class="box" v-show="projectLogs.length>0">
           <pagination :total="total" layout="pager"></pagination>
         </div>
   </div>

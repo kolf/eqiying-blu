@@ -1,17 +1,11 @@
 <template>
 <div class="projects-page">
-  <section class="hero is-medium is-primary is-bold">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-          <h1 class="title">活动专区</h1>
-      </div>
-    </div>
-  </section>
-  <div class="section">
+  <section class="hero is-medium banner user-banner"></section>
+  <div class="section main">
       <div class="container">
         <div class="section">
           <div class="columns is-desktop">
-            <div class="column is-10 is-offset-1">
+            <div class="column is-8 is-offset-2">
               <h1 class="title">{{projectInfo.ProjectName}}</h1>
               <div class="content">
                 <p>{{projectInfo.ProjectDesc}}</p>

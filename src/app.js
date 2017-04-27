@@ -10,20 +10,27 @@ import router from './router'
 import store from './store'
 import { TOGGLE_PAGE, TOGGLE_MENU } from 'vuex-store/mutation-types'
 import storage from 'src/utils/localStorage'
+import indicator from 'src/assets/indicator.png'
 
 Vue.use(NProgress)
 Validator.addLocale(zh)
 Vue.use(VueBlu)
 Vue.use(VueLazyload, {
-	preLoad: 1.3,
-	// error: 'dist/error.png',
-	// loading: 'dist/loading.gif',
-	attempt: 1
+    // preLoad: 1.3,
+    error: indicator,
+    loading: indicator,
+    // attempt: 1,
+    adapter: {
+        loaded({ bindType, el, naturalHeight, naturalWidth, $parent, src, loading, error, Init }) {
+            el.setAttribute('data-natural-height', naturalHeight);
+            el.setAttribute('data-some', 'string');
+        }
+    }
 })
 Vue.use(VeeValidate, {
-	locale: 'zh_CN'
-})
-// Enable devtools
+        locale: 'zh_CN'
+    })
+    // Enable devtools
 Vue.config.devtools = true
 
 sync(store, router)
@@ -33,31 +40,30 @@ const nprogress = new NProgress({ parent: '.nprogress-container' })
 const { state } = store
 
 router.beforeEach((to, from, next) => {
-	store.commit(TOGGLE_PAGE, to.path.split('/')[1])
-	if (state.app.device.isMobile && state.app.menu.opened) {
-		store.commit(TOGGLE_MENU, false)
-	}
+    store.commit(TOGGLE_PAGE, to.path.split('/')[1])
+    if (state.app.device.isMobile && state.app.menu.opened) {
+        store.commit(TOGGLE_MENU, false)
+    }
 
-	if (to.matched.some(r => r.meta.requireAuth)) {
-      if (storage.has('isLogin', 1000*60*20)) {
-          next();
-      } else {
-          next({
-              path: '/signin',
-              query: {redirect: to.fullPath}
-          })
-      }
-  }
-  else {
-      next();
-  }
+    if (to.matched.some(r => r.meta.requireAuth)) {
+        if (storage.has('isLogin', 1000 * 60 * 20)) {
+            next();
+        } else {
+            next({
+                path: '/signin',
+                query: { redirect: to.fullPath }
+            })
+        }
+    } else {
+        next();
+    }
 })
 
 const app = new Vue({
-	router,
-	store,
-	nprogress,
-	...App
+    router,
+    store,
+    nprogress,
+    ...App
 })
 
 export { app, router, store }
