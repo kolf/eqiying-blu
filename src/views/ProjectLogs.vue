@@ -14,7 +14,7 @@
             <tbody>
               <tr v-for="(item, index) in projectLogs">
                   <td>{{item.ProjectId}}</td>
-                  <td><a href="">{{item.ProjectName}}</a></td>
+                  <td><router-link class="card-image" :to="'/projects/' + item.PjId">{{item.ProjectName}}</router-link></a></td>
                   <td><span class="tag is-success">{{item.Pstatus}}</span></td>
                   <td>{{item.CreateTime.match(/\S{10}/)[0]}}</td>
                   <td>{{item.GetPoint}}</td>
@@ -22,7 +22,7 @@
             </tbody>
         </table>
         <div class="box" v-show="projectLogs.length>0">
-          <pagination :total="total" layout="pager"></pagination>
+          <pagination :total="total" layout="pager" :change="queryProjectLog"></pagination>
         </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    queryPresentLog(pageNum){
+    queryProjectLog(pageNum){
       api.queryProjectLog({pageNum}).then(res => {
         const {msg, result, data, recordCount} = res.data
         if(result!=='ok'){
@@ -52,7 +52,7 @@ export default {
     }
   },
   created(){
-    this.queryPresentLog(1)
+    this.queryProjectLog(1)
   }
 }
 </script>

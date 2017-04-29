@@ -1,3 +1,7 @@
+ul{
+    list-style: none
+}
+
 .main {
     min-height: 50vh
 }
@@ -42,8 +46,28 @@
             padding-bottom: 40px;
         }
     }
+    &-t{
+        padding-top: 20px;
+    }
 }
 
+.text{
+    &-danger{
+        color:#f56954
+    }
+}
+
+.param{
+    &-list{
+        li{
+            padding: 5px 0;
+        }
+    }
+    &-name{
+        font-weight: 700;
+        margin-right: 10px;
+    }
+}
 // button
 .button{
     &.is-large{
@@ -58,7 +82,11 @@
         width: 64px;
     }
 }
-
+.tabs{
+    li{
+        background-color: #fff
+    }
+}
 // box
 .box,
 .card,
@@ -80,6 +108,12 @@
         content: '&#xe600';
         position: absolute;
         // background: red;
+    }
+}
+
+.step{
+    &-desc{
+        width:101px
     }
 }
 

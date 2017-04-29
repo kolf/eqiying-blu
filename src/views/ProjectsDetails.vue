@@ -1,6 +1,17 @@
 <template>
 <div class="projects-page">
-  <section class="hero is-medium banner user-banner"></section>
+  <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+            活动专区
+          </p>
+          <p class="subtitle">
+            丰富的活动等你来参加还可以获得积分哟
+          </p>
+        </div>
+      </div>
+    </section>
   <div class="section main">
       <div class="container">
         <div class="section">

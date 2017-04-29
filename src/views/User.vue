@@ -1,6 +1,17 @@
 <template>
   <div class="user-page">
-    <section class="hero is-medium banner user-banner"></section>
+    <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+            个人中心
+          </p>
+          <p class="subtitle">
+            我们非常乐意倾听您的诉说
+          </p>
+        </div>
+      </div>
+    </section>
     <div class="section">
       <div class="container">
           <div class="user-profile">
@@ -10,7 +21,7 @@
                           <div class="has-text-centered block">
                               <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Avatar" class="avatar">
                               <h1 class="title">{{userInfo.PanelLoginName}}</h1>
-                              <p>这位同学很懒，木有签名的说～</p>
+                              <p>这位同学很懒，木有填写个人资料的说～</p>
                           </div>
                           <aside class="menu">
                             <ul class="menu-list">
@@ -71,7 +82,7 @@ export default {
 
 .profile-info-left {
   position: relative;
-  top: -92px;
+  top: -62px;
 }
 .profile-info-left img.avatar {
 border: 2px solid #fff;

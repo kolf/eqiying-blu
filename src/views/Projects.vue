@@ -1,6 +1,17 @@
 <template>
   <div class="projects-page">
-    <section class="hero is-medium banner user-banner"></section>
+        <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+            活动专区
+          </p>
+          <p class="subtitle">
+            丰富的活动等你来参加还可以获得积分哟
+          </p>
+        </div>
+      </div>
+    </section>
     <div class="section is-gray">
       <div class="container">
         <div class="columns">
@@ -24,7 +35,7 @@
           </div>
         </div>
         <div class="columns is-multiline">
-          <div class="column is-one-quarter" v-for="(project, index) in projects">
+          <div class="column is-one-third" v-for="(project, index) in projects">
             <div class="card  is-fullwidth">
               <router-link class="card-image" :to="'/projects/' + project.PjId">
                 <figure class="image is-1by1">

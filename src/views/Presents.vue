@@ -1,30 +1,40 @@
 <template>
   <div class="present-page">
-    <!-- <article class="banner">
-        <lory class="js_rewind" :options="{ enableMouseEvents: true, }">
-          <item v-lazy:background-image="banner.PresentAnnouncePic" v-for="(banner, index) in banners"></item>
-        </lory>
-    </article> -->
-    <section class="hero is-medium banner user-banner"></section>
-
+    <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+            积分商城
+          </p>
+          <p class="subtitle">
+            国内领先的积分商城服务商
+          </p>
+        </div>
+      </div>
+    </section>
+  
     <div class="section is-gray main">
       <div class="container">
         <div class="columns is-multiline">
           <div class="column is-3" v-for="present in presents">
             <div class="card  is-fullwidth">
-              <router-link class="card-image" :to="'/presents/' + present.PresentId">
+              <a class="card-image" @click="showModal(present)">
                 <figure class="image is-1by1">
                   <img v-lazy="'http://show.eqiying.com' + present.PresentPic" alt="Image">
                 </figure>
-              </router-link>
+              </a>
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p><router-link :to="'/presents/' + present.PresentId">{{present.PresentName}}</router-link></p>
+                    <p>
+                      <a @click="showModal(present)">{{present.PresentName}}</a>
+                    </p>
                   </div>
                 </div>
                 <div class="content">
-                  <p class=""><span class="title is-3">{{present.PresentPoint}}</span> 积分<button @click="showModal(present)" class="button is-primary is-outlined is-pulled-right">兑换</button></p>
+                  <p class=""><span class="title is-3">{{present.PresentPoint}}</span> 积分
+                    <button @click="showModal(present)" class="button is-primary is-outlined is-pulled-right">兑换</button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -35,21 +45,35 @@
         </div>
       </div>
     </div>
-    <modal title="兑换" :is-show="isShowModal" :on-ok="exchange" @close="isShowModal=false" ok-text="确定" cancel-text="取消">
-			<!-- <div slot="footer"></div> -->
-      <div class="columns">
-        <div class="column is-3 has-text-right">礼品名称</div>
-        <div class="column is-8">{{curPresent.PresentName}}</div>
-      </div>
-      <div class="columns">
-        <div class="column is-3 has-text-right" style="padding-top: 15px">兑换个数</div>
-        <div class="column is-8"><input-number :val="curPresent.val" :on-change="changePresentNum"></input-number></div>
-      </div>
-      <div class="columns">
-        <div class="column is-3  has-text-right">所需积分</div>
-        <div class="column is-8">{{curPresent.PresentPoint}}</div>
-      </div>
-		</modal>
+    <modal title="兑换" transition="fadeDown" :is-show="isShowModal" @close="hideModal" :show-footer="false" :show-header="false">
+      <article class="media">
+        <div class="media-left" style="width:240px">
+          <figure class="image is-square">
+            <img v-lazy="'http://show.eqiying.com' + curPresent.PresentPic" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title">{{curPresent.PresentName}}</p>
+          <!--<p class="subtitle">{{curPresent.PresentDesc}}</p>-->
+          <ul class="param-list">
+            <li><span class="param-name">礼品介绍:</span>{{curPresent.PresentDesc}}</li>
+            <li><span class="param-name">积分:</span>{{curPresent.PresentPoint}}</li>
+            <li><span class="param-name">兑换个数:</span>{{curPresent.PresentPoint}}</li>
+            <li><span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime}}</li>
+            <li>
+              <input-number style="width:80px" :val="1" v-model="changeNum" :on-change="changePresentNum"></input-number>
+            </li>
+            <li>共需 <span class="text-danger">{{curPresent.PresentPoint*changeNum}}</span> 积分</li>
+          </ul>
+          <div class="pad-t">
+            <button class="button is-primary" @click="exchange" :disabled="changeNum==0">兑换</button>
+          </div>
+        </div>
+        <div class="media-right">
+          <button class="delete" @click="hideModal"></button>
+        </div>
+      </article>
+    </modal>
   </div>
 </template>
 
@@ -64,27 +88,25 @@ export default {
     Prev,
     Next
   },
-  data () {
+  data() {
     return {
       presents: [],
       total: 0,
       isShowModal: false,
-      curPresent: {},
       changeNum: 1,
-      banners: [],
-      // imgUrl: 'http://minigame.qq.com/common_manage/381/big_image_8cf953f75f1c4903c246c6cf6d48f867.jpg'
+      curPresent: {}
     }
   },
-  created(){
+  created() {
     this.queryPresent(1)
     this.queryPresentBanner()
   },
   methods: {
-    queryPresentBanner(){
+    queryPresentBanner() {
       api.queryPresentBanner().then(res => {
-        const {msg, result, data} = res.data
-        if(result!=='ok'){
-          this.$notify.warning({content: msg})
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
           return false
         }
 
@@ -95,11 +117,11 @@ export default {
 
       })
     },
-    queryPresent(pageNum){
+    queryPresent(pageNum) {
       api.queryPresent(pageNum).then(res => {
-        const {msg, result, data, recordCount} = res.data
-        if(result!=='ok'){
-          this.$notify.warning({content: msg})
+        const { msg, result, data, recordCount } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
           return false
         }
 
@@ -107,24 +129,30 @@ export default {
         this.total = recordCount || 0
       })
     },
-    showModal(present){
+    showModal(present) {
       this.isShowModal = true
       this.curPresent = present
-      this.curPresent.val = 1
+      // this.changeNum = 1
     },
-    changePresentNum(val){
-      this.curPresent.val = val
+    hideModal() {
+      this.isShowModal = false
+      this.curPresent = {}
     },
-    exchange(){
+    changePresentNum(val) {
+      this.changeNum = val
+    },
+    exchange() {
       // console.log(this.curPresent)
-      api.exchange(this.curPresent.PresentId, this.curPresent.val).then(res => {
-        const {msg, result, data} = res.data
-        if(result!=='ok'){
-          this.$notify.warning({content: msg})
+      api.exchange(this.curPresent.PresentId, this.changeNum).then(res => {
+        this.hideModal()
+
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
           return false
         }
 
-        this.$notify.success({content: msg || '兑换成功！'})
+        this.$notify.success({ content: msg || '兑换成功！' })
       })
     }
   }
@@ -132,14 +160,16 @@ export default {
 </script>
 
 <style lang="scss">
-.image{
-  background-color:#eee
+.image {
+  background-color: #eee
 }
-.banner{
+
+.banner {
   // height: 380px;
   overflow: hidden;
 }
-.js_slide{
+
+.js_slide {
   background-color: #fff;
   height: 380px;
   background-position: center;
