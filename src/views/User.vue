@@ -171,9 +171,9 @@ export default {
     border: 4px solid #fff;
     border-radius: 6px;
     margin-bottom: 10px;
-    overflow: hidden;
-    max-width: 240px;
-    display: inline-block;
+    // overflow: hidden;
+    // max-width: 240px;
+    // display: inline-block;
   }
 }
 
