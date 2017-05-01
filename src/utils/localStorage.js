@@ -1,6 +1,6 @@
 export default {
   get (key, exp) {
-    const {value, time} = JSON.parse(window.localStorage.getItem(key))
+    const {value, time} = JSON.parse(window.localStorage.getItem(key)) || {}
     if(value){
       if(exp && Date.now()-time>exp){
         this.remove(key)
@@ -21,7 +21,7 @@ export default {
   remove (key) {
     window.localStorage.removeItem(key)
   },
-  removeAll (key) {
+  removeAll () {
     window.localStorage.clear()
   }
 }

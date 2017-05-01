@@ -8,9 +8,10 @@ import { sync } from 'vuex-router-sync'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { TOGGLE_PAGE, TOGGLE_MENU } from 'vuex-store/mutation-types'
-import storage from 'src/utils/localStorage'
-import indicator from 'src/assets/indicator.png'
+import filters from './filters'
+import { TOGGLE_PAGE, TOGGLE_MENU, TOGGLE_LOGIN } from 'vuex-store/mutation-types'
+import storage from './utils/localStorage'
+import indicator from './assets/indicator.png'
 
 Vue.use(NProgress)
 Validator.addLocale(zh)
@@ -47,8 +48,9 @@ router.beforeEach((to, from, next) => {
 
     if (to.matched.some(r => r.meta.requireAuth)) {
         if (storage.has('isLogin', 1000 * 60 * 20)) {
-            next();
+            next()
         } else {
+            store.commit(TOGGLE_LOGIN, false)
             next({
                 path: '/signin',
                 query: { redirect: to.fullPath }
@@ -58,6 +60,8 @@ router.beforeEach((to, from, next) => {
         next();
     }
 })
+
+Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
 
 const app = new Vue({
     router,

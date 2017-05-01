@@ -3,7 +3,8 @@ import router from 'src/router'
 
 const state = {
   current: {
-    page: ''
+    page: '',
+    isLogin: false
   },
   device: {
     isMobile: false,
@@ -34,6 +35,10 @@ const mutations = {
     } else {
       state.menu.opened = true
     }
+  },
+
+  [types.TOGGLE_LOGIN] (state, status) {
+    state.current.isLogin = status
   },
 
   [types.SWITCH_EFFECT] (state, effectItem) {

@@ -1,5 +1,6 @@
 <template>
   <div class="present-page">
+    <app-header></app-header>
     <section class="hero is-dark">
       <div class="hero-body">
         <div class="container has-text-centered">
@@ -40,11 +41,12 @@
             </div>
           </div>
         </div>
-        <div class="box is-gray" v-show="presents.length>0">
+        <div class="box is-gray" v-if="presents.length>0">
           <pagination :total="total" layout="pager" :change="queryPresent"></pagination>
         </div>
       </div>
     </div>
+    <app-footer></app-footer>
     <modal title="兑换" transition="fadeDown" :is-show="isShowModal" @close="hideModal" :show-footer="false" :show-header="false">
       <article class="media">
         <div class="media-left" style="width:240px">
@@ -79,14 +81,13 @@
 
 <script>
 import api from 'src/api'
-import { Lory, Item, Prev, Next } from 'vue-lory'
+import AppHeader from 'components/AppHeader.vue'
+import AppFooter from 'components/AppFooter.vue'
 
 export default {
   components: {
-    Lory,
-    Item,
-    Prev,
-    Next
+    AppHeader,
+    AppFooter
   },
   data() {
     return {
@@ -160,18 +161,5 @@ export default {
 </script>
 
 <style lang="scss">
-.image {
-  background-color: #eee
-}
 
-.banner {
-  // height: 380px;
-  overflow: hidden;
-}
-
-.js_slide {
-  background-color: #fff;
-  height: 380px;
-  background-position: center;
-}
 </style>

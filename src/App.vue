@@ -1,24 +1,21 @@
 <template>
   <div id="app">
     <nprogress-container></nprogress-container>
-  	<app-header v-bind:page="$route.name" :show="menu.opened && !menu.hidden"></app-header>
     <router-view class="page"></router-view>
-    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
-import AppHeader from './components/AppHeader.vue'
-import AppFooter from './components/AppFooter.vue'
 import { mapGetters, mapActions } from 'vuex'
+import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
+import storage from 'src/utils/localStorage'
+
 export default {
+  name: 'app',
   components: {
-    AppHeader,
-    AppFooter,
     NprogressContainer
   },
-  beforeMount () {
+  beforeMount() {
     const { body } = document
     const WIDTH = 768
     const RATIO = 3
@@ -33,14 +30,24 @@ export default {
     document.addEventListener('visibilitychange', handler)
     window.addEventListener('DOMContentLoaded', handler)
     window.addEventListener('resize', handler)
+
+    const isLogin = storage.has('isLogin', 1000 * 60 * 20)
+    this.toggleLogin(isLogin)
   },
-  computed: mapGetters({
-    menu: 'menu'
-  }),
-  methods: mapActions([
-    'toggleDevice',
-    'toggleMenu'
-  ])
+  computed: {
+    ...mapGetters({
+      current: 'current',
+      device: 'device',
+      menu: 'menu'
+    })
+  },
+  methods: {
+    ...mapActions([
+      'toggleDevice',
+      'toggleMenu',
+      'toggleLogin'
+    ])
+  }
 }
 </script>
 <style lang="sass">

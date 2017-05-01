@@ -1,6 +1,7 @@
 <template>
   <div class="tab-content">
       <h2 class="title">个人资料</h2>
+          <hr>
       <!-- <div>{{userInfo}}</div> -->
       <ul class="line-list">
         <li><span class="name">ID：</span>{{userInfo.PanelId}}</li>

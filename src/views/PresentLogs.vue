@@ -1,6 +1,7 @@
 <template>
   <div class="tab-content">
     <h2 class="title">礼品兑换记录</h2>
+    <hr>
     <table class="table is-striped">
       <thead>
         <tr>
@@ -12,19 +13,24 @@
           <th width="200">兑换日期</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="presentLogs.length>0">
         <tr v-for="(item, index) in presentLogs">
-          <td><a @click="getPresent(item.PanelId)">{{item.PresentName}}</a></td>
+          <td><a @click="getPresent(item.PresentId)">{{item.PresentName}}</a></td>
           <td>{{item.PresentPoint}}</td>
           <td>{{item.ChangeTotal}}</td>
           <td>{{item.ChangeTotal}}</td>
-          <td><span class="tag is-success">{{item.statusName}}</span></td>
-          <td>{{item.ReleaseTime}}</td>
+          <td><span class="tag" :class="statusTag(item.CheckStatus)">{{item.statusName}}</span></td>
+          <td>{{item.ReleaseTime | fromatDate}}</td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+          <td class="has-text-centered" colspan="6">暂无数据...</td>
         </tr>
       </tbody>
     </table>
-    <div class="box" v-show="presentLogs.length>0">
-      <pagination :total="total" layout="pager" :change="queryPresentLog"></pagination>
+    <div class="box" v-if="presentLogs.length>0">
+      <pagination :total="total" layout="pager" :page-size="pageSize" :change="queryPresentLog"></pagination>
     </div>
   
     <modal title="兑换" transition="fadeDown" :is-show="isShowModal" @close="hideModal" :show-footer="false" :show-header="false">
@@ -61,12 +67,13 @@ export default {
       presentLogs: [],
       total: 0,
       isShowModal: false,
-      curPresent: {}
+      curPresent: {},
+      pageSize: 20
     }
   },
   methods: {
     queryPresentLog(pageNum) {
-      api.queryPresentLog(pageNum).then(res => {
+      api.queryPresentLog(pageNum, this.pageSize).then(res => {
         const { msg, result, data, recordCount } = res.data
         if (result !== 'ok') {
           this.$notify.warning({ content: msg })
@@ -78,8 +85,8 @@ export default {
       })
     },
     getPresent(id) {
-      api.getProjectInfo({id}).then(res => {
-        const { msg, result, data} = res.data
+      api.getPresentInfo({ id }).then(res => {
+        const { msg, result, data } = res.data
         if (result !== 'ok') {
           this.$notify.warning({ content: msg })
           return false
@@ -98,6 +105,14 @@ export default {
       this.isShowModal = false
       this.curPresent = {}
     },
+    statusTag(value) {
+      const CheckStatus = {
+        1: 'is-dark',
+        2: 'is-info',
+        3: 'is-success'
+      }
+      return CheckStatus[value] || 'is-warning'
+    }
   },
   created() {
     this.queryPresentLog(1)

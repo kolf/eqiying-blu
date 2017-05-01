@@ -79,7 +79,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .footer {
 	background-color: #363636;
 	padding: 0;

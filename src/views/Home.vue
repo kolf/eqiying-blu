@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="home-page">
+    <app-header></app-header>
     <section class="hero is-primary is-large">
       <img src="../assets/index.jpg" alt="">
     </section>
@@ -80,22 +81,30 @@
           </li>
         </ul>
         <!-- <div class="columns steps">
-              <div class="column">发送邀请</div>
-              <div class="column">参与活动</div>
-              <div class="column">获取积分</div>
-              <div class="column">积分兑换</div>
-              <div class="column">礼品审核</div>
-              <div class="column">礼品发放</div>
-            </div> -->
+                <div class="column">发送邀请</div>
+                <div class="column">参与活动</div>
+                <div class="column">获取积分</div>
+                <div class="column">积分兑换</div>
+                <div class="column">礼品审核</div>
+                <div class="column">礼品发放</div>
+              </div> -->
       </div>
     </div>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import api from '../api/index.js'
+import api from 'src/api/index.js'
+import AppHeader from 'components/AppHeader.vue'
+import AppFooter from 'components/AppFooter.vue'
 
 export default {
+  name: 'app',
+  components: {
+    AppHeader,
+    AppFooter
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
@@ -107,7 +116,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $primary: #6bafdc;
 
 .announcement {

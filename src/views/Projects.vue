@@ -1,6 +1,7 @@
 <template>
   <div class="projects-page">
-        <section class="hero is-dark">
+    <app-header></app-header>
+    <section class="hero is-dark">
       <div class="hero-body">
         <div class="container has-text-centered">
           <p class="title">
@@ -16,7 +17,7 @@
       <div class="container">
         <div class="columns">
           <div class="column">
-            <div class="tabs is-centered is-toggle">
+            <div class="tabs">
               <ul>
                 <li :class="{'is-active': ProjectColumnId==''}" @click="queryList('')">
                   <a>
@@ -34,44 +35,86 @@
             </div>
           </div>
         </div>
-        <div class="columns is-multiline">
-          <div class="column is-one-third" v-for="(project, index) in projects">
-            <div class="card  is-fullwidth">
-              <router-link class="card-image" :to="'/projects/' + project.PjId">
-                <figure class="image is-1by1">
-                  <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
-                </figure>
-              </router-link>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p>
-                      <router-link class="card-image" :to="'/projects/' + project.PjId">{{project.ProjectName}}</router-link>
-                    </p>
-                    <small>{{project.StartTime}}</small>
+        <!--<div class="columns is-multiline">
+              <div class="column" v-for="(project, index) in projects">
+                <article class="media related-card box" v-for="(project, index) in projects">
+                <div class="media-left">
+                  <figure class="image">
+                    <img src="http://placehold.it/240x240" alt="Image">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p class="subtitle">{{project.ProjectName}}</p>
+                    <p>{{project.ProjectDesc}}</p>
+                    <p>时间： {{project.StartTime}}</p>
+                    <p><a class="button is-primary">查看详情</a></p>
                   </div>
                 </div>
-                <div class="content">
-                  <p class="">可获 <span class="title is-4">{{project.Cpoint}}</span> 积分</p>
+              </article>
+                <div class="card  is-fullwidth">
+                  <router-link class="card-image" :to="'/projects/' + project.PjId">
+                    <figure class="image is-1by1">
+                      <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
+                    </figure>
+                  </router-link>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <p>
+                          <router-link class="card-image" :to="'/projects/' + project.PjId">{{project.ProjectName}}</router-link>
+                        </p>
+                        <small>{{project.StartTime}}</small>
+                      </div>
+                    </div>
+                    <div class="content">
+                      <p class="">可获 <span class="title is-4">{{project.Cpoint}}</span> 积分</p>
+                    </div>
+                  </div>
                 </div>
+              </div>-->
+        <div v-for="(project, index) in projects" class="box projects">
+          <article class="media related-card">
+            <div class="media-left project-thumb">
+              <figure class="image is-1by1">
+                <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p class="subtitle">[{{project.ProjectColumnName}}]
+                  <router-link :to="'/projects/' + project.PjId">{{project.ProjectName}}</router-link>
+                </p>
+                <p class="project-desc">{{project.ProjectDesc}}</p>
+                <p><i class="iconfont icon-shijian"></i> 活动时间: {{project.StartTime | fromatDate(true)}} / {{project.EndTime | fromatDate(true)}}</p>
+                <p><i class="iconfont icon-jifen"></i> 积分: {{project.projectPointList[0].Cpoint}}</p>
+                <p>
+                  <a class="button is-primary" href="project.InternalLink">立即参与</a>
+                  <router-link class="button is-link" :to="'/projects/' + project.PjId">查看详情</router-link>
+                </p>
               </div>
             </div>
-          </div>
+          </article>
         </div>
-        <div class="box is-gray">
-          <pagination :total="total" layout="pager" :change="queryProject"></pagination>
+        <div class="box is-gray" v-if="projects.length>0">
+          <pagination :total="total" :page-size="pageSize" layout="pager" :change="queryProject"></pagination>
         </div>
       </div>
     </div>
-  </div>
-  
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import api from 'src/api'
+import AppHeader from 'components/AppHeader.vue'
+import AppFooter from 'components/AppFooter.vue'
 
 export default {
+  components: {
+    AppHeader,
+    AppFooter
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -79,7 +122,8 @@ export default {
       columns: [],
       projects: [],
       ProjectColumnId: '',
-      total: 1
+      total: 0,
+      pageSize: 12
     }
   },
   created() {
@@ -98,11 +142,15 @@ export default {
           this.$notify.warning({ content: msg })
           return false
         }
-        
+
 
         const projects = data.projectColumnList.reduce((result, item) => {
           if (item.projectInfoList) {
-            result = result.concat(item.projectInfoList)
+            // result = result.concat(item.projectInfoList)
+            item.projectInfoList.forEach(project => {
+              project.ProjectColumnName = item.ProjectColumnName
+              result.push(project)
+            })
           }
           return result
         }, [])
@@ -113,7 +161,7 @@ export default {
       })
     },
     queryProject(pageNum) {
-      api.queryProjectInfoByUserRole({ pageNum, ProjectColumnId: this.ProjectColumnId }).then(res => {
+      api.queryProjectInfoByUserRole({ pageNum, ProjectColumnId: this.ProjectColumnId, pageSize: this.pageSize }).then(res => {
         const { msg, result, data, recordCount } = res.data
         if (result !== 'ok') {
           this.$notify.warning({ content: msg })
@@ -123,156 +171,26 @@ export default {
         // this.projects=data
         // this.total=recordCount || data.length
       })
+    },
+    statusTag(value) {
+      const CheckStatus = {
+        3: 'is-dark',
+        4: 'is-success'
+      }
+      return CheckStatus[value] || 'is-warning'
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .project {
-  margin-bottom: 30px;
-  vertical-align: top;
-  margin-right: 30px;
-  float: left;
-  cursor: pointer;
-  width: 100%;
-}
-
-.project figure {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.project figure figcaption {
-  position: relative;
-  z-index: 10;
-  padding: 8px 18px 11px;
-  background: #fff;
-  -ms-transition: all 0.2s ease-out;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  text-align: left;
-  color: #555;
-}
-
-.project figure:hover .actions {
-  opacity: 1;
-}
-
-.project figure .actions {
-  display: block;
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  background-color: rgba(29, 29, 29, .7);
-  -ms-transition: all 0.2s ease-out;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.project figure img {
-  border: 0;
-  width: 100%;
-}
-
-.btn-default bnt-action {
-  margin: 0 0 auto;
-}
-
-figcaption .project-details {
-  display: block;
-  font-size: 16px;
-  line-height: 33px; // color: #0093d0;
-  height: 27px;
-  width: 85%;
-  margin-bottom: 5px;
-  overflow: hidden;
-}
-
-figcaption .project-price {
-  position: absolute;
-  right: 15px;
-  top: 12px;
-  font-size: 22px;
-  text-align: right;
-  margin-top: 8px;
-  letter-spacing: -1px;
-  -webkit-font-smoothing: antialiased;
-}
-
-figcaption .project-creator {
-  font-size: 13px;
-  color: #545454;
-  display: block;
-}
-
-figcaption .project-creator {
-  font-size: 13px;
-  color: #545454;
-  display: block;
-}
-
-.project figure .actions button {
-  padding: 13px 20px;
-  font-size: 16px;
-  top: 32%;
-  position: absolute;
-  left: 50%;
-  width: 90%;
-  margin-left: -45%;
-  line-height: 18px;
-  letter-spacing: 1px;
-}
-
-
-
-/*******section heading**********/
-
-.center-heading {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.center-heading h2 {
-  margin-bottom: 0;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #333;
-  font-size: 25px;
-}
-
-.center-heading p {
-  font-size: 20px;
-  line-height: 35px;
-}
-
-.center-heading h2 strong {
-  font-weight: 700;
-}
-
-.center-line {
-  display: inline-block;
-  width: 70px;
-  height: 1px;
-  border-top: 1px solid #bbb;
-  /* border-bottom: 1px solid $skincolor; */
-  margin: auto;
-}
-
-.center-heading p {
-  margin-top: 10px;
-}
-
-.overflow-hidden {
-  overflow: hidden;
+  &-desc {
+    height: 80px
+  }
+  &-thumb {
+    width: 240px;
+    margin-right: 20px;
+  }
 }
 </style>

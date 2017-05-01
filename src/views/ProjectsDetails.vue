@@ -1,6 +1,7 @@
 <template>
-<div class="projects-page">
-  <section class="hero is-dark">
+  <div class="projects-page">
+    <app-header></app-header>
+    <section class="hero is-dark">
       <div class="hero-body">
         <div class="container has-text-centered">
           <p class="title">
@@ -12,43 +13,85 @@
         </div>
       </div>
     </section>
-  <div class="section main">
+    <div class="section">
       <div class="container">
-        <div class="section">
-          <div class="columns is-desktop">
-            <div class="column is-8 is-offset-2">
-              <h1 class="title">{{projectInfo.ProjectName}}</h1>
-              <div class="content project-content">
-                <p>{{projectInfo.ProjectDesc}}</p>
-              </div>
-              <a class="button is-primary is-outlined is-fullwidth is-large">点击参与</a>
+        <div class="columns">
+          <div class="column is-6">
+            <div class="image is-1by1">
+              <img v-lazy="'http://show.eqiying.com' + projectInfo.ProjectPicPath" alt="projectInfo.ProjectName">
+            </div>
+          </div>
+          <div class="column is-6">
+            <div class="title is-3">{{projectInfo.ProjectName}}</div>
+            <hr>
+            <!--<p class="title is-4 has-text-muted">40积分</p>-->
+  
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="has-text-right" width="100">
+                    <strong>活动地点</strong>
+                  </td>
+                  <td>北京</td>
+                </tr>
+                <tr>
+                  <td class="has-text-right">
+                    <strong>开始时间</strong>
+                  </td>
+                  <td>{{projectInfo.StartTime}}</td>
+                </tr>
+                <tr>
+                  <td class="has-text-right">
+                    <strong>结束时间</strong>
+                  </td>
+                  <td>{{projectInfo.EndTime}}</td>
+                </tr>
+                <tr>
+                  <td class="has-text-right">
+                    <strong>活动积分</strong>
+                  </td>
+                  <td>3</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <div class="content project-content">
+              <p>{{projectInfo.ProjectDesc}}</p>
+              <p><a class="button is-primary" href="projectInfo.InternalLink">立即参与</a></p>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <app-footer></app-footer>
   </div>
-</div>
 </template>
 
 <script>
 import api from 'src/api'
+import AppHeader from 'components/AppHeader.vue'
+import AppFooter from 'components/AppFooter.vue'
 
 export default {
+  components: {
+    AppHeader,
+    AppFooter
+  },
   data() {
     return {
       projectInfo: {}
     }
   },
-  created(){
-    const {id} = this.$route.params
+  created() {
+    const { id } = this.$route.params
     this.getProjectInfo(id)
   },
   methods: {
-    getProjectInfo(id){
-      api.getProjectInfo({id}).then(res => {
-        const {msg, result, data} = res.data
-        if(result!=='ok'){
-          this.$notify.warning({content: msg})
+    getProjectInfo(id) {
+      api.getProjectInfo({ id }).then(res => {
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
           return false
         }
 
@@ -61,12 +104,12 @@ export default {
 
 <style lang="scss">
 .project {
-    &-content{
-        p{
-            font-size: 16px;
-            line-height: 1.8
-        }
-        min-height: 200px
+  &-content {
+    p {
+      // font-size: 16px;
+      line-height: 1.8
     }
+    min-height: 200px
+  }
 }
 </style>

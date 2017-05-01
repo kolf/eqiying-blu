@@ -5,7 +5,7 @@ const { API_ROOT } = process.env
 // axios.defaults.baseURL = process.env.API_ROOT
 const apis = {
 	announce: API_ROOT + 'Handler/Announce.ashx', // 查询公告
-	signup: API_ROOT + 'Handler/PanelBaseInfo.ashx',
+	panelBaseInfo: API_ROOT + 'Handler/PanelBaseInfo.ashx',
 	login: API_ROOT + 'Handler/UserLogin.ashx',
 	validateCode: API_ROOT + 'Tools/ShowValidateCode.aspx',
 	present: API_ROOT + 'Handler/Present.ashx',
@@ -13,9 +13,12 @@ const apis = {
 	projectColumn: API_ROOT + 'Handler/ProjectColumn.ashx',
 	projectInfo: API_ROOT + 'Handler/ProjectInfo.ashx',
 	paramsInfo: API_ROOT + 'Handler/ParamsInfo.ashx',
+	common: API_ROOT + 'Handler/common.ashx',
+	internalMessage: API_ROOT + 'Handler/InternalMessage.ashx',
 }
 
 export default {
+	API_ROOT,
 	queryAnnounce() {
 		return axios.post(apis.announce, qs.stringify({
 			action: 'queryByProjectColumnIdType',
@@ -23,20 +26,41 @@ export default {
 			endIndex: 999999
 		}))
 	},
-	signup(param) {
-		return axios.post(apis.signup, qs.stringify(param))
+	signup(params) {
+		return axios.post(apis.panelBaseInfo, qs.stringify(params))
 	},
-	login(param) {
-		return axios.post(apis.login, qs.stringify(param))
+	updateAvatar({ panelBaseInfoId, headPath }) {
+		return axios.post(apis.panelBaseInfo, qs.stringify({
+			action: 'updateheadpath',
+			headPath,
+			panelBaseInfoId
+		}))
+	},
+	login(params) {
+		return axios.post(apis.login, qs.stringify(params))
+	},
+	retrievePwd(params) {
+		params = Object.assign({
+			retrieveWay: 2,
+			action: 'retrievePwd'
+		}, params)
+		return axios.post(apis.panelBaseInfo, qs.stringify(params))
+	},
+	changePwd(params) {
+		params = Object.assign({
+			action: 'ChangePwd'
+		}, params)
+		return axios.post(apis.panelBaseInfo, qs.stringify(params))
 	},
 	validateCode(param) {
 		return apis.validateCode + '?cc=' + Date.now()
 	},
 	queryPresent(pageNum) {
+		const pageSize = 12
 		return axios.post(apis.present, qs.stringify({
 			action: 'queryPageByAgencyId',
-			startIndex: pageNum,
-			endIndex: 12,
+			startIndex: pageSize * (pageNum - 1) + 1,
+			endIndex: pageSize * pageNum,
 			PresentType: 1
 		}))
 	},
@@ -48,19 +72,19 @@ export default {
 		}))
 	},
 	getUserInfo() {
-		return axios.post(apis.signup, qs.stringify({
+		return axios.post(apis.panelBaseInfo, qs.stringify({
 			action: 'getPanelInfoById'
 		}))
 	},
-	queryPresentLog(pageNum) {
+	queryPresentLog(pageNum, pageSize) {
 		return axios.post(apis.present, qs.stringify({
 			action: 'queryHistoryByPanelId',
-			endIndex: 20,
-			startIndex: pageNum,
+			startIndex: pageSize * (pageNum - 1) + 1,
+			endIndex: pageSize * pageNum,
 			CheckStatus: 1
 		}))
 	},
-	queryPresentBanner(pageNum) {
+	queryPresentBanner() {
 		return axios.post(apis.present, qs.stringify({
 			action: 'getLastPresent',
 			top: 5,
@@ -72,39 +96,60 @@ export default {
 			action: 'getAllPcAndPjInfo'
 		}))
 	},
-	queryProjectInfoByUserRole({ProjectColumnId, pageNum}){
+	queryProjectInfoByUserRole({ ProjectColumnId, pageNum, pageSize}) {
 		let params = {
 			action: 'queryProjectInfoByUserRole',
-			startIndex: pageNum,
-			endIndex: 12
+			startIndex: pageSize * (pageNum - 1) + 1,
+			endIndex: pageSize * pageNum,
 		}
-		if(ProjectColumnId) params.ProjectColumnId = ProjectColumnId
+		if (ProjectColumnId) params.ProjectColumnId = ProjectColumnId
 		return axios.post(apis.projectInfo, qs.stringify(params))
 	},
-	queryProjectLog({pageNum}){
+	queryProjectLog({ pageNum, pageSize}) {
 		return axios.post(apis.projectUsers, qs.stringify({
 			action: 'queryByPanelId',
-			endIndex: 20,
-			startIndex: pageNum
+			startIndex: pageSize * (pageNum - 1) + 1,
+			endIndex: pageSize * pageNum,
 		}))
 	},
-	getProjectInfo({id}){
+	getProjectInfo({ id }) {
 		return axios.post(apis.projectInfo, qs.stringify({
 			action: 'queryByPjId',
 			PjId: id
 		}))
 	},
-	getPresentInfo({id}){
+	getPresentInfo({ id }) {
 		return axios.post(apis.present, qs.stringify({
 			action: 'queryByPresentId',
 			PresentId: id
 		}))
 	},
-	queryByParenterCode({ParenterCode, typeCode}){ //查询省市
+	queryByParenterCode({ ParenterCode, typeCode }) { //查询省市
 		return axios.post(apis.paramsInfo, qs.stringify({
 			action: 'queryByParenterCode',
 			ParenterCode,
 			typeCode: 'AC0001'
+		}))
+	},
+	queryMsg({ pageNum, pageSize }) { //查询消息
+		return axios.post(apis.internalMessage, qs.stringify({
+			action: 'queryByPanelId',
+			startIndex: pageSize * (pageNum - 1) + 1,
+			endIndex: pageSize * pageNum,
+		}))
+	},
+	setMsg(params) { //发送消息
+		const defaultParams = {
+			action: 'insert',
+			ParentId: 0,
+			MessageType: 1
+		}
+		return axios.post(apis.internalMessage, qs.stringify(Object.assign(defaultParams, params)))
+	},
+	getUserId({ nickname }) { //获取用户Id
+		return axios.post(apis.panelBaseInfo, qs.stringify({
+			action: 'NickNameIsExist',
+			nickname
 		}))
 	}
 }

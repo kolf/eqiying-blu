@@ -10,7 +10,7 @@ export const SWITCH_EFFECT = 'SWITCH_EFFECT'
 
 export const TOGGLE_LANG = 'TOGGLE_LANG'
 
-// export const GET_USER_INFO = 'GET_USER_INFO'
+export const TOGGLE_LOGIN = 'TOGGLE_LOGIN'
 //
 // export const LOGIN = 'LOGIN'
 //

@@ -1,81 +1,155 @@
 <template>
-  <div class="section is-gray">
+  <section class="hero is-fullheight is-light">
+    <div class="hero-head">
+      <div class="header">
+        <nav class="nav">
+          <div class="container">
+            <div class="nav-left">
+              <a class="nav-item is-brand">
+                <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+              </a>
+            </div>
+  
+            <div class="nav-right nav-menu">
+              <span class="nav-item is-tab"><router-link class="" to="/signup">注册</router-link></span>
+              <span class="nav-item is-tab"><router-link class="button is-primary is-hidden-mobile" to="/signin">登陆</router-link></span>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="hero-body">
       <div class="container">
-        <div class="section">
-          <div class="columns is-desktop">
-            <form @submit.prevent="validateForm" class="column is-6 is-offset-3">
-              <h1 class="title">注册</h1>
-              <div class="content">
-                <p>‘乐’享生活社区是一个消费者们分享购物体验和心得的调研平台。在这里通过参与在线调研，您不但可以尽情分享自己的看法，而且会获得一定的奖励。这也更有助于我们为大家提供更好的购物服务。在这个平台上，我们不会对您进行任何推销。 我们定期将通过邮件向您发送调研邀请，只需几分钟即可完成调研。成功完成后， 您会获得相应的‘乐’享生活社区积分，这些积分能够兑换相应价值的电话充值卡！</p>
-             <p>嗨！只需要短短一分钟的时间既可让您在社区上注册。仅仅需要一个用户名、一个密码以及一个电子邮件地址。
-如已注册，则可以在此登录。</p>
-              </div>
-              <label class="label">登录名</label>
-              <p class="control">
-                <input name="PanelLoginName" class="input" :class="{'is-danger': errors.has('PanelLoginName')}" type="text" v-model="userForm.PanelLoginName" v-validate="'required'" placeholder="请输入登录名">
-                <span class="help is-danger" v-show="errors.has('PanelLoginName')">{{ errors.first('PanelLoginName') }}</span>
-              </p>
-              <label class="label">密码</label>
-              <p class="control">
-                <input name="password" class="input" :class="{'is-danger': errors.has('password')}" type="password" v-model="userForm.PanelPw" v-validate="'required'" placeholder="请填写密码">
-                <span class="help is-danger" v-show="errors.has('password')">{{ errors.first('password') }}</span>
-              </p>
-              <label class="label">确认密码</label>
-              <p class="control">
-                <input name="rePassword" :class="{'is-danger': errors.has('rePassword')}" v-model="userForm.RPanelPw" v-validate="'required'" type="password" class="input" placeholder="请填写确认密码">
-                <span class="help is-danger" v-show="errors.has('password')">{{ errors.first('rePassword') }}</span>
-              </p>
-              <label class="label">电子邮件</label>
-              <p class="control">
-                <input name="emall" :class="{'is-danger': errors.has('emall')}" v-model="userForm.PanelEmail" v-validate="'required'" type="email" class="input" placeholder="请填写电子邮件">
-                <span class="help is-danger" v-show="errors.has('emall')">{{ errors.first('emall') }}</span>
-              </p>
-              <label class="label">真实姓名</label>
-              <p class="control">
-                <input type="text" v-model="userForm.PanelRealName" class="input" placeholder="请填写真实姓名">
-              </p>
-              <label class="label">所在省市</label>
-              <p class="control">
-                <span class="select">
-                  <select v-model="userForm.panelprovince" @change="queryByParenterCode(userForm.panelprovince)">
-                    <option value="">请选择省</option>
-                    <option :value="item.value" v-for="(item, index) in provinceOptions">{{item.label}}</option>
-                  </select>
-                </span>
-                <span class="select">
-                  <select name="PanelCity" v-model="userForm.PanelCity" v-validate="'required'" >
-                    <option value="">请选择市</option>
-                    <option :value="item.value" v-for="(item, index) in cityOptions">{{item.label}}</option>
-                  </select>
-                </span>
-                <!--<span class="help" v-show="errors.has('PanelCity')">{{ errors.first('PanelCity') }}</span>-->
-              </p>
-              <label class="label">个人介绍</label>
-              <p class="control">
-                <textarea type="text" row="3" v-model="userForm.PanelRemark" class="textarea" placeholder="请填写个人介绍" />
-              </p>
-              <p class="control">
-                <button class="button is-primary">提交</button>
-                <button class="button">重置</button>
-              </p>
-            </form>
+        <div class="columns is-vcentered">
+          <div class="column is-10 is-offset-1">
+            <div class="columns box login-box">
+              <form @submit.prevent="validateForm" class="column is-6 is-offset-3">
+                <h1 class="title has-text-centered">注册</h1>
+                <div class="field">
+                  <label class="label">登录名</label>
+                  <p class="control">
+                    <input name="PanelLoginName" class="input" :class="{'is-danger': errors.has('PanelLoginName')}" type="text" v-model="userForm.PanelLoginName" v-validate="'required'" placeholder="请输入登录名">
+                    <!--<span class="help is-danger" v-show="errors.has('PanelLoginName')">{{ errors.first('PanelLoginName') }}</span>-->
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">密码</label>
+                  <p class="control">
+                    <input name="password" class="input" :class="{'is-danger': errors.has('password')}" type="password" v-model="userForm.PanelPw" v-validate="'required'" placeholder="请填写密码">
+                    <!--<span class="help is-danger" v-show="errors.has('password')">{{ errors.first('password') }}</span>-->
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">确认密码</label>
+                  <p class="control">
+                    <input name="rePassword" :class="{'is-danger': errors.has('rePassword')}" v-model="userForm.RPanelPw" v-validate="'required'" type="password" class="input" placeholder="请填写确认密码">
+                    <!--<span class="help is-danger" v-show="errors.has('password')">{{ errors.first('rePassword') }}</span>-->
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">电子邮件</label>
+                  <p class="control">
+                    <input name="emall" :class="{'is-danger': errors.has('emall')}" v-model="userForm.PanelEmail" v-validate="'required'" type="email" class="input" placeholder="请填写电子邮件">
+                    <!--<span class="help is-danger" v-show="errors.has('emall')">{{ errors.first('emall') }}</span>-->
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">真实姓名</label>
+                  <p class="control">
+                    <input type="text" v-model="userForm.PanelRealName" class="input " placeholder="请填写真实姓名">
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">生日</label>
+                  <p class="control">
+                    <span class="select">
+                                <select :class="{'is-danger': errors.has('year')}" name="year" v-model="ageVal.year" v-validate="'required'" @change="changeAge('year')">
+                                  <option value="">请选择年</option>
+                                  <option :value="item" v-for="(item, index) in ageOptons.year">{{item}}</option>
+                                </select>
+                              </span>
+                    <span class="select">
+                                <select :class="{'is-danger': errors.has('month')}" name="month" v-model="ageVal.month" v-validate="'required'" @change="changeAge('month')">
+                                  <option value="">请选择月</option>
+                                  <option :value="item" v-for="(item, index) in ageOptons.month">{{item}}</option>
+                                </select>
+                              </span>
+                    <span class="select">
+                                <select :class="{'is-danger': errors.has('day')}" name="day" v-model="ageVal.day" v-validate="'required'" >
+                                  <option value="">请选择日</option>
+                                  <option :value="item" v-for="(item, index) in ageOptons.day">{{item}}</option>
+                                </select>
+                              </span>
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">性别</label>
+                  <p class="control">
+                    <!--<input type="text" name="sex" :class="{'is-danger': errors.has('sex')}" v-model="userForm.PanelSex" v-validate="'required'" class="input" placeholder="请填写真实姓名">-->
+                    <radio-group v-model="userForm.PanelGender">
+                      <radio val="1">男</radio>
+                      <radio val="2">女</radio>
+                    </radio-group>
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">所在省市</label>
+                  <p class="control">
+                    <span class="select" style="width:150px">
+                                      <select :class="{'is-danger': errors.has('Panelprovince')}" name="Panelprovince" v-validate="'required'" v-model="userForm.Panelprovince" @change="queryByParenterCode(userForm.Panelprovince)">
+                                        <option value="">请选择省</option>
+                                        <option :value="item.value" v-for="(item, index) in provinceOptions">{{item.label}}</option>
+                                      </select>
+                                    </span>
+                    <span class="select" style="width:150px">
+                                      <select :class="{'is-danger': errors.has('PanelCity')}" name="PanelCity" v-model="userForm.PanelCity" v-validate="'required'" >
+                                        <option value="">请选择市</option>
+                                        <option :value="item.value" v-for="(item, index) in cityOptions">{{item.label}}</option>
+                                      </select>
+                                    </span>
+                    <!--<span class="help" v-show="errors.has('PanelCity')">{{ errors.first('PanelCity') }}</span>-->
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">个人介绍</label>
+                  <p class="control">
+                    <textarea type="text" row="3" v-model="userForm.PanelRemark" class="textarea" placeholder="请填写个人介绍" />
+                  </p>
+                  <p class="control">
+                    <button class="button is-primary">提交</button>
+                    <button class="button">重置</button>
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-  </div>
+  
+    </div>
+    <div class="hero-foot">
+      <footer class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            Copyright © 2016 XXXXX Inc. All Rights Reserved
+          </div>
+        </div>
+      </footer>
+    </div>
+  </section>
 </template>
 
 <script>
-import api from '../api/index.js'
+import api from 'src/api/index.js'
 
 export default {
   name: 'signup',
-  data () {
+  data() {
     return {
       userForm: {
         PanelLoginName: '',
-        PanelPw:'',
-        RPanelPw:'',
+        PanelPw: '',
+        RPanelPw: '',
         PanelEmail: '',
         PanelCode: '',
         PanelRealName: '',
@@ -83,39 +157,63 @@ export default {
         PanelWebId: '1',
         PanelType: 1,
         action: 'panelRegister',
-        panelprovince: '',
-        PanelCity: ''
+        Panelprovince: '',
+        PanelCity: '',
+        PanelGender: '1',
+        PanelBirthday: ''
       },
       provinceOptions: [],
-      cityOptions: []
+      cityOptions: [],
+      ageOptons: {
+        year: [],
+        month: [],
+        day: []
+      },
+      ageVal: {
+        year: '',
+        month: '',
+        day: ''
+      }
     }
   },
 
-  created(){
+  created() {
     this.queryByParenterCode('100000')
+
+    const year = new Date().getFullYear() + 1
+    for (let i = year - 99; i < year; i++) {
+      this.ageOptons.year.push(i + '年')
+    }
+    for (let i = 1; i < 13; i++) {
+      this.ageOptons.month.push(i + '月')
+    }
   },
   methods: {
-    validateForm(){
+    validateForm() {
       this.$validator.validateAll().then(() => {
-        api.signup(this.userForm).then(res => {
-          const {msg, result} = res.data;
-          if(result!=='ok'){
-            this.$notify.warning({content: msg || '注册失败'});
+        console.log(this.ageVal)
+        const { year, month, day } = this.ageVal
+
+        this.userForm.PanelBirthday = parseInt(year) + '-' + parseInt(month) + '-' + parseInt(day)
+        api.signup({...this.userForm}).then(res => {
+          const { msg, result } = res.data;
+          if (result !== 'ok') {
+            this.$notify.warning({ content: msg || '注册失败' });
             return false;
           }
 
-          this.$notify.success({content: msg || '注册成功'});
+          this.$notify.success({ content: msg || '注册成功' });
           this.$router.push({ path: '/signin' })
         }).catch((error) => {
           console.log(error)
         })
       })
     },
-    queryByParenterCode(ParenterCode){
-      api.queryByParenterCode({ParenterCode}).then(res => {
-        const {msg, result, data} = res.data
-        if(result!=='ok'){
-          this.$notify.warning({content: msg || '查询省市失败'});
+    queryByParenterCode(ParenterCode) {
+      api.queryByParenterCode({ ParenterCode }).then(res => {
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg || '查询省市失败' });
           return false;
         }
 
@@ -126,28 +224,44 @@ export default {
           }
         })
         // this.provinceOptions = 
-        if(ParenterCode === '100000'){
-            this.provinceOptions = options
-            this.userForm.PanelCity = ''
-        }else{
-            this.cityOptions = options
+        if (ParenterCode === '100000') {
+          this.provinceOptions = options
+          this.userForm.PanelCity = ''
+        } else {
+          this.cityOptions = options
         }
       })
+    },
+    changeAge(type) {
+      if (type === 'month') {
+        this.ageOptons.day = []
+        // this.ageVal.day = ''
+        const { year, month } = this.ageVal
+        const dayLength = new Date(parseInt(year), parseInt(month), 0).getDate()
+        for (let i = 1; i < dayLength; i++) {
+          this.ageOptons.day.push(i + '日')
+        }
+      }
     }
   }
 }
 </script>
 
-<style lang="scss">
-  .signup{
-    &-page{
-      padding: 30px 0;
-    }
+<style lang="scss" scoped>
+.signup {
+  &-page {
+    padding: 30px 0;
   }
+}
 
-  .select{
-    select{
-      width: 160px
-    }
+.field {
+  margin-bottom: 15px
+}
+
+.select {
+  // width: 160px;
+  select {
+    width: 100%
   }
+}
 </style>

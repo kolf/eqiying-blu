@@ -4,7 +4,7 @@ import {loadView} from 'src/utils/lazyLoading'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'hash',
+  // mode: 'hash',
   linkActiveClass: 'is-active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
@@ -27,6 +27,9 @@ export default new Router({
       },{
         path: 'presents',
         component: loadView('PresentLogs')
+      },{
+        path: 'msg',
+        component: loadView('UserMsg')
       }]
     },
     {
