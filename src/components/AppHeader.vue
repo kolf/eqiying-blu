@@ -3,18 +3,18 @@
 		<nav class="nav has-shadow">
 			<div class="container">
 				<div class="nav-left">
-					<a class="nav-item is-brand">
+					<router-link class="nav-item is-brand" to="/index">
 						<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
-					</a>
+					</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/index">首页{{page}}</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/projects">活动专区</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/presents">积分商城</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/user/main">个人中心</router-link>
 				</div>
 				<span class="nav-toggle" :class="{'is-active': device.isMobile && menu.opened}" @click="toggleMenu(!menu.opened)">
-					<span></span>
-					<span></span>
-					<span></span>
+						<span></span>
+				<span></span>
+				<span></span>
 				</span>
 				<div class="nav-right nav-menu" :class="{'is-active': device.isMobile && menu.opened}">
 					<router-link class="nav-item is-tab is-hidden-tablet" to="/index">首页</router-link>
@@ -63,32 +63,6 @@ export default {
 	},
 }
 </script>
-<style lang="scss" scoped>
-@import '~bulma/sass/utilities/mixins';
+<style lang="scss">
 
-.header {
-	&-notification {
-		font-size: 20px;
-	}
-	&-avatar {
-		border-radius: 50%;
-		overflow: hidden;
-		img {
-			max-height: none
-		}
-	}
-	&>.nav {
-		height: 64px
-	}
-	.nav-left {
-		.nav-item {
-			&.is-brand {
-				padding-right: 20px;
-			}
-			font-size: 16px;
-			padding-left: 15px;
-			padding-right: 15px;
-		}
-	}
-}
 </style>

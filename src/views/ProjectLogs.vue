@@ -20,7 +20,7 @@
             </a>
           </td>
           <td><span class="tag" :class="statusTag(item.ProjectStatus)">{{item.Pstatus}}</span></td>
-          <td>{{item.CreateTime | fromatDate}}</td>
+          <td>{{item.CreateTime | fromatDate(true)}}</td>
           <td>{{item.GetPoint}}</td>
         </tr>
       </tbody>

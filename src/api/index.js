@@ -19,9 +19,16 @@ const apis = {
 
 export default {
 	API_ROOT,
-	queryAnnounce() {
+	// queryAnnounce() {
+	// 	return axios.post(apis.announce, qs.stringify({
+	// 		action: 'queryByProjectColumnIdType',
+	// 		startIndex: 1,
+	// 		endIndex: 999999
+	// 	}))
+	// },
+	querySysMsg() {
 		return axios.post(apis.announce, qs.stringify({
-			action: 'queryByProjectColumnIdType',
+			action: 'queryByAgencyIdType',
 			startIndex: 1,
 			endIndex: 999999
 		}))
@@ -105,14 +112,20 @@ export default {
 		if (ProjectColumnId) params.ProjectColumnId = ProjectColumnId
 		return axios.post(apis.projectInfo, qs.stringify(params))
 	},
-	queryProjectLog({ pageNum, pageSize}) {
+	queryProjectLog({ pageNum, pageSize}) { //查询活动参与记录
 		return axios.post(apis.projectUsers, qs.stringify({
 			action: 'queryByPanelId',
 			startIndex: pageSize * (pageNum - 1) + 1,
 			endIndex: pageSize * pageNum,
 		}))
 	},
-	getProjectInfo({ id }) {
+	getInternalLink({ PjId }) { // 获取参与链接
+		return axios.post(apis.projectUsers, qs.stringify({
+			action: 'queryByPjId',
+			PjId
+		}))
+	},
+	getProjectInfo({ id }) { // 获取参与链接
 		return axios.post(apis.projectInfo, qs.stringify({
 			action: 'queryByPjId',
 			PjId: id

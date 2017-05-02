@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import NProgress from 'vue-nprogress'
 import VueBlu from 'vue-blu'
-import zh from 'vee-validate/dist/locale/zh_CN'
+// import zh from 'vee-validate/dist/locale/zh_CN'
 import VeeValidate, { Validator } from 'vee-validate'
 import VueLazyload from 'vue-lazyload'
 import { sync } from 'vuex-router-sync'
@@ -14,7 +14,7 @@ import storage from './utils/localStorage'
 import indicator from './assets/indicator.png'
 
 Vue.use(NProgress)
-Validator.addLocale(zh)
+// Validator.addLocale(zh)
 Vue.use(VueBlu)
 Vue.use(VueLazyload, {
     // preLoad: 1.3,

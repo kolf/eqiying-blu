@@ -20,7 +20,7 @@
           <td>{{item.ChangeTotal}}</td>
           <td>{{item.ChangeTotal}}</td>
           <td><span class="tag" :class="statusTag(item.CheckStatus)">{{item.statusName}}</span></td>
-          <td>{{item.ReleaseTime | fromatDate}}</td>
+          <td>{{item.ReleaseTime | fromatDate(true)}}</td>
         </tr>
       </tbody>
       <tbody v-else>

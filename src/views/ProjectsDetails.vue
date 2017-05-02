@@ -57,7 +57,7 @@
             <br>
             <div class="content project-content">
               <p>{{projectInfo.ProjectDesc}}</p>
-              <p><a class="button is-primary" href="projectInfo.InternalLink">立即参与</a></p>
+              <p><button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button></p>
             </div>
           </div>
         </div>
@@ -97,7 +97,19 @@ export default {
 
         this.projectInfo = data.Project_Info
       })
-    }
+    },
+    getInternalLink(PjId) {
+      api.getInternalLink({ PjId }).then(res => {
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
+          return false
+        }
+
+        // window.location.href= data.InternalLink
+        window.open(data.InternalLink)
+      })
+    },
   }
 }
 </script>

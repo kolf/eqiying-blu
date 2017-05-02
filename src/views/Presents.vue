@@ -1,25 +1,26 @@
 <template>
   <div class="present-page">
     <app-header></app-header>
-    <section class="hero is-dark">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <p class="title">
-            积分商城
-          </p>
-          <p class="subtitle">
-            国内领先的积分商城服务商
-          </p>
-        </div>
-      </div>
-    </section>
+    <!--<section class="hero is-dark">
+            <div class="hero-body">
+              <div class="container has-text-centered">
+                <p class="title">
+                  积分商城
+                </p>
+                <p class="subtitle">
+                  国内领先的积分商城服务商
+                </p>
+              </div>
+            </div>
+          </section>-->
+    <slider :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
   
     <div class="section is-gray main">
       <div class="container">
-        <div class="columns is-multiline">
+        <div class="columns is-multiline presents">
           <div class="column is-3" v-for="present in presents">
-            <div class="card  is-fullwidth">
-              <a class="card-image" @click="showModal(present)">
+            <div class="card present is-fullwidth">
+              <a class="card-image is-transition" @click="showModal(present)">
                 <figure class="image is-1by1">
                   <img v-lazy="'http://show.eqiying.com' + present.PresentPic" alt="Image">
                 </figure>
@@ -33,7 +34,7 @@
                   </div>
                 </div>
                 <div class="content">
-                  <p class=""><span class="title is-3">{{present.PresentPoint}}</span> 积分
+                  <p class=""><span class="title is-4">{{present.PresentPoint}}</span> 积分
                     <button @click="showModal(present)" class="button is-primary is-outlined is-pulled-right">兑换</button>
                   </p>
                 </div>
@@ -83,11 +84,13 @@
 import api from 'src/api'
 import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
+import Slider from 'components/Slider.vue'
 
 export default {
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    Slider
   },
   data() {
     return {
@@ -95,7 +98,34 @@ export default {
       total: 0,
       isShowModal: false,
       changeNum: 1,
-      curPresent: {}
+      curPresent: {},
+      banners: [
+        {
+          style: {
+            background: '#4bbfc3'
+          }
+        },
+        {
+          style: {
+            background: '#4bbfc3'
+          }
+        },
+        {
+          style: {
+            background: '#4bbfc3',
+          },
+        }
+      ],
+      //滑动配置[obj]
+      sliderinit: {
+        currentPage: 0,//当前页码
+        // thresholdDistance: 500,//滑动判定距离
+        // thresholdTime: 100,//滑动判定时间
+        autoplay: 3000,//自动滚动[ms]
+        loop: true,//循环滚动
+        infinite: 1,//无限滚动前后遍历数
+        slidesToScroll: 1,//每次滑动项数
+      }
     }
   },
   created() {
@@ -112,7 +142,7 @@ export default {
         }
 
         this.banners = data ? data.map(item => {
-          item.PresentAnnouncePic = 'http://show.eqiying.com' + item.PresentAnnouncePic;
+          item.style = item.PresentAnnouncePic ? { 'background-image': 'url(http://show.eqiying.com' + item.PresentAnnouncePic + ')' } : { 'background-color': '#6bafdc' }
           return item
         }) : []
 
@@ -160,6 +190,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import '~bulma/sass/utilities/mixins';
 
+.present {
+  transition: all .2s;
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); // background-color: #eee;
+  }
+}
 </style>

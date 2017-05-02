@@ -7,8 +7,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "build:ftp": "node build/build.js && ax-ftp"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "Base64": "^1.0.1",

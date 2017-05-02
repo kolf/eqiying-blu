@@ -5,9 +5,9 @@
         <nav class="nav">
           <div class="container">
             <div class="nav-left">
-              <a class="nav-item is-brand">
+              <router-link class="nav-item is-brand" to="/">
                 <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
-              </a>
+              </router-link>
             </div>
   
             <div class="nav-right nav-menu">
@@ -63,23 +63,23 @@
                   <label class="label">生日</label>
                   <p class="control">
                     <span class="select">
-                                <select :class="{'is-danger': errors.has('year')}" name="year" v-model="ageVal.year" v-validate="'required'" @change="changeAge('year')">
-                                  <option value="">请选择年</option>
-                                  <option :value="item" v-for="(item, index) in ageOptons.year">{{item}}</option>
-                                </select>
-                              </span>
+                                  <select :class="{'is-danger': errors.has('year')}" name="year" v-model="ageVal.year" v-validate="'required'" @change="changeAge('year')">
+                                    <option value="">请选择年</option>
+                                    <option :value="item" v-for="(item, index) in ageOptons.year">{{item}}</option>
+                                  </select>
+                                </span>
                     <span class="select">
-                                <select :class="{'is-danger': errors.has('month')}" name="month" v-model="ageVal.month" v-validate="'required'" @change="changeAge('month')">
-                                  <option value="">请选择月</option>
-                                  <option :value="item" v-for="(item, index) in ageOptons.month">{{item}}</option>
-                                </select>
-                              </span>
+                                  <select :class="{'is-danger': errors.has('month')}" name="month" v-model="ageVal.month" v-validate="'required'" @change="changeAge('month')">
+                                    <option value="">请选择月</option>
+                                    <option :value="item" v-for="(item, index) in ageOptons.month">{{item}}</option>
+                                  </select>
+                                </span>
                     <span class="select">
-                                <select :class="{'is-danger': errors.has('day')}" name="day" v-model="ageVal.day" v-validate="'required'" >
-                                  <option value="">请选择日</option>
-                                  <option :value="item" v-for="(item, index) in ageOptons.day">{{item}}</option>
-                                </select>
-                              </span>
+                                  <select :class="{'is-danger': errors.has('day')}" name="day" v-model="ageVal.day" v-validate="'required'" >
+                                    <option value="">请选择日</option>
+                                    <option :value="item" v-for="(item, index) in ageOptons.day">{{item}}</option>
+                                  </select>
+                                </span>
                   </p>
                 </div>
                 <div class="field">
@@ -93,20 +93,20 @@
                   </p>
                 </div>
                 <div class="field">
-                  <label class="label">所在省市</label>
+                  <label class="label">所在城市</label>
                   <p class="control">
                     <span class="select" style="width:150px">
-                                      <select :class="{'is-danger': errors.has('Panelprovince')}" name="Panelprovince" v-validate="'required'" v-model="userForm.Panelprovince" @change="queryByParenterCode(userForm.Panelprovince)">
-                                        <option value="">请选择省</option>
-                                        <option :value="item.value" v-for="(item, index) in provinceOptions">{{item.label}}</option>
-                                      </select>
-                                    </span>
+                                        <select :class="{'is-danger': errors.has('Panelprovince')}" name="Panelprovince" v-validate="'required'" v-model="userForm.Panelprovince" @change="queryByParenterCode(userForm.Panelprovince)">
+                                          <option value="">请选择省</option>
+                                          <option :value="item.value" v-for="(item, index) in provinceOptions">{{item.label}}</option>
+                                        </select>
+                                      </span>
                     <span class="select" style="width:150px">
-                                      <select :class="{'is-danger': errors.has('PanelCity')}" name="PanelCity" v-model="userForm.PanelCity" v-validate="'required'" >
-                                        <option value="">请选择市</option>
-                                        <option :value="item.value" v-for="(item, index) in cityOptions">{{item.label}}</option>
-                                      </select>
-                                    </span>
+                                        <select :class="{'is-danger': errors.has('PanelCity')}" name="PanelCity" v-model="userForm.PanelCity" v-validate="'required'" >
+                                          <option value="">请选择市</option>
+                                          <option :value="item.value" v-for="(item, index) in cityOptions">{{item.label}}</option>
+                                        </select>
+                                      </span>
                     <!--<span class="help" v-show="errors.has('PanelCity')">{{ errors.first('PanelCity') }}</span>-->
                   </p>
                 </div>
@@ -195,7 +195,7 @@ export default {
         const { year, month, day } = this.ageVal
 
         this.userForm.PanelBirthday = parseInt(year) + '-' + parseInt(month) + '-' + parseInt(day)
-        api.signup({...this.userForm}).then(res => {
+        api.signup({ ...this.userForm }).then(res => {
           const { msg, result } = res.data;
           if (result !== 'ok') {
             this.$notify.warning({ content: msg || '注册失败' });

@@ -1,4 +1,4 @@
-import { atob, btoa } from 'Base64'
+import {atob, btoa} from 'Base64'
 
 export default {
     decode(str) {
@@ -8,6 +8,17 @@ export default {
         return encodeURIComponent(btoa(str))
     },
     fromatDate(str, isTime) {
-        return str.replace('T', ' ').substr(0, (isTime ? 10 : 19))
+        return str
+            .replace('T', ' ')
+            .substr(0, (isTime
+                ? 10
+                : 19))
+    },
+    sex(str) {
+        const data = {
+            1: '男',
+            2: '女'
+        }
+        return data[str]
     }
 }

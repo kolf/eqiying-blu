@@ -5,7 +5,9 @@
       <img src="../assets/index.jpg" alt="">
     </section>
     <div class="section announcement-section">
-      <div class="container has-text-centered">公告： 通过搜索 GitHub 等网站解决变量命名问题，支持中文搜索</div>
+      <div class="container">
+        <sys-msgs :list="sysMsgs"></sys-msgs>
+      </div>
     </div>
     <div class="section is-gray">
       <div class="container">
@@ -81,13 +83,13 @@
           </li>
         </ul>
         <!-- <div class="columns steps">
-                <div class="column">发送邀请</div>
-                <div class="column">参与活动</div>
-                <div class="column">获取积分</div>
-                <div class="column">积分兑换</div>
-                <div class="column">礼品审核</div>
-                <div class="column">礼品发放</div>
-              </div> -->
+                                <div class="column">发送邀请</div>
+                                <div class="column">参与活动</div>
+                                <div class="column">获取积分</div>
+                                <div class="column">积分兑换</div>
+                                <div class="column">礼品审核</div>
+                                <div class="column">礼品发放</div>
+                              </div> -->
       </div>
     </div>
     <app-footer></app-footer>
@@ -98,20 +100,35 @@
 import api from 'src/api/index.js'
 import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
+import SysMsgs from 'components/SysMsgs.vue'
 
 export default {
   name: 'app',
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    SysMsgs
   },
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      sysMsgs: [],
     }
   },
   created() {
-    api.queryAnnounce()
+    this.querySysMsg()
+  },
+  methods: {
+    querySysMsg() {
+      api.querySysMsg().then(res => {
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
+          return false
+        }
+
+        this.sysMsgs = data
+      })
+    }
   }
 }
 </script>
@@ -121,7 +138,7 @@ $primary: #6bafdc;
 
 .announcement {
   &-section {
-    padding: 12px 0;
+    padding: 10px 20px;
   }
 }
 
