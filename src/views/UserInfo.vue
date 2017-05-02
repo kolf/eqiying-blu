@@ -4,7 +4,7 @@
     <hr>
     <!-- <div>{{userInfo}}</div> -->
     <ul class="line-list">
-      <li><span class="name">ID：</span>{{userInfo.PanelId}}</li>
+      <!--<li><span class="name">ID：</span>{{userInfo.PanelId}}</li>-->
       <li><span class="name">用户名：</span>{{userInfo.PanelLoginName}}</li>
       <li><span class="name">真实姓名：</span>{{userInfo.PanelRealName || '未填写'}}</li>
       <li><span class="name">电子邮件：</span>{{userInfo.PanelEmail || '未填写'}}</li>

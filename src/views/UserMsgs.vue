@@ -5,9 +5,8 @@
     <div class="msgs" v-if="msgs.length>0">
       <article class="media msg" v-for="(msg, index) in msgs">
         <div class="media-left">
-          <figure class="image is-64x64 is-circle">
-            <img src="http://placehold.it/64x64" alt="Image">
-          </figure>
+          <avatar background-color="#6bafdc" v-if="msg.PanelOtherInfo1" :size="64" :src="'http://show.eqiying.com/' + msg.PanelOtherInfo1" :username="msg.SenderName"></avatar>
+          <avatar background-color="#6bafdc" v-else :size="64" :username="msg.SenderName"></avatar>
         </div>
         <div class="media-content">
           <div class="content">
@@ -38,10 +37,12 @@
 <script>
 import api from 'src/api'
 import SendMsg from 'src/components/modals/SendMsg.vue'
+import { Avatar } from 'vue-avatar'
 
 export default {
   components: {
-    SendMsg
+    SendMsg,
+    Avatar
   },
   data() {
     return {

@@ -28,8 +28,8 @@ export default new Router({
         path: 'presents',
         component: loadView('PresentLogs')
       },{
-        path: 'msg',
-        component: loadView('UserMsg')
+        path: 'msgs',
+        component: loadView('UserMsgs')
       }]
     },
     {

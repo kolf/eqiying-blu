@@ -8,11 +8,8 @@ export default {
         return encodeURIComponent(btoa(str))
     },
     fromatDate(str, isTime) {
-        return str
-            .replace('T', ' ')
-            .substr(0, (isTime
-                ? 10
-                : 19))
+        if(!str) return ''
+        return str.replace('T', ' ').substr(0, (isTime ? 10 : 19))
     },
     sex(str) {
         const data = {

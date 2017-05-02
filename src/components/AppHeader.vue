@@ -12,7 +12,7 @@
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/user/main">个人中心</router-link>
 				</div>
 				<span class="nav-toggle" :class="{'is-active': device.isMobile && menu.opened}" @click="toggleMenu(!menu.opened)">
-						<span></span>
+							<span></span>
 				<span></span>
 				<span></span>
 				</span>
@@ -26,7 +26,7 @@
 					<span class="nav-item is-tab" v-if="!current.isLogin"><router-link class="button is-primary" to="/signin">登陆</router-link></span>
 					<router-link v-if="current.isLogin" class="nav-item is-hidden-mobile" to="/user/msg"><i class="fa fa-bell-o header-notification"></i></router-link>
 					<router-link to="/user/main" class="nav-item is-hidden-mobile" v-if="current.isLogin">
-						<figure class="image header-avatar is-32x32"><img src="http://bulma.io/images/placeholders/32x32.png"></figure>
+						<avatar :size="40" :src="'http://show.eqiying.com/' + userInfo.PanelOtherInfo1" :username="userInfo.PanelLoginName"></avatar>
 					</router-link>
 				</div>
 			</div>
@@ -37,16 +37,21 @@
 <script>
 import api from 'src/api/index.js'
 import { mapActions, mapGetters } from 'vuex'
+import storage from 'src/utils/localStorage'
+import { Avatar } from 'vue-avatar'
 
 export default {
 	name: 'header',
 	components: {
-
+		Avatar
 	},
 	data() {
 		return {
-
+			userInfo: {}
 		}
+	},
+	created() {
+		this.userInfo = storage.get('user')
 	},
 	props: ['page'],
 	methods: {

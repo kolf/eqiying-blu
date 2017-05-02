@@ -29,35 +29,37 @@
             <table class="table">
               <tbody>
                 <tr>
-                  <td class="has-text-right" width="100">
-                    <strong>活动地点</strong>
-                  </td>
-                  <td>北京</td>
-                </tr>
-                <tr>
                   <td class="has-text-right">
                     <strong>开始时间</strong>
                   </td>
-                  <td>{{projectInfo.StartTime}}</td>
+                  <td>{{projectInfo.StartTime | fromatDate(true)}}</td>
                 </tr>
                 <tr>
                   <td class="has-text-right">
                     <strong>结束时间</strong>
                   </td>
-                  <td>{{projectInfo.EndTime}}</td>
+                  <td>{{projectInfo.EndTime | fromatDate(true)}}</td>
                 </tr>
                 <tr>
                   <td class="has-text-right">
                     <strong>活动积分</strong>
                   </td>
-                  <td>3</td>
+                  <td>{{projectInfo.Cpoint}}</td>
+                </tr>
+                <tr>
+                  <td class="has-text-right" width="100">
+                    <strong>活动方式</strong>
+                  </td>
+                  <td>线上</td>
                 </tr>
               </tbody>
             </table>
             <br>
             <div class="content project-content">
               <p>{{projectInfo.ProjectDesc}}</p>
-              <p><button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button></p>
+              <p>
+                <button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button>
+              </p>
             </div>
           </div>
         </div>
@@ -96,6 +98,7 @@ export default {
         }
 
         this.projectInfo = data.Project_Info
+        this.projectInfo.Cpoint = data.Project_Point[0].Cpoint
       })
     },
     getInternalLink(PjId) {

@@ -19,13 +19,6 @@ const apis = {
 
 export default {
 	API_ROOT,
-	// queryAnnounce() {
-	// 	return axios.post(apis.announce, qs.stringify({
-	// 		action: 'queryByProjectColumnIdType',
-	// 		startIndex: 1,
-	// 		endIndex: 999999
-	// 	}))
-	// },
 	querySysMsg() {
 		return axios.post(apis.announce, qs.stringify({
 			action: 'queryByAgencyIdType',

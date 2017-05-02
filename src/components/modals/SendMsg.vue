@@ -7,7 +7,7 @@
                     <label class="label">收件人</label>
                 </div>
                 <div class="control">
-                    <input class="input" type="text" name="name" v-validate:name.initial="'required|alpha'" v-model="msgName" placeholder="请输入收件人帐号">
+                    <input class="input" type="text" name="msgName" v-validate="'required'" :class="{'is-danger': errors.has('msgName')}" v-model="msgName" placeholder="请输入收件人帐号">
                 </div>
             </div>
             <div class="control is-horizontal">
@@ -23,7 +23,7 @@
                     <label class="label">标题</label>
                 </div>
                 <div class="control">
-                    <input class="input" type="text" name="title" v-validate:title.initial="'required|alpha'" placeholder="请填写标题">
+                    <input class="input" type="text" name="title" v-validate="'required'" :class="{'is-danger': errors.has('title')}" v-model="msgForm.MessageTitle" placeholder="请填写标题">
                 </div>
             </div>
             <div class="control is-horizontal">
@@ -31,7 +31,7 @@
                     <label class="label">内容</label>
                 </div>
                 <div class="control">
-                    <textarea class="textarea" name="content" v-validate:content.initial="'required|alpha'" placeholder="请填写正文"></textarea>
+                    <textarea class="textarea" name="content" v-validate="'required'" :class="{'is-danger': errors.has('content')}" v-model="msgForm.InternalMessageContent" placeholder="请填写正文"></textarea>
                 </div>
             </div>
             <div class="control is-horizontal">
@@ -39,7 +39,7 @@
     
                 </div>
                 <div class="control">
-                    <button class="button is-primary">确定</button>
+                    <button type="submit" class="button is-primary">确定</button>
                 </div>
             </div>
         </form>
@@ -47,22 +47,25 @@
 </template>
 <script>
 import api from 'src/api/index.js'
+import storage from 'src/utils/localStorage'
+
 export default {
     name: 'sendMsg',
     props: ['visible'],
     data() {
         return {
+            userInfo: {},
             msgName: '',
             msgForm: {
                 MessageTitle: '',
-                InternalMessageContent: '',
-                SenderId: '',
-                ReciptorId: ''
+                InternalMessageContent: ''
             }
         }
     },
-    created() {
-
+    computed: {
+        SenderId() {
+            return storage.get('user').PanelId
+        }
     },
     methods: {
         close() {
@@ -70,9 +73,35 @@ export default {
         },
         validateForm() {
             this.$validator.validateAll().then(() => {
-                console.log(44444444444)
-            }).catch(() => {
-                
+                this.getUserId()
+            }).catch((error) => {
+                console.log(error)
+            })
+        },
+        send(ReciptorId) {
+            let data = { ...this.msgForm }
+            data.SenderId = this.SenderId
+            data.ReciptorId = ReciptorId
+            api.setMsg(data).then(res => {
+                const { msg, result, data } = res.data
+                if (result !== 'ok') {
+                    this.$notify.warning({ content: msg })
+                    return false
+                }
+
+                this.$notify.success({ content: '发送私信成功！' })
+            })
+        },
+        getUserId() {
+            api.getUserId({ nickname: this.msgName }).then(res => {
+                const { msg, result, data } = res.data
+                if (result !== 'ok' || !data || !data.PanelId) {
+                    this.$notify.warning({ content: msg })
+                    return false
+                }
+
+                const ReciptorId = data.PanelId
+                this.send(ReciptorId)
             })
         }
     }

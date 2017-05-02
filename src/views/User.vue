@@ -40,7 +40,7 @@
                       <router-link to="/user/presents"><i class="iconfont icon-lipin"></i>礼品兑换记录</router-link>
                     </li>
                     <li>
-                      <router-link to="/user/msg"><i class="iconfont icon-xiaoxi1"></i>我的私信</router-link>
+                      <router-link to="/user/msgs"><i class="iconfont icon-xiaoxi1"></i>我的私信</router-link>
                     </li>
                     <li>
                       <a @click="showRepassword=true"><i class="iconfont icon-Password"></i>修改密码</a>
