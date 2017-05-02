@@ -1,4 +1,5 @@
 @import "./_variables";
+@import '~bulma/sass/utilities/mixins';
 ul {
     list-style: none
 }
@@ -8,29 +9,34 @@ ul {
 }
 
 .header {
-	&-notification {
-		font-size: 20px;
-	}
-	&-avatar {
-		border-radius: 50%;
-		overflow: hidden;
-		img {
-			max-height: none
-		}
-	}
-	&>.nav {
-		height: 64px
-	}
-	.nav-left {
-		.nav-item {
-			&.is-brand {
-				padding-right: 20px;
-			}
-			font-size: 16px;
-			padding-left: 15px;
-			padding-right: 15px;
-		}
-	}
+    &-notification {
+        font-size: 20px;
+    }
+    &-avatar {
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+            max-height: none
+        }
+    }
+    &>.nav {
+        // height: 70px
+        @include desktop() {
+            height: 70px
+        }
+    }
+    .nav-left {
+        flex-grow: 3;
+        .nav-item {
+            &.is-brand {
+                padding-right: 20px;
+            }
+            font-size: 18px;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-weight: 700
+        }
+    }
 }
 
 .banner {
@@ -63,6 +69,13 @@ ul {
     &-circle {
         border-radius: 50%;
         overflow: hidden
+    }
+    &-transition {
+        overflow: hidden;
+        &:hover img {
+            transition: all .2s;
+            transform: scale(1.2)
+        }
     }
 }
 
@@ -141,18 +154,6 @@ ul {
     border-radius: 2px;
     .media {
         margin: 10px 0;
-    }
-}
-
-.card{
-    &-image{
-        &.is-transition{
-            overflow: hidden;
-            &:hover img{
-                transition: all .2s;
-                transform: scale(1.2)
-            }
-        }
     }
 }
 

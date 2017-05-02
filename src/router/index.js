@@ -19,7 +19,7 @@ export default new Router({
           requireAuth: true,
       },
       children:[{
-        path: 'main',
+        path: 'profile',
         component: loadView('UserInfo')
       },{
         path: 'projects',

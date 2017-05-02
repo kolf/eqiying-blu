@@ -1,6 +1,6 @@
 <template>
-    <modal title="忘记密码" transition="fadeDown" :is-show="visible" @close="close" :show-header="false" :show-footer="false">
-        <div class="title has-text-centered">发送私信</div>
+    <modal title="发送私信" transition="fadeDown" :is-show="visible" @close="close">
+        <!--<div class="title has-text-centered">发送私信</div>-->
         <form @submit.prevent="validateForm">
             <div class="control is-horizontal">
                 <div class="control-label">
@@ -34,20 +34,14 @@
                     <textarea class="textarea" name="content" v-validate="'required'" :class="{'is-danger': errors.has('content')}" v-model="msgForm.InternalMessageContent" placeholder="请填写正文"></textarea>
                 </div>
             </div>
-            <div class="control is-horizontal">
-                <div class="control-label">
-    
-                </div>
-                <div class="control">
-                    <button type="submit" class="button is-primary">确定</button>
-                </div>
-            </div>
         </form>
+        <div slot="footer"><a class="button" @click="close">取消</a> <a class="button is-primary" @click="validateForm">确定</a></div>
     </modal>
 </template>
 <script>
 import api from 'src/api/index.js'
 import storage from 'src/utils/localStorage'
+import filters from 'src/filters'
 
 export default {
     name: 'sendMsg',
@@ -82,6 +76,8 @@ export default {
             let data = { ...this.msgForm }
             data.SenderId = this.SenderId
             data.ReciptorId = ReciptorId
+            data.InternalMessageContent = filters.encode(data.InternalMessageContent)
+
             api.setMsg(data).then(res => {
                 const { msg, result, data } = res.data
                 if (result !== 'ok') {
@@ -90,6 +86,7 @@ export default {
                 }
 
                 this.$notify.success({ content: '发送私信成功！' })
+                this.close()
             })
         },
         getUserId() {
