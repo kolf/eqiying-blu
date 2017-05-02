@@ -152,6 +152,12 @@ export default {
 		}
 		return axios.post(apis.internalMessage, qs.stringify(Object.assign(defaultParams, params)))
 	},
+	deteleMsg({InternalMessageId}) { //发送消息
+		return axios.post(apis.internalMessage, qs.stringify({
+			action: 'delete',
+			InternalMessageId
+		}))
+	},
 	getUserId({ nickname }) { //获取用户Id
 		return axios.post(apis.panelBaseInfo, qs.stringify({
 			action: 'NickNameIsExist',

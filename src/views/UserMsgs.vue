@@ -12,10 +12,10 @@
           <div class="content">
             <p>
               <strong>{{msg.MessageTitle}}</strong>
-              <span class="tag is-dark is-pulled-right">
-                      删除
-                      <button class="delete is-small"></button>
-                    </span>
+              <span class="tag is-dark is-pulled-right" @click="openConfirm(msg.InternalMessageId)">
+                          删除
+                          <button class="delete is-small"></button>
+                        </span>
               <br> {{msg.InternalMessageContent | decode}}
             </p>
             <p><a href="">{{msg.SenderName}}</a> 于 {{msg.CreateTime | fromatDate}} 发送</p>
@@ -53,6 +53,17 @@ export default {
     }
   },
   methods: {
+    openConfirm(InternalMessageId) {
+      this.$modal.confirm({
+        content: '确定删除这条信息?',
+        cancelText: '取消',
+        okText: '确定',
+        showHeader: false,
+        onOk: () => {
+          this.deteleMsg(InternalMessageId)
+        }
+      })
+    },
     queryMsg(pageNum) {
       api.queryMsg({ pageNum, pageSize: this.pageSize }).then(res => {
         const { msg, result, data, recordCount } = res.data
@@ -65,8 +76,20 @@ export default {
         this.total = recordCount || 0
       })
     },
+    deteleMsg(InternalMessageId) {
+      api.deteleMsg({ InternalMessageId }).then(res => {
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
+          return false
+        }
+
+        this.$notify.success({ content: '删除成功！' })
+        this.queryMsg(1)
+      })
+    },
     sendSuccess() {
-      this.showSendMsg=false
+      this.showSendMsg = false
     }
   },
   created() {
