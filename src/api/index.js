@@ -19,43 +19,49 @@ const apis = {
 
 export default {
 	API_ROOT,
-	querySysMsg() {
+	queryAnnouncement() { // 查询公告
 		return axios.post(apis.announce, qs.stringify({
 			action: 'queryByAgencyIdType',
 			startIndex: 1,
 			endIndex: 999999
 		}))
 	},
-	signup(params) {
+	getAnnouncement({AnnounceId}) { // 查询公告
+		return axios.post(apis.announce, qs.stringify({
+			action: 'queryByAnnounceId',
+			AnnounceId
+		}))
+	},
+	signup(params) { // 注册
 		return axios.post(apis.panelBaseInfo, qs.stringify(params))
 	},
-	updateAvatar({ panelBaseInfoId, headPath }) {
+	updateAvatar({ panelBaseInfoId, headPath }) { // 更新用户头像
 		return axios.post(apis.panelBaseInfo, qs.stringify({
 			action: 'updateheadpath',
 			headPath,
 			panelBaseInfoId
 		}))
 	},
-	login(params) {
+	login(params) { //登陆
 		return axios.post(apis.login, qs.stringify(params))
 	},
-	retrievePwd(params) {
+	retrievePwd(params) { // 重置密码
 		params = Object.assign({
 			retrieveWay: 2,
 			action: 'retrievePwd'
 		}, params)
 		return axios.post(apis.panelBaseInfo, qs.stringify(params))
 	},
-	changePwd(params) {
+	changePwd(params) { // 修改密码
 		params = Object.assign({
 			action: 'ChangePwd'
 		}, params)
 		return axios.post(apis.panelBaseInfo, qs.stringify(params))
 	},
-	validateCode(param) {
+	validateCode(param) { // 获取验证码
 		return apis.validateCode + '?cc=' + Date.now()
 	},
-	queryPresent(pageNum) {
+	queryPresent(pageNum) { // 查询礼品
 		const pageSize = 12
 		return axios.post(apis.present, qs.stringify({
 			action: 'queryPageByAgencyId',
@@ -64,19 +70,19 @@ export default {
 			PresentType: 1
 		}))
 	},
-	exchange(PresentId, ChangeTotal) {
+	exchange(PresentId, ChangeTotal) { // 兑换礼品
 		return axios.post(apis.present, qs.stringify({
 			action: 'ChangeByPresentIdPanelId',
 			PresentId,
 			ChangeTotal
 		}))
 	},
-	getUserInfo() {
+	getUserInfo() { // 获取用户信息
 		return axios.post(apis.panelBaseInfo, qs.stringify({
 			action: 'getPanelInfoById'
 		}))
 	},
-	queryPresentLog(pageNum, pageSize) {
+	queryPresentLog(pageNum, pageSize) { // 查询兑换记录
 		return axios.post(apis.present, qs.stringify({
 			action: 'queryHistoryByPanelId',
 			startIndex: pageSize * (pageNum - 1) + 1,
@@ -84,19 +90,19 @@ export default {
 			CheckStatus: 1
 		}))
 	},
-	queryPresentBanner() {
+	queryPresentBanner() { // 查询礼品banner
 		return axios.post(apis.present, qs.stringify({
 			action: 'getLastPresent',
 			top: 5,
 			filedOrder: 'CreateTime Desc'
 		}))
 	},
-	queryColumns() {
+	queryColumns() { // 查询栏目
 		return axios.post(apis.projectColumn, qs.stringify({
 			action: 'getAllPcAndPjInfo'
 		}))
 	},
-	queryProjectInfoByUserRole({ ProjectColumnId, pageNum, pageSize}) {
+	queryProjectInfoByUserRole({ ProjectColumnId, pageNum, pageSize}) { // 查询活动
 		let params = {
 			action: 'queryProjectInfoByUserRole',
 			startIndex: pageSize * (pageNum - 1) + 1,
@@ -124,7 +130,7 @@ export default {
 			PjId: id
 		}))
 	},
-	getPresentInfo({ id }) {
+	getPresentInfo({ id }) { // 获取礼品详情
 		return axios.post(apis.present, qs.stringify({
 			action: 'queryByPresentId',
 			PresentId: id

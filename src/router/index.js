@@ -54,6 +54,10 @@ export default new Router({
       }
     },
     {
+      path: '/announcement/:id',
+      component: loadView('Announcement'),
+    },
+    {
       path: '/presents/:id',
       component: loadView('PresentsDetails'),
       meta: {

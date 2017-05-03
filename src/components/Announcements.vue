@@ -8,6 +8,7 @@
                 <ul :style="{'margin-top': -index*20 + 'px'}">
                     <li v-for="(item, index) in msgs">
                         <a>{{item.AnnounceTitle}}</a>
+                        <!--<router-link to="">{{item.AnnounceTitle}}</router-link>-->
                     </li>
                 </ul>
             </div>
