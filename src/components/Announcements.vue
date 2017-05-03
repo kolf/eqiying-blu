@@ -34,7 +34,8 @@ export default {
             }, 3000)
         },
         toAnnouncement(id){
-            window.open('#/announcement/'+id)
+            // window.open('#/announcement/'+id)
+            this.$router.push({ path: '/announcement/' + id })
         }
     },
     computed: {

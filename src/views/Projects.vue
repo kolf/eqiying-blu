@@ -76,7 +76,7 @@
         <div class="projects">
           <div v-for="(project, index) in projects" class="box project">
             <article class="media is-mobile related-card">
-              <div class="media-left column is-3 project-thumb">
+              <div class="media-left column is-3 project-thumb is-transition">
                 <figure class="image is-1by1">
                   <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
                 </figure>

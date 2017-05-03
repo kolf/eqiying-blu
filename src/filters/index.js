@@ -5,7 +5,7 @@ export default {
         return decodeURIComponent(atob(str))
     },
     encode(str) {
-        return encodeURIComponent(btoa(str))
+        return btoa(encodeURIComponent(str))
     },
     fromatDate(str, isTime) {
         if(!str) return ''

@@ -43,7 +43,7 @@
               <div class="user-icon"><i class="iconfont icon--2"></i></div>
               <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
               <div class="bg"></div>
-              <router-link class="button" to="/user/main">点击进入</router-link>
+              <router-link class="button" to="/user/profile">点击进入</router-link>
             </div>
             <!-- <img src="../assets/c1.jpg" alt=""> -->
           </div>

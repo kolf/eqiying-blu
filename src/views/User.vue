@@ -31,7 +31,7 @@
                 <aside class="menu">
                   <ul class="menu-list">
                     <li>
-                      <router-link to="/user/main"><i class="iconfont icon-ziliao"></i>个人资料</router-link>
+                      <router-link to="/user/profile"><i class="iconfont icon-ziliao"></i>个人资料</router-link>
                     </li>
                     <li>
                       <router-link to="/user/projects"><i class="iconfont icon-huodong5050"></i>活动参与记录</router-link>
@@ -43,7 +43,7 @@
                       <router-link to="/user/msgs"><i class="iconfont icon-xiaoxi1"></i>我的私信</router-link>
                     </li>
                     <li>
-                      <a @click="showRepassword=true"><i class="iconfont icon-Password"></i>修改密码</a>
+                      <a @click="showModifyPassword=true"><i class="iconfont icon-Password"></i>修改密码</a>
                     </li>
                     <li><a @click="logout"><i class="iconfont icon-tuichu"></i>退出登陆</a></li>
                     <!--<li><a><i class="iconfont icon-zhuxiao1"></i>注销用户</a></li>-->
@@ -62,7 +62,7 @@
       </div>
     </div>
     <app-footer></app-footer>
-    <re-password :visible="showRepassword" @close="rePasswordSuccess"></re-password>
+    <modify-password :visible="showModifyPassword" @close="reModifyPasswordSuccess"></modify-password>
   </div>
 </template>
 
@@ -72,7 +72,7 @@ import AppFooter from 'components/AppFooter.vue'
 import { mapActions, mapGetters } from 'vuex'
 import api from 'src/api'
 import storage from 'src/utils/localStorage'
-import RePassword from 'src/components/modals/RePassword.vue'
+import ModifyPassword from 'src/components/modals/ModifyPassword.vue'
 import UploadAvatar from 'components/uploadavatar.vue'
 
 export default {
@@ -80,7 +80,7 @@ export default {
     AppHeader,
     AppFooter,
     UploadAvatar,
-    RePassword
+    ModifyPassword
   },
   data() {
     return {
@@ -99,7 +99,7 @@ export default {
         ok: '裁剪',
         filename: 'avatar'
       },
-      showRepassword: false
+      showModifyPassword: false
     }
   },
   created() {
@@ -136,8 +136,8 @@ export default {
       storage.removeAll()
       this.$router.push({ path: '/index' })
     },
-    rePasswordSuccess() {
-      this.showRepassword = false
+    reModifyPasswordSuccess() {
+      this.showModifyPassword = false
     }
   }
 }

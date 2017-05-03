@@ -48,6 +48,7 @@
               <span class="nav-item is-tab"><router-link class="" to="/signup">注册</router-link></span>
               <span class="nav-item is-tab"><router-link class="button is-primary is-hidden-mobile" to="/signin">登陆</router-link></span>
             </div>
+            
           </div>
         </nav>
       </div>
