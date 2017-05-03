@@ -58,7 +58,7 @@
 						</div>
 					</div>
 					<div class="column is-half has-text-right">
-						Copyright © 2016 XXXXX Inc. All Rights Reserved
+						Copyright © 2016 EQYING Inc. All Rights Reserved
 					</div>
 				</div>
 			</div>

@@ -57,7 +57,7 @@
       <div class="container">
         <div class="columns is-vcentered">
           <div class="column is-10 is-offset-1">
-            <div class="columns box login-box">
+            <div class="columns section">
               <form @submit.prevent="validateForm" class="column is-6 is-offset-3">
                 <h1 class="title has-text-centered">登陆</h1>
                 <label class="label">用户名</label>

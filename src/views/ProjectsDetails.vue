@@ -16,12 +16,12 @@
     <div class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-6">
+          <div class="column is-6 box">
             <div class="image is-1by1">
               <img v-lazy="'http://show.eqiying.com' + projectInfo.ProjectPicPath" alt="projectInfo.ProjectName">
             </div>
           </div>
-          <div class="column is-6">
+          <div class="column is-5 is-offset-1">
             <div class="title is-3">{{projectInfo.ProjectName}}</div>
             <hr>
             <!--<p class="title is-4 has-text-muted">40积分</p>-->

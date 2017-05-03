@@ -22,7 +22,7 @@
       <div class="container">
         <div class="columns is-vcentered">
           <div class="column is-10 is-offset-1">
-            <div class="columns box login-box">
+            <div class="columns section">
               <form @submit.prevent="validateForm" class="column is-6 is-offset-3">
                 <h1 class="title has-text-centered">注册</h1>
                 <div class="field">
@@ -44,6 +44,13 @@
                   <p class="control">
                     <input name="rePassword" :class="{'is-danger': errors.has('rePassword')}" v-model="userForm.RPanelPw" v-validate="'required'" type="password" class="input" placeholder="请填写确认密码">
                     <!--<span class="help is-danger" v-show="errors.has('password')">{{ errors.first('rePassword') }}</span>-->
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">手机号</label>
+                  <p class="control">
+                    <input name="mobile" :class="{'is-danger': errors.has('mobile')}" v-model="userForm.PanelMobile" v-validate="'required'" type="number" class="input" placeholder="请填写手机号">
+                    <!--<span class="help is-danger" v-show="errors.has('emall')">{{ errors.first('emall') }}</span>-->
                   </p>
                 </div>
                 <div class="field">
@@ -158,9 +165,10 @@ export default {
         PanelType: 1,
         action: 'panelRegister',
         Panelprovince: '',
-        PanelCity: '',
+        PanelCity: '110000',
         PanelGender: '1',
-        PanelBirthday: ''
+        PanelBirthday: '',
+        PanelMobile: ''
       },
       provinceOptions: [],
       cityOptions: [],
@@ -170,9 +178,9 @@ export default {
         day: []
       },
       ageVal: {
-        year: '',
-        month: '',
-        day: ''
+        year: '1985年',
+        month: '1月',
+        day: '1日'
       }
     }
   },
@@ -187,6 +195,8 @@ export default {
     for (let i = 1; i < 13; i++) {
       this.ageOptons.month.push(i + '月')
     }
+
+    this.changeAge('month')
   },
   methods: {
     validateForm() {
@@ -237,7 +247,7 @@ export default {
         this.ageOptons.day = []
         // this.ageVal.day = ''
         const { year, month } = this.ageVal
-        const dayLength = new Date(parseInt(year), parseInt(month), 0).getDate()
+        const dayLength = new Date(parseInt(year), parseInt(month), 0).getDate()+1
         for (let i = 1; i < dayLength; i++) {
           this.ageOptons.day.push(i + '日')
         }
