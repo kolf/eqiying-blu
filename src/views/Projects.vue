@@ -36,50 +36,48 @@
           </div>
         </div>
         <!--<div class="columns is-multiline">
-                      <div class="column" v-for="(project, index) in projects">
-                        <article class="media related-card box" v-for="(project, index) in projects">
-                        <div class="media-left">
-                          <figure class="image">
-                            <img src="http://placehold.it/240x240" alt="Image">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <div class="content">
-                            <p class="subtitle">{{project.ProjectName}}</p>
-                            <p>{{project.ProjectDesc}}</p>
-                            <p>时间： {{project.StartTime}}</p>
-                            <p><a class="button is-primary">查看详情</a></p>
-                          </div>
-                        </div>
-                      </article>
-                        <div class="card  is-fullwidth">
-                          <router-link class="card-image" :to="'/projects/' + project.PjId">
-                            <figure class="image is-1by1">
-                              <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
+                        <div class="column" v-for="(project, index) in projects">
+                          <article class="media related-card box" v-for="(project, index) in projects">
+                          <div class="media-left">
+                            <figure class="image">
+                              <img src="http://placehold.it/240x240" alt="Image">
                             </figure>
-                          </router-link>
-                          <div class="card-content">
-                            <div class="media">
-                              <div class="media-content">
-                                <p>
-                                  <router-link class="card-image" :to="'/projects/' + project.PjId">{{project.ProjectName}}</router-link>
-                                </p>
-                                <small>{{project.StartTime}}</small>
+                          </div>
+                          <div class="media-content">
+                            <div class="content">
+                              <p class="subtitle">{{project.ProjectName}}</p>
+                              <p>{{project.ProjectDesc}}</p>
+                              <p>时间： {{project.StartTime}}</p>
+                              <p><a class="button is-primary">查看详情</a></p>
+                            </div>
+                          </div>
+                        </article>
+                          <div class="card  is-fullwidth">
+                            <router-link class="card-image" :to="'/projects/' + project.PjId">
+                              <figure class="image is-1by1">
+                                <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
+                              </figure>
+                            </router-link>
+                            <div class="card-content">
+                              <div class="media">
+                                <div class="media-content">
+                                  <p>
+                                    <router-link class="card-image" :to="'/projects/' + project.PjId">{{project.ProjectName}}</router-link>
+                                  </p>
+                                  <small>{{project.StartTime}}</small>
+                                </div>
+                              </div>
+                              <div class="content">
+                                <p class="">可获 <span class="title is-4">{{project.Cpoint}}</span> 积分</p>
                               </div>
                             </div>
-                            <div class="content">
-                              <p class="">可获 <span class="title is-4">{{project.Cpoint}}</span> 积分</p>
-                            </div>
                           </div>
-                        </div>
-                      </div>-->
+                        </div>-->
         <div class="projects">
           <div v-for="(project, index) in projects" class="box project">
             <article class="media is-mobile related-card">
               <div class="media-left column is-3 project-thumb is-transition">
-                <figure class="image is-1by1">
-                  <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
-                </figure>
+                <router-link class="image is-1by1" :to="'/projects/' + project.PjId"><img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName"></router-link>
               </div>
               <div class="media-content column">
                 <div class="content project-content">
@@ -88,8 +86,8 @@
                   </p>
                   <p class="project-desc">{{project.ProjectDesc}}</p>
                   <p><i class="iconfont icon-shijian"></i> 活动时间: {{project.StartTime | fromatDate(true)}} / {{project.EndTime | fromatDate(true)}}</p>
-                  <p><i class="iconfont icon-jifen"></i> 活动积分: {{project.projectPointList[0].Cpoint}}</p>
-                  <p>
+                  <p><i class="iconfont icon-jifen"></i> 活动积分: <strong class="text-danger">{{project.projectPointList[0].Cpoint}}</strong></p>
+                  <p class="is-hidden-mobile">
                     <button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button>
                     <router-link class="button is-link" :to="'/projects/' + project.PjId">查看详情</router-link>
                   </p>
@@ -211,6 +209,7 @@ export default {
     padding: 10px;
   }
   border: 4px solid #fff;
+  padding: 12px;
   border-radius: 0;
   &-desc {
     @include mobile() {
@@ -228,9 +227,11 @@ export default {
     }
   }
   transition: all .2s;
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); // background-color: #eee;
-    border-color: #6bafdc // transform: translate3d(0, -2px, 0)
+  @include desktop() {
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); // background-color: #eee;
+      border-color: #6bafdc // transform: translate3d(0, -2px, 0)
+    }
   }
 }
 </style>
