@@ -7,8 +7,9 @@
             <div class="sysMsgs">
                 <ul :style="{'margin-top': -index*20 + 'px'}">
                     <li v-for="(item, index) in msgs">
-                        <a>{{item.AnnounceTitle}}</a>
-                        <!--<router-link to="">{{item.AnnounceTitle}}</router-link>-->
+                        <span class="is-pulled-right">{{item.CreateTime | fromatDate(true)}}</span>
+                        <a @click="toAnnouncement(item.AnnounceId)">{{item.AnnounceTitle}}</a>
+                        <!--<router-link :to="'/announcement/'+item.AnnounceId">{{item.AnnounceTitle}}</router-link>-->
                     </li>
                 </ul>
             </div>
@@ -31,6 +32,9 @@ export default {
             setInterval(() => {
                 this.index = this.index == this.msgs.length-1 ? 0 : this.index+1
             }, 3000)
+        },
+        toAnnouncement(id){
+            window.open('#/announcement/'+id)
         }
     },
     computed: {

@@ -19,8 +19,8 @@ export default new Router({
           requireAuth: true,
       },
       children:[{
-        path: 'main',
-        component: loadView('UserInfo')
+        path: 'profile',
+        component: loadView('Profile')
       },{
         path: 'projects',
         component: loadView('ProjectLogs')

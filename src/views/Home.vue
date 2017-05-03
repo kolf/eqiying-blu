@@ -6,7 +6,7 @@
     </section>
     <div class="section announcement-section">
       <div class="container">
-        <sys-msgs :list="sysMsgs"></sys-msgs>
+        <announcements :list="sysMsgs"></announcements>
       </div>
     </div>
     <div class="section is-gray">
@@ -100,14 +100,14 @@
 import api from 'src/api/index.js'
 import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
-import SysMsgs from 'components/SysMsgs.vue'
+import Announcements from 'components/Announcements.vue'
 
 export default {
   name: 'app',
   components: {
     AppHeader,
     AppFooter,
-    SysMsgs
+    Announcements
   },
   data() {
     return {
@@ -115,11 +115,11 @@ export default {
     }
   },
   created() {
-    this.querySysMsg()
+    this.queryAnnouncement()
   },
   methods: {
-    querySysMsg() {
-      api.querySysMsg().then(res => {
+    queryAnnouncement() {
+      api.queryAnnouncement().then(res => {
         const { msg, result, data } = res.data
         if (result !== 'ok') {
           this.$notify.warning({ content: msg })
