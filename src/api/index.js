@@ -35,10 +35,25 @@ export default {
 	signup(params) { // 注册
 		return axios.post(apis.panelBaseInfo, qs.stringify(params))
 	},
+	updateEmail({ orgEmail, newEmail }) { // 更新用户邮箱
+		return axios.post(apis.panelBaseInfo, qs.stringify({
+			action: 'updateEmail',
+			orgEmail,
+			newEmail
+		}))
+	},
 	updateAvatar({ panelBaseInfoId, headPath }) { // 更新用户头像
 		return axios.post(apis.panelBaseInfo, qs.stringify({
 			action: 'updateheadpath',
 			headPath,
+			panelBaseInfoId
+		}))
+	},
+	updateRemark({ panelBaseInfoId, PanelRemark }) { // 更新用户说明
+		console.log(PanelRemark)
+		return axios.post(apis.panelBaseInfo, qs.stringify({
+			action: 'updatepanelremark',
+			PanelRemark,
 			panelBaseInfoId
 		}))
 	},

@@ -18,10 +18,10 @@
                 <div class="columns">
                     <div class="column is-8 is-offset-2">
                         <!--<h3 class="title">{{announcement.AnnounceTitle}}</h3>-->
-                        <div class="content">
+                        <div class="content announcement-content">
                             <h1 class="has-text-centered">{{announcement.AnnounceTitle}}</h1>
                             <p class="has-text-right">{{announcement.CreateTime | fromatDate(true)}}</p>
-                            <p>{{announcement.AnnounceContent | decode}}</p>
+                            <p>{{decodeURI(announcement.AnnounceContent)}}</p>
                         </div>
                     </div>
                 </div>
@@ -66,5 +66,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.announcement{
+    &-content{
+        min-height: 500px
+    }
+}
 </style>

@@ -26,7 +26,8 @@
                     </upload-avatar>
                   </div>
                   <h1 class="title">{{userInfo.PanelLoginName}}</h1>
-                  <p>{{userInfo.PanelRemark || '这位同学很懒，木有填写个人资料的说～'}}</p>
+                  <textarea class="textarea user-remark" v-model="userInfo.PanelRemark" @blur="updateRemark"></textarea>
+                  <!--<p>{{userInfo.PanelRemark}}</p>-->
                 </div>
                 <aside class="menu">
                   <ul class="menu-list">
@@ -85,6 +86,7 @@ export default {
   data() {
     return {
       userInfo: {},
+      defaultRemark: '',
       upload: {
         server: api.API_ROOT,
         api: 'Handler/common.ashx',
@@ -103,12 +105,38 @@ export default {
     }
   },
   created() {
-    this.userInfo = storage.get('user')
+    // this.userInfo = storage.get('user')
+    
+    this.userInfo.PanelRemark = this.userInfo.PanelRemark || '这位同学很懒，木有填写个人资料的说～'
+    this.defaultRemark = this.userInfo.PanelRemark
   },
   methods: {
     ...mapActions([
       'toggleLogin'
     ]),
+    updateRemark() {
+      const { PanelRemark, PanelId } = this.userInfo
+
+      if(this.defaultRemark == PanelRemark){
+        return false
+      }
+
+      api.updateRemark({ PanelRemark, panelBaseInfoId: PanelId }).then(res => {
+        const { msg, result } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg || '保存用户信息失败' })
+          return false
+        }
+
+        // this.$set(userInfo, 'PanelOtherInfo1', path)
+        this.userInfo.PanelRemark = PanelRemark
+        this.defaultRemark = PanelRemark
+
+        storage.set('user', this.userInfo)
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
     upsuccess(data) {
       this.updateAvatar(data)
     },
@@ -126,6 +154,7 @@ export default {
 
         // this.$set(userInfo, 'PanelOtherInfo1', path)
         this.userInfo.PanelOtherInfo1 = path
+
         storage.set('user', this.userInfo)
       }).catch((error) => {
         console.log(error)
@@ -149,6 +178,15 @@ export default {
     background-image: url(../assets/startup-banner-3c5415c78064da11455c3ab9b352e04c.jpg);
     background-position: center;
   }
+  &-remark {
+    background-color: #eee;
+    border-color: #eee;
+    height: 80px;
+    border-radius: 4px;
+    max-height: 80px;
+    min-height: 80px;
+    resize: none;
+  }
 }
 
 .user-profile {
@@ -170,8 +208,7 @@ export default {
   .avatar {
     border: 4px solid #fff;
     border-radius: 6px;
-    margin-bottom: 10px;
-    // overflow: hidden;
+    margin-bottom: 10px; // overflow: hidden;
     // max-width: 240px;
     // display: inline-block;
   }
@@ -183,15 +220,15 @@ export default {
     left: 0;
     top: 0
   }
-  &-upload{
-    background-color: rgba(0,0,0,0);
+  &-upload {
+    background-color: rgba(0, 0, 0, 0);
     font-size: 0;
     transition: background-color .2s;
-    &:hover{
-      background-color: rgba(0,0,0,.4);
-            font-size: 50px;
+    &:hover {
+      background-color: rgba(0, 0, 0, .4);
+      font-size: 50px;
     }
-    &:after{
+    &:after {
       content: "\e617";
       display: inline-block;
       color: #fff;

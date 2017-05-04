@@ -88,7 +88,8 @@
                   <p><i class="iconfont icon-shijian"></i> 活动时间: {{project.StartTime | fromatDate(true)}} / {{project.EndTime | fromatDate(true)}}</p>
                   <p><i class="iconfont icon-jifen"></i> 活动积分: <strong class="text-danger">{{project.projectPointList[0].Cpoint}}</strong></p>
                   <p class="is-hidden-mobile">
-                    <button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button>
+                    <!--<button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button>-->
+                    <button class="button is-primary" @click="getInternalLink(project.PjId, index)">立即参与</button>
                     <router-link class="button is-link" :to="'/projects/' + project.PjId">查看详情</router-link>
                   </p>
                 </div>
@@ -172,7 +173,7 @@ export default {
         // this.total=recordCount || data.length
       })
     },
-    getInternalLink(PjId) {
+    getInternalLink(PjId, index) {
       api.getInternalLink({ PjId }).then(res => {
         const { msg, result, data } = res.data
         if (result !== 'ok') {
@@ -182,6 +183,9 @@ export default {
 
         // window.location.href= data.InternalLink
         window.open(data.InternalLink)
+        // this.projects[index].href = data.InternalLink
+
+        console.log(this.projects[index].href)
       })
     },
     statusTag(value) {

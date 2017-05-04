@@ -15,6 +15,7 @@ export default new Router({
     {
       path: '/user',
       component: loadView('User'),
+      redirect: '/user/profile',
       meta: {
           requireAuth: true,
       },
