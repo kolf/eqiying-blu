@@ -117,7 +117,12 @@ ul {
 // button
 .button {
     &.is-large {
-        font-size: 18px
+        font-size: 20px
+    }
+    &.is-medium{
+        font-size: 16px;
+        padding-left:20px;
+        padding-right: 20px;
     }
     &.is-link {
         text-decoration: none !important

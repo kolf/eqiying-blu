@@ -94,7 +94,7 @@
       <footer class="footer">
         <div class="container">
           <div class="content has-text-centered">
-            Copyright © 2016 XXXXX Inc. All Rights Reserved
+            Copyright © 2016 EQYING Inc. All Rights Reserved
           </div>
         </div>
       </footer>
@@ -187,12 +187,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login {
-  &-page {
-    // background-color: #eee
-  }
-  &-box {
-    padding: 50px 20px
-  }
-}
+
 </style>
