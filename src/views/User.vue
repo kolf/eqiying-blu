@@ -105,7 +105,7 @@ export default {
     }
   },
   created() {
-    // this.userInfo = storage.get('user')
+    this.userInfo = storage.get('user')
     
     this.userInfo.PanelRemark = this.userInfo.PanelRemark || '这位同学很懒，木有填写个人资料的说～'
     this.defaultRemark = this.userInfo.PanelRemark
