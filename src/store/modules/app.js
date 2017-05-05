@@ -1,5 +1,6 @@
 import * as types from '../mutation-types'
 import router from 'src/router'
+import storage from 'src/utils/localStorage'
 
 const state = {
   current: {
@@ -16,6 +17,9 @@ const state = {
   },
   effect: {
     translate3d: true
+  },
+  user: {
+
   }
 }
 
@@ -39,12 +43,22 @@ const mutations = {
 
   [types.TOGGLE_LOGIN] (state, status) {
     state.current.isLogin = status
+    if(status){
+      storage.set('isLogin', 1)
+    }else{
+      storage.removeAll()
+    }
   },
 
   [types.SWITCH_EFFECT] (state, effectItem) {
     for (let name in effectItem) {
       state.effect[name] = effectItem[name]
     }
+  },
+
+  [types.SAVE_USER] (state, user) {
+    state.user = Object.assign(state.user, user)
+    storage.set('user', state.user)
   }
 }
 
