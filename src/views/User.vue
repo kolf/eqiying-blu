@@ -181,10 +181,9 @@ export default {
   &-remark {
     background-color: #eee;
     border-color: #eee;
-    height: 80px;
+    height: 100px;
     border-radius: 4px;
-    max-height: 80px;
-    min-height: 80px;
+    min-height: 100px;
     resize: none;
   }
 }
