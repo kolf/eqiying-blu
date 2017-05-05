@@ -8,7 +8,6 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
-import storage from 'src/utils/localStorage'
 
 export default {
   name: 'app',
@@ -30,11 +29,6 @@ export default {
     document.addEventListener('visibilitychange', handler)
     window.addEventListener('DOMContentLoaded', handler)
     window.addEventListener('resize', handler)
-
-    const isLogin = storage.has('isLogin', 1000 * 60 * 20)
-    const user = storage.get('user')
-    this.saveUser(user)
-    this.toggleLogin(isLogin)
   },
   computed: {
     ...mapGetters({
@@ -46,9 +40,7 @@ export default {
   methods: {
     ...mapActions([
       'toggleDevice',
-      'toggleMenu',
-      'toggleLogin',
-      'saveUser',
+      'toggleMenu'
     ])
   }
 }

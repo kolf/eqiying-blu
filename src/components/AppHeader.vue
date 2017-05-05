@@ -50,9 +50,6 @@ export default {
 			// user: {}
 		}
 	},
-	// created() {
-	// 	this.userInfo = storage.get('user')
-	// },
 	props: ['page'],
 	methods: {
 		...mapActions([

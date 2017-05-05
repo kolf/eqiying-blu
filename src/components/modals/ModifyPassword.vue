@@ -31,7 +31,6 @@
 </template>
 <script>
 import api from 'src/api/index.js'
-import storage from 'src/utils/localStorage'
 
 export default {
     props: ['visible'],
@@ -44,12 +43,9 @@ export default {
             }
         }
     },
-    created() {
-
-    },
     computed: {
         panelId() {
-            return storage.get('user').PanelId
+            return this.$store.getters.user.panelId
         }
     },
     methods: {

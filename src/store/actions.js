@@ -1,4 +1,3 @@
-import api from 'src/api'
 import * as types from './mutation-types'
 
 export const toggleMenu = ({ commit }, opened) => commit(types.TOGGLE_MENU, opened)

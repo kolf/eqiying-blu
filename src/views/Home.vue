@@ -103,7 +103,6 @@ import AppFooter from 'components/AppFooter.vue'
 import Announcements from 'components/Announcements.vue'
 
 export default {
-  name: 'app',
   components: {
     AppHeader,
     AppFooter,

@@ -5,7 +5,7 @@ import storage from 'src/utils/localStorage'
 const state = {
   current: {
     page: '',
-    isLogin: false
+    isLogin: storage.has('isLogin', 1000 * 60 * 20)
   },
   device: {
     isMobile: false,
@@ -18,9 +18,7 @@ const state = {
   effect: {
     translate3d: true
   },
-  user: {
-
-  }
+  user: storage.get('user') || {}
 }
 
 const mutations = {
@@ -57,7 +55,7 @@ const mutations = {
   },
 
   [types.SAVE_USER] (state, user) {
-    state.user = Object.assign(state.user, user)
+    Object.assign(state.user, user)
     storage.set('user', state.user)
   }
 }

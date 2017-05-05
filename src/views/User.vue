@@ -20,13 +20,15 @@
             <div class="column is-one-quarter">
               <div class="profile-info-left">
                 <div class="has-text-centered block">
-                  <div class="avatar image is-1by1">
+                  <div class="avatar-wrap">
+                    <div class="avatar image is-1by1">
                     <img v-lazy="'http://show.eqiying.com/' + user.PanelOtherInfo1">
                     <upload-avatar :server="upload.server" :api="upload.api" :filename="upload.filename" :params="upload.params" @success="upsuccess" :crop="upload.crop" class="iconfont avatar-upload" :width="upload.width" :height="upload.height" :ok="upload.ok" :cancel="upload.cancel">
                     </upload-avatar>
                   </div>
+                  </div>
                   <h1 class="title">{{user.PanelLoginName}}</h1>
-                  <textarea class="textarea user-remark" v-model="user.PanelRemark" @blur="updateRemark"></textarea>
+                  <textarea placeholder="请填写您的个人介绍" class="textarea user-remark" v-model="remark" @blur="updateRemark"></textarea>
                   <!--<p>{{user.PanelRemark}}</p>-->
                 </div>
                 <aside class="menu">
@@ -72,7 +74,6 @@ import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
 import { mapActions, mapGetters } from 'vuex'
 import api from 'src/api'
-import storage from 'src/utils/localStorage'
 import ModifyPassword from 'src/components/modals/ModifyPassword.vue'
 import UploadAvatar from 'components/uploadavatar.vue'
 
@@ -85,8 +86,7 @@ export default {
   },
   data() {
     return {
-      // userInfo: {},
-      defaultRemark: '',
+      remark: '',
       upload: {
         server: api.API_ROOT,
         api: 'Handler/common.ashx',
@@ -105,10 +105,7 @@ export default {
     }
   },
   created() {
-    // this.userInfo = storage.get('user')
-
-    // this.userInfo.PanelRemark = this.userInfo.PanelRemark
-    // this.defaultRemark = this.userInfo.PanelRemark
+    this.remark = this.user.PanelRemark
   },
   computed: {
     ...mapGetters([
@@ -121,21 +118,20 @@ export default {
       'saveUser'
     ]),
     updateRemark() {
-      const { PanelRemark, PanelId } = this.user
+      const { user: { PanelRemark, PanelId }, remark } = this
 
-      if (this.defaultRemark == PanelRemark) {
+      if (remark == PanelRemark) {
         return false
       }
 
-      api.updateRemark({ PanelRemark, panelBaseInfoId: PanelId }).then(res => {
+      api.updateRemark({ PanelRemark: remark, panelBaseInfoId: PanelId }).then(res => {
         const { msg, result } = res.data
         if (result !== 'ok') {
           this.$notify.warning({ content: msg || '保存用户信息失败' })
           return false
         }
 
-        this.defaultRemark = PanelRemark
-        this.saveUser({ PanelRemark })
+        this.saveUser({ PanelRemark: remark })
       }).catch((error) => {
         console.log(error)
       })
@@ -144,7 +140,6 @@ export default {
       this.updateAvatar(data)
     },
     updateAvatar(path) {
-      console.log(this.user.PanelId)
       api.updateAvatar({
         headPath: path,
         panelBaseInfoId: this.user.PanelId
@@ -155,10 +150,6 @@ export default {
           return false
         }
 
-        // this.$set(userInfo, 'PanelOtherInfo1', path)
-        // this.userInfo.PanelOtherInfo1 = path
-
-        // storage.set('user', this.userInfo)
         this.saveUser({ PanelOtherInfo1: path })
       }).catch((error) => {
         console.log(error)
@@ -217,6 +208,11 @@ export default {
 }
 
 .avatar {
+  &-wrap{
+    width:240px;
+    margin: 0 auto 10px auto;
+    max-width: 100%
+  }
   .upload {
     position: absolute !important;
     left: 0;

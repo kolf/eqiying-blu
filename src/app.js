@@ -10,7 +10,6 @@ import router from './router'
 import store from './store'
 import filters from './filters'
 import { TOGGLE_PAGE, TOGGLE_MENU, TOGGLE_LOGIN } from 'vuex-store/mutation-types'
-import storage from './utils/localStorage'
 import indicator from './assets/indicator.png'
 
 Vue.use(NProgress)
@@ -29,9 +28,9 @@ Vue.use(VueLazyload, {
     }
 })
 Vue.use(VeeValidate, {
-        locale: 'zh_CN'
-    })
-    // Enable devtools
+    locale: 'zh_CN'
+})
+// Enable devtools
 Vue.config.devtools = true
 
 sync(store, router)
@@ -47,7 +46,7 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.matched.some(r => r.meta.requireAuth)) {
-        if (storage.has('isLogin', 1000 * 60 * 20)) {
+        if (state.app.current.isLogin) {
             next()
         } else {
             store.commit(TOGGLE_LOGIN, false)
@@ -57,7 +56,7 @@ router.beforeEach((to, from, next) => {
             })
         }
     } else {
-        next();
+        next()
     }
 })
 
