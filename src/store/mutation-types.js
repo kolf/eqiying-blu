@@ -11,6 +11,8 @@ export const SWITCH_EFFECT = 'SWITCH_EFFECT'
 export const TOGGLE_LANG = 'TOGGLE_LANG'
 
 export const TOGGLE_LOGIN = 'TOGGLE_LOGIN'
+
+export const SAVE_USER = 'SAVE_USER'
 //
 // export const LOGIN = 'LOGIN'
 //

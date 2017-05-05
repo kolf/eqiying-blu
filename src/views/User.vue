@@ -21,13 +21,13 @@
               <div class="profile-info-left">
                 <div class="has-text-centered block">
                   <div class="avatar image is-1by1">
-                    <img v-lazy="'http://show.eqiying.com/' + userInfo.PanelOtherInfo1">
+                    <img v-lazy="'http://show.eqiying.com/' + user.PanelOtherInfo1">
                     <upload-avatar :server="upload.server" :api="upload.api" :filename="upload.filename" :params="upload.params" @success="upsuccess" :crop="upload.crop" class="iconfont avatar-upload" :width="upload.width" :height="upload.height" :ok="upload.ok" :cancel="upload.cancel">
                     </upload-avatar>
                   </div>
-                  <h1 class="title">{{userInfo.PanelLoginName}}</h1>
-                  <textarea class="textarea user-remark" v-model="userInfo.PanelRemark" @blur="updateRemark"></textarea>
-                  <!--<p>{{userInfo.PanelRemark}}</p>-->
+                  <h1 class="title">{{user.PanelLoginName}}</h1>
+                  <textarea class="textarea user-remark" v-model="user.PanelRemark" @blur="updateRemark"></textarea>
+                  <!--<p>{{user.PanelRemark}}</p>-->
                 </div>
                 <aside class="menu">
                   <ul class="menu-list">
@@ -85,7 +85,7 @@ export default {
   },
   data() {
     return {
-      userInfo: {},
+      // userInfo: {},
       defaultRemark: '',
       upload: {
         server: api.API_ROOT,
@@ -105,19 +105,25 @@ export default {
     }
   },
   created() {
-    this.userInfo = storage.get('user')
-    
-    this.userInfo.PanelRemark = this.userInfo.PanelRemark || '这位同学很懒，木有填写个人资料的说～'
-    this.defaultRemark = this.userInfo.PanelRemark
+    // this.userInfo = storage.get('user')
+
+    // this.userInfo.PanelRemark = this.userInfo.PanelRemark
+    // this.defaultRemark = this.userInfo.PanelRemark
+  },
+  computed: {
+    ...mapGetters([
+      'user'
+    ])
   },
   methods: {
     ...mapActions([
-      'toggleLogin'
+      'toggleLogin',
+      'saveUser'
     ]),
     updateRemark() {
-      const { PanelRemark, PanelId } = this.userInfo
+      const { PanelRemark, PanelId } = this.user
 
-      if(this.defaultRemark == PanelRemark){
+      if (this.defaultRemark == PanelRemark) {
         return false
       }
 
@@ -128,11 +134,8 @@ export default {
           return false
         }
 
-        // this.$set(userInfo, 'PanelOtherInfo1', path)
-        this.userInfo.PanelRemark = PanelRemark
         this.defaultRemark = PanelRemark
-
-        storage.set('user', this.userInfo)
+        this.saveUser({ PanelRemark })
       }).catch((error) => {
         console.log(error)
       })
@@ -141,10 +144,10 @@ export default {
       this.updateAvatar(data)
     },
     updateAvatar(path) {
-      console.log(this.userInfo.PanelId)
+      console.log(this.user.PanelId)
       api.updateAvatar({
         headPath: path,
-        panelBaseInfoId: this.userInfo.PanelId
+        panelBaseInfoId: this.user.PanelId
       }).then(res => {
         const { msg, result } = res.data
         if (result !== 'ok') {
@@ -153,16 +156,16 @@ export default {
         }
 
         // this.$set(userInfo, 'PanelOtherInfo1', path)
-        this.userInfo.PanelOtherInfo1 = path
+        // this.userInfo.PanelOtherInfo1 = path
 
-        storage.set('user', this.userInfo)
+        // storage.set('user', this.userInfo)
+        this.saveUser({ PanelOtherInfo1: path })
       }).catch((error) => {
         console.log(error)
       })
     },
     logout() {
       this.toggleLogin(false)
-      storage.removeAll()
       this.$router.push({ path: '/index' })
     },
     reModifyPasswordSuccess() {

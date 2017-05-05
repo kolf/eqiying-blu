@@ -32,6 +32,8 @@ export default {
     window.addEventListener('resize', handler)
 
     const isLogin = storage.has('isLogin', 1000 * 60 * 20)
+    const user = storage.get('user')
+    this.saveUser(user)
     this.toggleLogin(isLogin)
   },
   computed: {
@@ -45,7 +47,8 @@ export default {
     ...mapActions([
       'toggleDevice',
       'toggleMenu',
-      'toggleLogin'
+      'toggleLogin',
+      'saveUser',
     ])
   }
 }

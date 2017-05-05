@@ -17,8 +17,8 @@
   
     <div class="section is-gray main">
       <div class="container">
-        <div class="columns is-multiline presents">
-          <div class="column is-3" v-for="present in presents">
+        <div class="columns is-multiline is-mobile presents">
+          <div class="column is-half-mobile is-one-quarter-desktop" v-for="present in presents">
             <div class="card present is-fullwidth">
               <a class="card-image is-transition" @click="showModal(present)">
                 <figure class="image is-1by1">
@@ -34,7 +34,7 @@
                   </div>
                 </div>
                 <div class="content">
-                  <p class=""><span class="title is-4">{{present.PresentPoint}}</span> 积分
+                  <p class=""><strong class="title is-4 text-danger">{{present.PresentPoint}}</strong> 积分
                     <button @click="showModal(present)" class="button is-primary is-outlined is-pulled-right">兑换</button>
                   </p>
                 </div>
@@ -48,16 +48,15 @@
       </div>
     </div>
     <app-footer></app-footer>
-    <modal title="兑换" transition="fadeDown" :is-show="isShowModal" @close="hideModal" :show-footer="false" :show-header="false">
-      <article class="media">
-        <div class="media-left" style="width:240px">
+    <modal title="兑换" transition="fadeDown" :is-show="isShowModal" @close="hideModal">
+      <div class="columns">
+        <div class="column is-6">
           <figure class="image is-square">
             <img v-lazy="'http://show.eqiying.com' + curPresent.PresentPic" alt="Image">
           </figure>
         </div>
-        <div class="media-content">
+        <div class="column">
           <p class="title">{{curPresent.PresentName}}</p>
-          <!--<p class="subtitle">{{curPresent.PresentDesc}}</p>-->
           <ul class="param-list">
             <li><span class="param-name">礼品介绍:</span>{{curPresent.PresentDesc}}</li>
             <li><span class="param-name">积分:</span>{{curPresent.PresentPoint}}</li>
@@ -66,16 +65,11 @@
             <li>
               <input-number style="width:80px" :val="1" v-model="changeNum" :on-change="changePresentNum"></input-number>
             </li>
-            <li>共需 <span class="text-danger">{{curPresent.PresentPoint*changeNum}}</span> 积分</li>
+            <li>共需 <strong class="text-danger">{{curPresent.PresentPoint*changeNum}}</strong> 积分</li>
           </ul>
-          <div class="pad-t">
-            <button class="button is-primary" @click="exchange" :disabled="changeNum==0">兑换</button>
-          </div>
         </div>
-        <div class="media-right">
-          <button class="delete" @click="hideModal"></button>
-        </div>
-      </article>
+      </div>
+      <div slot="footer"><a class="button" @click="hideModal">取消</a> <a :disabled="changeNum==0" class="button is-primary" @click="exchange">兑换</a></div>
     </modal>
   </div>
 </template>

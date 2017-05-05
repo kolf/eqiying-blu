@@ -26,7 +26,7 @@
 					<span class="nav-item is-tab" v-if="!current.isLogin"><router-link class="button is-primary" to="/signin">登陆</router-link></span>
 					<router-link v-if="current.isLogin" class="nav-item is-hidden-mobile" to="/user/msgs"><i class="fa fa-bell-o header-notification"></i></router-link>
 					<router-link to="/user" class="nav-item is-hidden-mobile" v-if="current.isLogin">
-						<avatar :size="40" :src="'http://show.eqiying.com/' + userInfo.PanelOtherInfo1" :username="userInfo.PanelLoginName"></avatar>
+						<avatar :size="40" :src="'http://show.eqiying.com/' + user.PanelOtherInfo1" :username="user.PanelLoginName"></avatar>
 					</router-link>
 				</div>
 			</div>
@@ -47,12 +47,12 @@ export default {
 	},
 	data() {
 		return {
-			userInfo: {}
+			// user: {}
 		}
 	},
-	created() {
-		this.userInfo = storage.get('user')
-	},
+	// created() {
+	// 	this.userInfo = storage.get('user')
+	// },
 	props: ['page'],
 	methods: {
 		...mapActions([
@@ -63,7 +63,8 @@ export default {
 		...mapGetters({
 			current: 'current',
 			device: 'device',
-			menu: 'menu'
+			menu: 'menu',
+			user: 'user'
 		})
 	},
 }
