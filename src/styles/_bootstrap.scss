@@ -9,8 +9,8 @@ ul {
 }
 
 .header {
-    &-notification {
-        font-size: 20px;
+    &-icon {
+        font-size: 26px;
     }
     &-avatar {
         border-radius: 50%;
@@ -35,6 +35,19 @@ ul {
             padding-left: 15px;
             padding-right: 15px;
             font-weight: 700
+        }
+    }
+    .nav-item{
+        &.is-badge{
+            padding-right: 0;
+            &>.tag{
+                position: relative;
+                left:-12px;
+                top: -10px;
+                height: 20px;
+                padding-left: 7px;
+                padding-right: 8px;
+            }
         }
     }
 }
@@ -158,12 +171,12 @@ ul {
             width: 100%;
             margin-bottom: 15px;
             overflow-y: hidden;
-            -ms-overflow-style: -ms-autohiding-scrollbar;
-            // border: 1px solid #ddd;
-            table{
+            -ms-overflow-style: -ms-autohiding-scrollbar; // border: 1px solid #ddd;
+            table {
                 margin-bottom: 0
             }
-            td,th{
+            td,
+            th {
                 white-space: nowrap;
             }
         }
@@ -180,6 +193,7 @@ ul {
 // modal
 .modal-card {
     border-radius: 2px;
+    max-height: calc(100vh - 160px);
     .media {
         margin: 10px 0;
     }
@@ -256,4 +270,34 @@ ul {
 
 .dropdown-content {
     padding: 2px 0;
+}
+
+// .msg-box {
+//   &-icon {
+//     font-size: 80px;
+//     color: #23d160
+//   }
+//   &-desc {
+//     padding: 1em 0;
+//     font-size: 16px;
+//     margin-top: 1em
+//   }
+// }
+.msg {
+    &-box {
+        .icon {
+            font-size: 80px;
+            width:100px;
+            height: 100px;
+            line-height: 100px;
+            &.is-success {
+                color: #23d160
+            }
+        }
+        .desc {
+            padding: 1em 0;
+            font-size: 16px;
+            margin-top: 1em
+        }
+    }
 }

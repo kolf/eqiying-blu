@@ -11,6 +11,8 @@ import store from './store'
 import filters from './filters'
 import { TOGGLE_PAGE, TOGGLE_MENU, TOGGLE_LOGIN } from 'vuex-store/mutation-types'
 import indicator from './assets/indicator.png'
+import storage from 'src/utils/localStorage'
+import { mapActions, mapGetters } from 'vuex'
 
 Vue.use(NProgress)
 // Validator.addLocale(zh)
@@ -46,7 +48,7 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.matched.some(r => r.meta.requireAuth)) {
-        if (state.app.current.isLogin) {
+        if (storage.has('isLogin', 1000 * 60 * 20)) {
             next()
         } else {
             store.commit(TOGGLE_LOGIN, false)

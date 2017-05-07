@@ -9,10 +9,14 @@
                 <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
               </router-link>
             </div>
-  
-            <div class="nav-right nav-menu">
+            <span class="nav-toggle" :class="{'is-active': device.isMobile && menu.opened}" @click="toggleMenu(!menu.opened)">
+                    <span></span>
+            <span></span>
+            <span></span>
+            </span>
+            <div class="nav-right nav-menu" :class="{'is-active': device.isMobile && menu.opened}">
               <span class="nav-item is-tab"><router-link class="" to="/signup">注册</router-link></span>
-              <span class="nav-item is-tab"><router-link class="button is-primary is-hidden-mobile" to="/signin">登陆</router-link></span>
+              <span class="nav-item is-tab"><router-link class="button is-primary" to="/signin">登陆</router-link></span>
             </div>
           </div>
         </nav>
@@ -26,35 +30,35 @@
               <form @submit.prevent="validateForm" class="column is-6 is-offset-3">
                 <h1 class="title has-text-centered">注册</h1>
                 <div class="field">
-                  <label class="label">登录名</label>
+                  <label class="label">* 登录名</label>
                   <p class="control">
                     <input name="PanelLoginName" class="input" :class="{'is-danger': errors.has('PanelLoginName')}" type="text" v-model="userForm.PanelLoginName" v-validate="'required'" placeholder="请输入登录名">
                     <!--<span class="help is-danger" v-show="errors.has('PanelLoginName')">{{ errors.first('PanelLoginName') }}</span>-->
                   </p>
                 </div>
                 <div class="field">
-                  <label class="label">密码</label>
+                  <label class="label">* 密码</label>
                   <p class="control">
                     <input name="password" class="input" :class="{'is-danger': errors.has('password')}" type="password" v-model="userForm.PanelPw" v-validate="'required'" placeholder="请填写密码">
                     <!--<span class="help is-danger" v-show="errors.has('password')">{{ errors.first('password') }}</span>-->
                   </p>
                 </div>
                 <div class="field">
-                  <label class="label">确认密码</label>
+                  <label class="label">* 确认密码</label>
                   <p class="control">
                     <input name="rePassword" :class="{'is-danger': errors.has('rePassword')}" v-model="userForm.RPanelPw" v-validate="'required'" type="password" class="input" placeholder="请填写确认密码">
                     <!--<span class="help is-danger" v-show="errors.has('password')">{{ errors.first('rePassword') }}</span>-->
                   </p>
                 </div>
                 <div class="field">
-                  <label class="label">手机号</label>
+                  <label class="label">* 手机号</label>
                   <p class="control">
                     <input name="mobile" :class="{'is-danger': errors.has('mobile')}" v-model="userForm.PanelMobile" v-validate="'required'" type="number" class="input" placeholder="请填写手机号">
                     <!--<span class="help is-danger" v-show="errors.has('emall')">{{ errors.first('emall') }}</span>-->
                   </p>
                 </div>
                 <div class="field">
-                  <label class="label">电子邮件</label>
+                  <label class="label">* 电子邮件</label>
                   <p class="control">
                     <input name="emall" :class="{'is-danger': errors.has('emall')}" v-model="userForm.PanelEmail" v-validate="'required'" type="email" class="input" placeholder="请填写电子邮件">
                     <!--<span class="help is-danger" v-show="errors.has('emall')">{{ errors.first('emall') }}</span>-->
@@ -67,30 +71,30 @@
                   </p>
                 </div>
                 <div class="field">
-                  <label class="label">生日</label>
+                  <label class="label">* 生日</label>
                   <p class="control">
                     <span class="select">
-                                              <select :class="{'is-danger': errors.has('year')}" name="year" v-model="ageVal.year" v-validate="'required'" @change="changeAge('year')">
-                                                <option value="">请选择年</option>
-                                                <option :value="item" v-for="(item, index) in ageOptons.year">{{item}}</option>
-                                              </select>
-                                            </span>
+                                                    <select :class="{'is-danger': errors.has('year')}" name="year" v-model="ageVal.year" v-validate="'required'" @change="changeAge('year')">
+                                                      <option value="">请选择年</option>
+                                                      <option :value="item" v-for="(item, index) in ageOptons.year">{{item}}</option>
+                                                    </select>
+                                                  </span>
                     <span class="select">
-                                              <select :class="{'is-danger': errors.has('month')}" name="month" v-model="ageVal.month" v-validate="'required'" @change="changeAge('month')">
-                                                <option value="">请选择月</option>
-                                                <option :value="item" v-for="(item, index) in ageOptons.month">{{item}}</option>
-                                              </select>
-                                            </span>
+                                                    <select :class="{'is-danger': errors.has('month')}" name="month" v-model="ageVal.month" v-validate="'required'" @change="changeAge('month')">
+                                                      <option value="">请选择月</option>
+                                                      <option :value="item" v-for="(item, index) in ageOptons.month">{{item}}</option>
+                                                    </select>
+                                                  </span>
                     <span class="select">
-                                              <select :class="{'is-danger': errors.has('day')}" name="day" v-model="ageVal.day" v-validate="'required'" >
-                                                <option value="">请选择日</option>
-                                                <option :value="item" v-for="(item, index) in ageOptons.day">{{item}}</option>
-                                              </select>
-                                            </span>
+                                                    <select :class="{'is-danger': errors.has('day')}" name="day" v-model="ageVal.day" v-validate="'required'" >
+                                                      <option value="">请选择日</option>
+                                                      <option :value="item" v-for="(item, index) in ageOptons.day">{{item}}</option>
+                                                    </select>
+                                                  </span>
                   </p>
                 </div>
                 <div class="field">
-                  <label class="label">性别</label>
+                  <label class="label">* 性别</label>
                   <p class="control">
                     <!--<input type="text" name="sex" :class="{'is-danger': errors.has('sex')}" v-model="userForm.PanelSex" v-validate="'required'" class="input" placeholder="请填写真实姓名">-->
                     <radio-group v-model="userForm.PanelGender">
@@ -100,20 +104,20 @@
                   </p>
                 </div>
                 <div class="field">
-                  <label class="label">所在城市</label>
+                  <label class="label">* 所在城市</label>
                   <p class="control">
                     <span class="select" style="width:150px">
-                                                    <select :class="{'is-danger': errors.has('Panelprovince')}" name="Panelprovince" v-validate="'required'" v-model="userForm.Panelprovince" @change="queryByParenterCode(userForm.Panelprovince)">
-                                                      <option value="">请选择省</option>
-                                                      <option :value="item.value" v-for="(item, index) in provinceOptions">{{item.label}}</option>
-                                                    </select>
-                                                  </span>
+                                                          <select :class="{'is-danger': errors.has('Panelprovince')}" name="Panelprovince" v-validate="'required'" v-model="userForm.Panelprovince" @change="queryByParenterCode(userForm.Panelprovince)">
+                                                            <option value="">请选择省</option>
+                                                            <option :value="item.value" v-for="(item, index) in provinceOptions">{{item.label}}</option>
+                                                          </select>
+                                                        </span>
                     <span class="select" style="width:150px">
-                                                    <select :class="{'is-danger': errors.has('PanelCity')}" name="PanelCity" v-model="userForm.PanelCity" v-validate="'required'" >
-                                                      <option value="">请选择市</option>
-                                                      <option :value="item.value" v-for="(item, index) in cityOptions">{{item.label}}</option>
-                                                    </select>
-                                                  </span>
+                                                          <select :class="{'is-danger': errors.has('PanelCity')}" name="PanelCity" v-model="userForm.PanelCity" v-validate="'required'" >
+                                                            <option value="">请选择市</option>
+                                                            <option :value="item.value" v-for="(item, index) in cityOptions">{{item.label}}</option>
+                                                          </select>
+                                                        </span>
                     <!--<span class="help" v-show="errors.has('PanelCity')">{{ errors.first('PanelCity') }}</span>-->
                   </p>
                 </div>
@@ -129,15 +133,15 @@
                 </div>
               </form>
             </div>
-            <div v-else class="section success-box has-text-centered">
+            <div v-else class="section msg-box has-text-centered">
               <div class="success-heading">
-                <i class="iconfont icon-chenggong1 success-icon"></i>
+                <i class="iconfont icon-chenggong1 icon is-success"></i>
                 <h2 class="title">注册成功</h2>
               </div>
               <div class="content">
-                <p class="success-desc">您已成功注册一起赢生活社区，请在24小时内点击下面的“验证邮箱”按钮，完成注册过程。</p>
+                <p class="desc">您已成功注册一起赢生活社区，请在24小时内点击下面的“验证邮箱”按钮，完成注册过程。</p>
                 <p>
-                  <a href="" class="button is-outlined is-medium">马上登陆</a>
+                  <router-link class="button is-outlined is-medium" to="/signin">马上登陆</router-link>
                   <a :href="getEmailUrl()" class="button is-primary is-success is-medium" target="_blank">验证邮箱</a>
                 </p>
               </div>
@@ -161,6 +165,7 @@
 
 <script>
 import api from 'src/api/index.js'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'signup',
@@ -176,8 +181,6 @@ export default {
         PanelRealName: '',
         PanelRemark: '',
         PanelWebId: '1',
-        PanelType: 1,
-        action: 'panelRegister',
         Panelprovince: '',
         PanelCity: '',
         PanelGender: '1',
@@ -198,7 +201,13 @@ export default {
       }
     }
   },
-
+  computed: {
+    ...mapGetters({
+      current: 'current',
+      device: 'device',
+      menu: 'menu'
+    })
+  },
   created() {
     this.queryByParenterCode('100000')
 
@@ -213,6 +222,9 @@ export default {
     this.changeAge('month')
   },
   methods: {
+    ...mapActions([
+      'toggleMenu'
+    ]),
     getEmailUrl() {
       const { PanelEmail } = this.userForm
       return 'http://mail.' + PanelEmail.split('@')[1]
@@ -232,7 +244,7 @@ export default {
 
           // this.$notify.success({ content: msg || '注册成功' });
           // this.$router.push({ path: '/signin' })
-          this.isSuccess= true
+          this.isSuccess = true
         }).catch((error) => {
           console.log(error)
         })
@@ -279,18 +291,6 @@ export default {
 <style lang="scss" scoped>
 .field {
   margin-bottom: 15px
-}
-
-.success {
-  &-icon {
-    font-size: 80px;
-    color: #23d160
-  }
-  &-desc {
-    padding: 1em 0;
-    font-size: 16px;
-    margin-top: 1em
-  }
 }
 
 .select {

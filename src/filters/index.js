@@ -1,4 +1,5 @@
-import {atob, btoa} from 'Base64'
+import { atob, btoa } from 'Base64'
+const { ROOT } = process.env
 
 export default {
     decode(str) {
@@ -8,7 +9,7 @@ export default {
         return btoa(encodeURIComponent(str))
     },
     fromatDate(str, isTime) {
-        if(!str) return ''
+        if (!str) return ''
         return str.replace('T', ' ').substr(0, (isTime ? 10 : 19))
     },
     sex(str) {
@@ -17,5 +18,15 @@ export default {
             2: '女'
         }
         return data[str]
+    },
+    assetsUrl(url) {
+        return ROOT + '' + url
+    },
+    filterHTML(str) {
+        str = str.replace(/<\/?[^>]+>/g, '')
+        str = str.replace(/[ | ]*\n/g, '\n')
+        str = str.replace(/\n[\s| | ]*\r/g, '\n')
+        str = str.replace(/&nbsp;/ig, '')
+        return str
     }
 }

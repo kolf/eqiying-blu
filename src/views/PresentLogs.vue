@@ -11,7 +11,7 @@
             <th width="80">兑换数量</th>
             <th width="80">消费分数</th>
             <th width="80">兑换状态</th>
-            <th width="200">兑换日期</th>
+            <th width="100">兑换日期</th>
           </tr>
         </thead>
         <tbody v-if="presentLogs.length>0">
@@ -39,7 +39,7 @@
       <article class="columns">
         <div class="column is-6">
           <figure class="image is-square">
-            <img v-lazy="'http://show.eqiying.com' + curPresent.PresentPic" alt="Image">
+            <img v-lazy="curPresent.PresentPic" :alt="curPresent.PresentName">
           </figure>
         </div>
         <div class="column is-6">
@@ -58,6 +58,7 @@
 
 <script>
 import api from 'src/api'
+const { ROOT } = process.env
 
 export default {
   data() {
@@ -91,6 +92,7 @@ export default {
         }
 
         this.curPresent = data
+        this.curPresent.PresentPic = ROOT + data.PresentPic
         this.isShowModal = true
       })
     },

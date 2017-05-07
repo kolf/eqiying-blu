@@ -18,11 +18,11 @@
         <div class="columns">
           <div class="column is-6 box">
             <div class="image is-1by1">
-              <img v-lazy="'http://show.eqiying.com' + projectInfo.ProjectPicPath" alt="projectInfo.ProjectName">
+              <img v-lazy="project.ProjectPicPath" :alt="project.ProjectName">
             </div>
           </div>
           <div class="column is-5 is-offset-1">
-            <div class="title is-3">{{projectInfo.ProjectName}}</div>
+            <div class="title is-3">{{project.ProjectName}}</div>
             <hr>
             <!--<p class="title is-4 has-text-muted">40积分</p>-->
   
@@ -32,19 +32,19 @@
                   <td class="has-text-right">
                     <strong>开始时间</strong>
                   </td>
-                  <td>{{projectInfo.StartTime | fromatDate(true)}}</td>
+                  <td>{{project.StartTime | fromatDate(true)}}</td>
                 </tr>
                 <tr>
                   <td class="has-text-right">
                     <strong>结束时间</strong>
                   </td>
-                  <td>{{projectInfo.EndTime | fromatDate(true)}}</td>
+                  <td>{{project.EndTime | fromatDate(true)}}</td>
                 </tr>
                 <tr>
                   <td class="has-text-right">
                     <strong>活动积分</strong>
                   </td>
-                  <td>{{projectInfo.Cpoint}}</td>
+                  <td>{{project.Cpoint}}</td>
                 </tr>
                 <tr>
                   <td class="has-text-right" width="100">
@@ -56,9 +56,9 @@
             </table>
             <br>
             <div class="content project-content">
-              <p>{{projectInfo.ProjectDesc}}</p>
+              <p>{{project.ProjectDesc}}</p>
               <p>
-                <button class="button is-primary" @click="getInternalLink(projectInfo.PjId)">立即参与</button>
+                <button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button>
               </p>
             </div>
           </div>
@@ -73,6 +73,7 @@
 import api from 'src/api'
 import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
+const { ROOT } = process.env
 
 export default {
   components: {
@@ -81,7 +82,7 @@ export default {
   },
   data() {
     return {
-      projectInfo: {}
+      project: {}
     }
   },
   created() {
@@ -97,8 +98,9 @@ export default {
           return false
         }
 
-        this.projectInfo = data.Project_Info
-        this.projectInfo.Cpoint = data.Project_Point[0].Cpoint
+        this.project = data.Project_Info
+        this.project.Cpoint = data.Project_Point[0].Cpoint
+        this.project.ProjectPicPath = ROOT + data.Project_Info.ProjectPicPath
       })
     },
     getInternalLink(PjId) {

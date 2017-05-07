@@ -1,11 +1,12 @@
 <template>
   <div class="projects-page">
     <app-header></app-header>
-    <section class="hero is-dark">
+    <slider v-if="allProjects.length>0" :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
+    <section v-else class="hero is-medium is-dark">
       <div class="hero-body">
         <div class="container has-text-centered">
           <p class="title">
-            活动专区
+            活动积分
           </p>
           <p class="subtitle">
             丰富的活动等你来参加还可以获得积分哟
@@ -14,18 +15,18 @@
       </div>
     </section>
     <div class="section is-gray">
-      <div class="container">
+      <div class="container" v-if="allProjects.length>0">
         <div class="columns">
           <div class="column">
             <div class="tabs">
               <ul>
-                <li :class="{'is-active': ProjectColumnId==''}" @click="queryList('')">
+                <li :class="{'is-active': curColumnId==''}" @click="curColumnId=''">
                   <a>
                     <!-- <span class="icon is-small"><i class="fa fa-th-list"></i></span> -->
                     <span>全部</span>
                   </a>
                 </li>
-                <li :class="{'is-active': ProjectColumnId==column.ProjectColumnId}" v-for="(column, index) in columns" @click="queryList(column.ProjectColumnId)">
+                <li :class="{'is-active': curColumnId==column.ProjectColumnId}" v-for="(column, index) in columns" @click="curColumnId=column.ProjectColumnId">
                   <a>
                     <!-- <span class="icon is-small"><i class="fa fa-th-list"></i></span> -->
                     <span>{{column.ProjectColumnName}}</span>
@@ -35,49 +36,11 @@
             </div>
           </div>
         </div>
-        <!--<div class="columns is-multiline">
-                        <div class="column" v-for="(project, index) in projects">
-                          <article class="media related-card box" v-for="(project, index) in projects">
-                          <div class="media-left">
-                            <figure class="image">
-                              <img src="http://placehold.it/240x240" alt="Image">
-                            </figure>
-                          </div>
-                          <div class="media-content">
-                            <div class="content">
-                              <p class="subtitle">{{project.ProjectName}}</p>
-                              <p>{{project.ProjectDesc}}</p>
-                              <p>时间： {{project.StartTime}}</p>
-                              <p><a class="button is-primary">查看详情</a></p>
-                            </div>
-                          </div>
-                        </article>
-                          <div class="card  is-fullwidth">
-                            <router-link class="card-image" :to="'/projects/' + project.PjId">
-                              <figure class="image is-1by1">
-                                <img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName">
-                              </figure>
-                            </router-link>
-                            <div class="card-content">
-                              <div class="media">
-                                <div class="media-content">
-                                  <p>
-                                    <router-link class="card-image" :to="'/projects/' + project.PjId">{{project.ProjectName}}</router-link>
-                                  </p>
-                                  <small>{{project.StartTime}}</small>
-                                </div>
-                              </div>
-                              <div class="content">
-                                <p class="">可获 <span class="title is-4">{{project.Cpoint}}</span> 积分</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>-->
         <div class="projects">
           <div v-for="(project, index) in projects" class="box project">
             <article class="media is-mobile related-card">
               <div class="media-left column is-3 project-thumb is-transition">
-                <router-link class="image is-1by1" :to="'/projects/' + project.PjId"><img v-lazy="'http://show.eqiying.com' + project.ProjectPicPath" alt="project.ProjectName"></router-link>
+                <router-link class="image is-1by1" :to="'/projects/' + project.PjId"><img v-lazy="project.ProjectPicPath" alt="project.ProjectName"></router-link>
               </div>
               <div class="media-content column">
                 <div class="content project-content">
@@ -98,7 +61,22 @@
           </div>
         </div>
         <div class="box is-gray" v-if="projects.length>0">
-          <pagination :total="total" :page-size="pageSize" layout="pager" :change="queryProject"></pagination>
+          <pagination :total="total" :page-size="pageSize" layout="pager" :change="changePage"></pagination>
+        </div>
+      </div>
+      <div v-else class="container">
+        <div class="section msg-box has-text-centered">
+          <div class="">
+            <i class="iconfont icon-tishi icon is—info"></i>
+            <h2 class="title">您没有任何可以参加的活动</h2>
+          </div>
+          <div class="content">
+            <p class="desc">您没有任何可以参加的活动， 我们最大的动力来自于您的支持与参与~</p>
+            <p>
+              <router-link class="button is-outlined is-medium" to="/index">返回首页</router-link>
+              <router-link class="button is-primary is-primary is-medium" to="/user">个人中心</router-link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -110,31 +88,64 @@
 import api from 'src/api'
 import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
+import Slider from 'components/Slider.vue'
+const { ROOT } = process.env
 
 export default {
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    Slider
   },
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      imgUrl: '../assets/event184125.jpg',
       columns: [],
-      projects: [],
-      ProjectColumnId: '',
-      total: 0,
-      pageSize: 12
+      allProjects: [],
+      // ProjectColumnId: '',
+      curColumnId: '',
+      pageSize: 12,
+      pageNum: 0,
+      sliderinit: {
+        currentPage: 0,//当前页码
+        // thresholdDistance: 500,//滑动判定距离
+        // thresholdTime: 100,//滑动判定时间
+        autoplay: 3000,//自动滚动[ms]
+        loop: true,//循环滚动
+        infinite: 1,//无限滚动前后遍历数
+        slidesToScroll: 1,//每次滑动项数
+      }
+    }
+  },
+  computed: {
+    projects() {
+      const { curColumnId, allProjects, pageNum, pageSize } = this
+      const arr = curColumnId ? allProjects.filter(item => item.ProjectColumnId === curColumnId) : allProjects
+      return arr.slice(pageNum * pageSize, (pageNum + 1) * pageSize)
+    },
+    total() {
+      const { curColumnId, allProjects, pageNum, pageSize } = this
+      const arr = curColumnId ? allProjects.filter(item => item.ProjectColumnId === curColumnId) : allProjects
+      return arr.length
+    },
+    banners() {
+      return this.allProjects.slice(0, 5).map(item => {
+        return {
+          style: item.ProjectPicAnnouncePath ? { 'background-image': 'url(http://show.eqiying.com' + item.ProjectPicAnnouncePath + ')' } : { 'background-color': '#333' }
+        }
+      })
     }
   },
   created() {
     this.queryProjectColumn()
-    this.queryList('')
+    // this.queryList('')
   },
   methods: {
-    queryList(ProjectColumnId) {
-      this.ProjectColumnId = ProjectColumnId
-      // this.queryProject(1) // 作废
+    // queryList(ProjectColumnId) {
+    //   this.ProjectColumnId = ProjectColumnId
+    //   this.queryProject(1) // 作废
+    // },
+    changePage(pageNum) {
+      this.pageNum = pageNum
     },
     queryProjectColumn() {
       api.queryColumns().then(res => {
@@ -145,11 +156,12 @@ export default {
         }
 
 
-        const projects = data.projectColumnList.reduce((result, item) => {
+        const allProjects = data.projectColumnList.reduce((result, item) => {
           if (item.projectInfoList) {
             // result = result.concat(item.projectInfoList)
             item.projectInfoList.forEach(project => {
               project.ProjectColumnName = item.ProjectColumnName
+              project.ProjectPicPath = ROOT + project.ProjectPicPath
               result.push(project)
             })
           }
@@ -157,22 +169,21 @@ export default {
         }, [])
 
         this.columns = data.projectColumnList
-        this.projects = projects
-        this.total = projects.length
+        this.allProjects = allProjects
       })
     },
-    queryProject(pageNum) {
-      api.queryProjectInfoByUserRole({ pageNum, ProjectColumnId: this.ProjectColumnId, pageSize: this.pageSize }).then(res => {
-        const { msg, result, data, recordCount } = res.data
-        if (result !== 'ok') {
-          this.$notify.warning({ content: msg })
-          return false
-        }
+    // queryProject(pageNum) {
+    //   api.queryProjectInfoByUserRole({ pageNum, ProjectColumnId: this.ProjectColumnId, pageSize: this.pageSize }).then(res => {
+    //     const { msg, result, data, recordCount } = res.data
+    //     if (result !== 'ok') {
+    //       this.$notify.warning({ content: msg })
+    //       return false
+    //     }
 
-        // this.projects=data
-        // this.total=recordCount || data.length
-      })
-    },
+    //     this.projects=data
+    //     this.total=recordCount || data.length
+    //   })
+    // },
     getInternalLink(PjId, index) {
       api.getInternalLink({ PjId }).then(res => {
         const { msg, result, data } = res.data

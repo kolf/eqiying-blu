@@ -5,7 +5,7 @@
     <div class="msgs" v-if="msgs.length>0">
       <article class="media msg" v-for="(msg, index) in msgs">
         <div class="media-left">
-          <avatar background-color="#6bafdc" v-if="msg.PanelOtherInfo1" :size="64" :src="'http://show.eqiying.com/' + msg.PanelOtherInfo1" :username="msg.SenderName"></avatar>
+          <avatar background-color="#6bafdc" v-if="msg.PanelOtherInfo1" :size="64" :src="msg.PanelOtherInfo1" :username="msg.SenderName"></avatar>
           <avatar background-color="#6bafdc" v-else :size="64" :username="msg.SenderName"></avatar>
         </div>
         <div class="media-content">
@@ -38,6 +38,7 @@
 import api from 'src/api'
 import SendMsg from 'src/components/modals/SendMsg.vue'
 import { Avatar } from 'vue-avatar'
+const { ROOT } = process.env
 
 export default {
   components: {
@@ -72,7 +73,10 @@ export default {
           return false
         }
 
-        this.msgs = data
+        this.msgs = data.map(item => {
+          item.PanelOtherInfo1 = ROOT + item.PanelOtherInfo1
+          return item
+        })
         this.total = recordCount || 0
       })
     },

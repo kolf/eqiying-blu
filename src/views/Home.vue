@@ -2,7 +2,8 @@
   <div class="home-page">
     <app-header></app-header>
     <section class="hero is-primary is-large">
-      <img src="../assets/index.jpg" alt="">
+      <div class="banner index-banner"></div>
+      <!--<img src="../assets/index.jpg" alt="">-->
     </section>
     <div class="section announcement-section">
       <div class="container">
@@ -22,19 +23,24 @@
                 <i class="iconfont icon--5"></i>
                 <i class="iconfont icon--4"></i>
                 <i class="iconfont icon--8"></i>
-                <!-- <span class="icon-wuyinying"></span> -->
-                <!-- <i class="iconfont icon-wuyinying-2"></i> -->
               </div>
               <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
               <router-link class="button" to="/projects">点击进入</router-link>
             </div>
-            <!-- <img src="../assets/c2.jpg" alt=""> -->
           </div>
           <div class="column">
             <div class="feature feature-2">
               <h2 class="title feature-title">积分商城 <small>Points mall</small></h2>
+              <div class="box">
+                <i class="iconfont icon--1 i1"></i>
+                <i class="iconfont icon--1 i2"></i>
+                <i class="iconfont icon--1 i3"></i>
+                <i class="i4"></i>
+                <i class="i5"></i>
+              </div>
+              <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
+              <router-link class="button" to="/projects">点击进入</router-link>
             </div>
-            <!-- <img src="../assets/c3.jpg" alt=""> -->
           </div>
           <div class="column">
             <div class="feature feature-3">
@@ -45,7 +51,6 @@
               <div class="bg"></div>
               <router-link class="button" to="/user/profile">点击进入</router-link>
             </div>
-            <!-- <img src="../assets/c1.jpg" alt=""> -->
           </div>
         </div>
       </div>
@@ -82,14 +87,6 @@
             <i class="iconfont icon-lipinfafang"></i>
           </li>
         </ul>
-        <!-- <div class="columns steps">
-                                <div class="column">发送邀请</div>
-                                <div class="column">参与活动</div>
-                                <div class="column">获取积分</div>
-                                <div class="column">积分兑换</div>
-                                <div class="column">礼品审核</div>
-                                <div class="column">礼品发放</div>
-                              </div> -->
       </div>
     </div>
     <app-footer></app-footer>
@@ -133,6 +130,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~bulma/sass/utilities/mixins';
 $primary: #6bafdc;
 
 .announcement {
@@ -264,6 +262,110 @@ $primary: #6bafdc;
       }
     }
   }
+  &-2 {
+    transition: all .3s;
+    .text {
+      position: absolute;
+      transition: all .3s;
+      color: #eee;
+      font-size: 20px;
+      width: 100%;
+      padding: 0 40px;
+    }
+    .button {
+      position: absolute;
+      transition: all .4s; // top: -100px;
+      width: 80%;
+      left: 10%;
+      height: 50px;
+      font-size: 18px;
+      border: none;
+    }
+    &:hover {
+      background-color: #6bafdc;
+      .title {
+        transition: all .3s;
+        color: #eee;
+        top: 10%;
+        small {
+          color: #eee;
+        }
+      }
+      .box {
+        &>* {
+          transition: all .3s;
+        }
+        .i2 {
+          transform: rotate(0deg);
+          color: #fff;
+          font-size: 100px;
+          top: -117px;
+          left: 110px;
+        }
+        .i4 {
+          left: -260px;
+          top: 200px;
+        }
+        .i5 {
+          left: 320px;
+          top: 200px;
+        }
+      }
+      .text {
+        top: 250px;
+      }
+      .button {
+        top: 350px;
+      }
+    }
+    .box {
+      position: absolute;
+      top: 230px;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      .i1,
+      .i2,
+      .i3 {
+        font-size: 80px;
+        color: $primary;
+        position: absolute;
+      }
+      .i1 {
+        left: 28px;
+        transform: rotate(10deg);
+        top: 26px;
+      }
+      .i2 {
+        top: -3px;
+        font-size: 120px;
+        transform: rotate(-20deg);
+        left: 100px;
+      }
+      .i3 {
+        transform: rotate(10deg);
+        left: 223px;
+      }
+      .i4,
+      .i5 {
+        width: 260px;
+        height: 260px;
+        background: url(../assets/c.png);
+        background-size: cover;
+        position: absolute;
+        top: 80px
+      }
+      .i4 {
+        left: -60px;
+      }
+      .i5 {
+        width: 400px;
+        height: 400px;
+        top: 20px;
+        left: 90px
+      }
+    }
+  }
   &-3 {
     transition: all .3s;
     &:hover {
@@ -354,9 +456,7 @@ $primary: #6bafdc;
       box-shadow: 0 0 30px #7fc0e8;
     }
   }
-}
-
-// <i class="iconfont icon--3"></i>
+} // <i class="iconfont icon--3"></i>
 // <i class="iconfont icon--7"></i>
 // <i class="iconfont icon--6"></i>
 // <i class="iconfont icon--5"></i>
@@ -365,7 +465,11 @@ $primary: #6bafdc;
 .index {
   &-banner {
     background: url(../assets/index.jpg) no-repeat center;
+    background-size: cover;
     height: 600px;
+    @include mobile {
+      height: 200px;
+    }
   }
 }
 

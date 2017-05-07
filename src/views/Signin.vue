@@ -1,38 +1,4 @@
 <template>
-  <!--<div class="section is-gray">
-                            <div class="container">
-                              <div class="section">
-                                <div class="columns is-desktop">
-                                  <form @submit.prevent="validateForm" class="column is-4 is-offset-4">
-                                    <h1 class="title">登陆</h1>
-                                    <label class="label">用户名</label>
-                                    <p class="control">
-                                      <input class="input" type="text" placeholder="请输入您的用户名" name="userName" v-model="loginForm.userName" v-validate="'required'" :class="{'is-danger': errors.has('userName')}">
-                                      <span class="help is-danger" v-show="errors.has('userName')">{{ errors.first('userName') }}</span>
-                                    </p>
-                                    <label class="label">密码</label>
-                                    <p class="control">
-                                      <input class="input" type="password" placeholder="请输入您的密码" name="userPwd" v-model="loginForm.userPwd" v-validate="'required'" :class="{'is-danger': errors.has('userPwd')}">
-                                      <span class="help is-danger" v-show="errors.has('userPwd')">{{ errors.first('userPwd') }}</span>
-                                    </p>
-                                    <label class="label">验证码</label>
-                                    <p class="control has-addons validateCode-input">
-                                      <input class="input" type="text" placeholder="请输入验证码" name="ValidateCode" v-model="loginForm.ValidateCode" v-validate="'required'" :class="{'is-danger': errors.has('ValidateCode')}">
-                                      <a @click="getValidateCode" class="button"><img :src="validateCode" /></a>
-                                    </p>
-                                    <span v-show="errors.has('ValidateCode')" class="help is-danger">{{ errors.first('ValidateCode') }}</span>
-                                    <p class="control pad-h">
-                                      <button type="submit" class="button is-primary is-fullwidth">登陆</button>
-                                    </p>
-                                    <p class="control">
-                                      <a @click="showRepassword=true">忘记密码？</a>
-                                    </p>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                            <re-password :visible="showRepassword" @close="rePasswordSuccess"></re-password>
-                          </div>-->
   <section class="hero is-fullheight is-light">
     <div class="hero-head">
       <div class="header">
@@ -43,12 +9,15 @@
                 <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
               </router-link>
             </div>
-  
-            <div class="nav-right nav-menu">
+            <span class="nav-toggle" :class="{'is-active': device.isMobile && menu.opened}" @click="toggleMenu(!menu.opened)">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <div class="nav-right nav-menu" :class="{'is-active': device.isMobile && menu.opened}">
               <span class="nav-item is-tab"><router-link class="" to="/signup">注册</router-link></span>
-              <span class="nav-item is-tab"><router-link class="button is-primary is-hidden-mobile" to="/signin">登陆</router-link></span>
+              <span class="nav-item is-tab"><router-link class="button is-primary" to="/signin">登陆</router-link></span>
             </div>
-  
           </div>
         </nav>
       </div>
@@ -128,14 +97,21 @@ export default {
       curPresent: {}
     }
   },
-
+  computed: {
+    ...mapGetters({
+      current: 'current',
+      device: 'device',
+      menu: 'menu'
+    })
+  },
   created() {
     this.getValidateCode()
   },
   methods: {
     ...mapActions([
       'toggleLogin',
-      'saveUser'
+      'saveUser',
+      'toggleMenu'
     ]),
     validateForm() {
       this.$validator.validateAll().then(() => {
@@ -167,8 +143,11 @@ export default {
 
         this.saveUser(data.panelBaseInfo)
         this.toggleLogin(true)
-        this.$notify.success({ content: msg })
-        this.$router.push({ path: '/projects' })
+        // this.$notify.success({ content: '登陆成功' })
+        setTimeout(() => {
+          console.log('login')
+          this.$router.push({ path: '/projects' })
+        }, 300)
       })
     },
     showModal() {

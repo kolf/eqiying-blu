@@ -2,27 +2,27 @@
   <div class="present-page">
     <app-header></app-header>
     <!--<section class="hero is-dark">
-            <div class="hero-body">
-              <div class="container has-text-centered">
-                <p class="title">
-                  积分商城
-                </p>
-                <p class="subtitle">
-                  国内领先的积分商城服务商
-                </p>
+              <div class="hero-body">
+                <div class="container has-text-centered">
+                  <p class="title">
+                    积分商城
+                  </p>
+                  <p class="subtitle">
+                    国内领先的积分商城服务商
+                  </p>
+                </div>
               </div>
-            </div>
-          </section>-->
+            </section>-->
     <slider :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
   
     <div class="section is-gray main">
       <div class="container">
         <div class="columns is-multiline is-mobile presents">
-          <div class="column is-half-mobile is-one-quarter-desktop" v-for="present in presents">
-            <div class="card present is-fullwidth">
+          <div class="column is-half-mobile is-one-quarter-desktop present" v-for="present in presents">
+            <div class="card is-fullwidth">
               <a class="card-image is-transition" @click="showModal(present)">
                 <figure class="image is-1by1">
-                  <img v-lazy="'http://show.eqiying.com' + present.PresentPic" alt="Image">
+                  <img v-lazy="present.PresentPic" :alt="present.PresentName">
                 </figure>
               </a>
               <div class="card-content">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="content">
                   <p class=""><strong class="title is-4 text-danger">{{present.PresentPoint}}</strong> 积分
-                    <button @click="showModal(present)" class="button is-primary is-outlined is-pulled-right">兑换</button>
+                    <button @click="showModal(present)" class="button is-primary is-outlined is-pulled-right is-hidden-mobile">兑换</button>
                   </p>
                 </div>
               </div>
@@ -48,11 +48,11 @@
       </div>
     </div>
     <app-footer></app-footer>
-    <modal title="兑换" transition="fadeDown" :is-show="isShowModal" @close="hideModal">
+    <modal title="兑换礼品" transition="fadeDown" :is-show="isShowModal" @close="hideModal">
       <div class="columns">
         <div class="column is-6">
           <figure class="image is-square">
-            <img v-lazy="'http://show.eqiying.com' + curPresent.PresentPic" alt="Image">
+            <img v-lazy="curPresent.PresentPic" :alt="curPresent.PresentName">
           </figure>
         </div>
         <div class="column">
@@ -79,6 +79,7 @@ import api from 'src/api'
 import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
 import Slider from 'components/Slider.vue'
+const { ROOT } = process.env
 
 export default {
   components: {
@@ -93,23 +94,7 @@ export default {
       isShowModal: false,
       changeNum: 1,
       curPresent: {},
-      banners: [
-        {
-          style: {
-            background: '#4bbfc3'
-          }
-        },
-        {
-          style: {
-            background: '#4bbfc3'
-          }
-        },
-        {
-          style: {
-            background: '#4bbfc3',
-          },
-        }
-      ],
+      banners: [],
       //滑动配置[obj]
       sliderinit: {
         currentPage: 0,//当前页码
@@ -136,7 +121,7 @@ export default {
         }
 
         this.banners = data ? data.map(item => {
-          item.style = item.PresentAnnouncePic ? { 'background-image': 'url(http://show.eqiying.com' + item.PresentAnnouncePic + ')' } : { 'background-color': '#6bafdc' }
+          item.style = item.PresentAnnouncePic ? { 'background-image': 'url(' + ROOT + item.PresentAnnouncePic + ')' } : { 'background-color': '#333' }
           return item
         }) : []
 
@@ -150,7 +135,10 @@ export default {
           return false
         }
 
-        this.presents = data || []
+        this.presents = data ? data.map(item => {
+          item.PresentPic = ROOT + item.PresentPic
+          return item
+        }) : []
         this.total = recordCount || 0
       })
     },
@@ -187,10 +175,20 @@ export default {
 <style lang="scss" scoped>
 @import '~bulma/sass/utilities/mixins';
 
+.presents{
+  @include mobile{
+    margin: -15px;
+  }
+}
 .present {
-  transition: all .2s;
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); // background-color: #eee;
+  @include mobile{
+    padding:5px
+  }
+  .card {
+    transition: all .2s;
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); // background-color: #eee;
+    }
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="user-page">
     <app-header></app-header>
-    <section class="hero is-dark">
+    <section class="hero is-medium is-dark">
       <div class="hero-body">
         <div class="container has-text-centered">
           <p class="title">
@@ -22,10 +22,10 @@
                 <div class="has-text-centered block">
                   <div class="avatar-wrap">
                     <div class="avatar image is-1by1">
-                    <img v-lazy="'http://show.eqiying.com/' + user.PanelOtherInfo1">
-                    <upload-avatar :server="upload.server" :api="upload.api" :filename="upload.filename" :params="upload.params" @success="upsuccess" :crop="upload.crop" class="iconfont avatar-upload" :width="upload.width" :height="upload.height" :ok="upload.ok" :cancel="upload.cancel">
-                    </upload-avatar>
-                  </div>
+                      <img v-lazy="'http://show.eqiying.com/' + user.PanelOtherInfo1">
+                      <upload-avatar :server="upload.server" :api="upload.api" :filename="upload.filename" :params="upload.params" @success="upsuccess" :crop="upload.crop" class="iconfont avatar-upload" :width="upload.width" :height="upload.height" :ok="upload.ok" :cancel="upload.cancel">
+                      </upload-avatar>
+                    </div>
                   </div>
                   <h1 class="title">{{user.PanelLoginName}}</h1>
                   <textarea placeholder="请填写您的个人介绍" class="textarea user-remark" v-model="remark" @blur="updateRemark"></textarea>
@@ -76,6 +76,7 @@ import { mapActions, mapGetters } from 'vuex'
 import api from 'src/api'
 import ModifyPassword from 'src/components/modals/ModifyPassword.vue'
 import UploadAvatar from 'components/uploadavatar.vue'
+const { ROOT } = process.env
 
 export default {
   components: {
@@ -86,6 +87,7 @@ export default {
   },
   data() {
     return {
+      user: {},
       remark: '',
       upload: {
         server: api.API_ROOT,
@@ -105,13 +107,14 @@ export default {
     }
   },
   created() {
-    this.remark = this.user.PanelRemark
+    // this.remark = this.user.PanelRemark
+    this.getUserInfo()
   },
-  computed: {
-    ...mapGetters([
-      'user'
-    ])
-  },
+  // computed: {
+  //   ...mapGetters([
+  //     'user'
+  //   ])
+  // },
   methods: {
     ...mapActions([
       'toggleLogin',
@@ -161,7 +164,20 @@ export default {
     },
     reModifyPasswordSuccess() {
       this.showModifyPassword = false
-    }
+    },
+    getUserInfo() {
+      api.getUserInfo().then(res => {
+        const { msg, result, data } = res.data;
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg || '获取用户信息失败，请重新登陆' });
+          return false;
+        }
+
+        this.user = data.panelBaseInfo
+        this.remark = data.panelBaseInfo.PanelRemark
+        this.saveUser(data.panelBaseInfo)
+      })
+    },
   }
 }
 </script>
@@ -208,8 +224,8 @@ export default {
 }
 
 .avatar {
-  &-wrap{
-    width:240px;
+  &-wrap {
+    width: 240px;
     margin: 0 auto 10px auto;
     max-width: 100%
   }

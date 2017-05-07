@@ -1,5 +1,5 @@
 <template>
-	<modal title="修改邮箱" transition="fadeDown" :is-show="visible" @close="close">
+	<modal title="修改邮箱" transition="fadeDown" :is-show="visible" :show-footer="!isSuccess" :show-header="!isSuccess">
 		<form v-if="!isSuccess" @submit.prevent="validateForm()" class="pad-h is-10 column is-offset-1">
 			<div class="control is-horizontal">
 				<div class="control-label">
@@ -10,15 +10,15 @@
 				</div>
 			</div>
 		</form>
-		<div v-else class="section success-box has-text-centered">
-			<div class="success-heading">
-				<i class="iconfont icon-chenggong1 success-icon"></i>
-				<h2 class="title">注册成功</h2>
+		<div v-else class="section msg-box has-text-centered">
+			<div class="">
+				<i class="iconfont icon-chenggong1 icon is-success"></i>
+				<h2 class="title">受理成功</h2>
 			</div>
 			<div class="content">
-				<p class="success-desc">您已成功注册一起赢生活社区，请在24小时内点击下面的“验证邮箱”按钮，完成注册过程。</p>
+				<p class="desc">请在24小时内登陆邮箱并点击确认链接完成最终的邮箱信息修改</p>
 				<p>
-					<a href="" class="button is-outlined is-medium">马上登陆</a>
+					<!--<a href="" class="button is-outlined is-medium">马上登陆</a>-->
 					<a :href="getEmailUrl()" class="button is-primary is-success is-medium" target="_blank">验证邮箱</a>
 				</p>
 			</div>
@@ -45,6 +45,10 @@ export default {
 		close(cb) {
 			this.$emit('close', cb)
 		},
+		getEmailUrl() {
+			const { newEmail } = this.emailForm
+			return 'http://mail.' + newEmail.split('@')[1]
+		}, 
 		validateForm() {
 			const { emailForm: { newEmail }, orgEmail } = this
 			this.$validator.validateAll().then(() => {
@@ -63,7 +67,7 @@ export default {
 					//   this.$notify.success({ content: msg || '重置密码已成功发至您的邮箱！' })
 
 				}).catch((error) => {
-					this.$notify.warning({ content: '邮箱发送失败，请稍候再试试！'})
+					this.$notify.warning({ content: '邮箱发送失败，请稍候再试试！' })
 				})
 			})
 		}

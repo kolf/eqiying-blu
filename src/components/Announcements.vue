@@ -1,5 +1,5 @@
 <template>
-    <div class="columns sysMsgs-wrap">
+    <div class="columns is-mobile sysMsgs-wrap">
         <div class="column is-narrow">
             <i class="iconfont icon-gonggao1"></i>
         </div>
@@ -14,36 +14,36 @@
                 </ul>
             </div>
         </div>
-        <div class="column is-narrow">
-    
-        </div>
+        <!--<div class="column is-narrow">
+        
+            </div>-->
     </div>
 </template>
 <script>
 export default {
     props: ['list'],
-    data(){
+    data() {
         return {
             index: 0
         }
     },
     methods: {
-        next(){
+        next() {
             setInterval(() => {
-                this.index = this.index == this.msgs.length-1 ? 0 : this.index+1
+                this.index = this.index == this.msgs.length - 1 ? 0 : this.index + 1
             }, 3000)
         },
-        toAnnouncement(id){
+        toAnnouncement(id) {
             // window.open('#/announcement/'+id)
             this.$router.push({ path: '/announcement/' + id })
         }
     },
     computed: {
-        msgs(){
+        msgs() {
             return this.list.concat(this.list)
         }
     },
-    mounted(){
+    mounted() {
         this.next()
     }
 }
@@ -52,8 +52,12 @@ export default {
 .sysMsgs {
     height: 20px;
     overflow: hidden;
-    &>ul{
-        transition: margin-top .2s
+    margin-left: -10px;
+    &>ul {
+        transition: margin-top .2s;
+        a {
+
+        }
     }
 }
 </style>

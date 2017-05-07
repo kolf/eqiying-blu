@@ -13,7 +13,7 @@ const apis = {
 	projectColumn: API_ROOT + 'Handler/ProjectColumn.ashx',
 	projectInfo: API_ROOT + 'Handler/ProjectInfo.ashx',
 	paramsInfo: API_ROOT + 'Handler/ParamsInfo.ashx',
-	common: API_ROOT + 'Handler/common.ashx',
+	common: API_ROOT + 'Handler/Common.ashx',
 	internalMessage: API_ROOT + 'Handler/InternalMessage.ashx',
 }
 
@@ -26,14 +26,17 @@ export default {
 			endIndex: 999999
 		}))
 	},
-	getAnnouncement({AnnounceId}) { // 查询公告
+	getAnnouncement({ AnnounceId }) { // 查询公告
 		return axios.post(apis.announce, qs.stringify({
 			action: 'queryByAnnounceId',
 			AnnounceId
 		}))
 	},
 	signup(params) { // 注册
-		return axios.post(apis.panelBaseInfo, qs.stringify(params))
+		return axios.post(apis.panelBaseInfo, qs.stringify(Object.assign({
+			PanelType: 1,
+			action: 'panelRegister',
+		}, params)))
 	},
 	updateEmail({ orgEmail, newEmail }) { // 更新用户邮箱
 		return axios.post(apis.panelBaseInfo, qs.stringify({
@@ -50,11 +53,24 @@ export default {
 		}))
 	},
 	updateRemark({ panelBaseInfoId, PanelRemark }) { // 更新用户说明
-		console.log(PanelRemark)
 		return axios.post(apis.panelBaseInfo, qs.stringify({
 			action: 'updatepanelremark',
 			PanelRemark,
 			panelBaseInfoId
+		}))
+	},
+	sendSms({ PanelMobiles }) { // 发送短信
+		return axios.post(apis.common, qs.stringify({
+			action: 'sendsmscode',
+			PanelMobiles
+		}))
+	},
+	updateMobile({ orgPhone, newPhone, smsCode}) { // 更新手机号
+		return axios.post(apis.panelBaseInfo, qs.stringify({
+			action: 'updatemobile',
+			orgPhone,
+			newPhone,
+			smsCode
 		}))
 	},
 	login(params) { //登陆
@@ -117,7 +133,7 @@ export default {
 			action: 'getAllPcAndPjInfo'
 		}))
 	},
-	queryProjectInfoByUserRole({ ProjectColumnId, pageNum, pageSize}) { // 查询活动
+	queryProjectInfoByUserRole({ ProjectColumnId, pageNum, pageSize }) { // 查询活动
 		let params = {
 			action: 'queryProjectInfoByUserRole',
 			startIndex: pageSize * (pageNum - 1) + 1,
@@ -126,7 +142,7 @@ export default {
 		if (ProjectColumnId) params.ProjectColumnId = ProjectColumnId
 		return axios.post(apis.projectInfo, qs.stringify(params))
 	},
-	queryProjectLog({ pageNum, pageSize}) { //查询活动参与记录
+	queryProjectLog({ pageNum, pageSize }) { //查询活动参与记录
 		return axios.post(apis.projectUsers, qs.stringify({
 			action: 'queryByPanelId',
 			startIndex: pageSize * (pageNum - 1) + 1,
@@ -173,7 +189,7 @@ export default {
 		}
 		return axios.post(apis.internalMessage, qs.stringify(Object.assign(defaultParams, params)))
 	},
-	deteleMsg({InternalMessageId}) { //发送消息
+	deteleMsg({ InternalMessageId }) { //发送消息
 		return axios.post(apis.internalMessage, qs.stringify({
 			action: 'delete',
 			InternalMessageId

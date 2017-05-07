@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <app-header></app-header>
-        <section class="hero is-dark">
+        <section class="hero is-medium is-dark">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <p class="title">
@@ -21,7 +21,7 @@
                         <div class="content announcement-content">
                             <h1 class="has-text-centered">{{announcement.AnnounceTitle}}</h1>
                             <p class="has-text-right">{{announcement.CreateTime | fromatDate(true)}}</p>
-                            <p v-html="decodeURI(announcement.AnnounceContent)"></p>
+                            <p>{{decodeURI(announcement.AnnounceContent) | filterHTML}}</p>
                         </div>
                     </div>
                 </div>
