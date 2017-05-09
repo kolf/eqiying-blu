@@ -144,10 +144,7 @@ export default {
         this.saveUser(data.panelBaseInfo)
         this.toggleLogin(true)
         // this.$notify.success({ content: '登陆成功' })
-        setTimeout(() => {
-          console.log('login')
-          this.$router.push({ path: '/projects' })
-        }, 300)
+        this.$router.push({ path: '/projects' })
       })
     },
     showModal() {

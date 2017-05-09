@@ -39,7 +39,7 @@
                 <i class="i5"></i>
               </div>
               <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
-              <router-link class="button" to="/projects">点击进入</router-link>
+              <router-link class="button" to="/presents">点击进入</router-link>
             </div>
           </div>
           <div class="column">

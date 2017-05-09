@@ -6,7 +6,7 @@ import * as Cookies from "js-cookie"
 const state = {
   current: {
     page: '',
-    isLogin: Cookies.get('isLogin') ? (Date.now() - Cookies.get('isLogin')) >  1000 * 60 * 20 : false
+    isLogin: Cookies.get('isLogin') ? (Date.now() - Cookies.get('isLogin')) <  1000 * 60 * 20 : false
   },
   device: {
     isMobile: false,
@@ -42,11 +42,9 @@ const mutations = {
 
   [types.TOGGLE_LOGIN] (state, status) {
     state.current.isLogin = status
-    console.log('app.js', status)
+
     if(status){
-      // storage.set('isLogin', 1)
-      const t =  Date.now() + ''
-      Cookies.set('isLogin', t)
+      Cookies.set('isLogin', Date.now())
     }else{
       Cookies.remove('isLogin')
       storage.remove('user')

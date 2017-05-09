@@ -48,8 +48,7 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.matched.some(r => r.meta.requireAuth)) {
-        const isLogin =  Cookies.get('isLogin') ? (Date.now() - Cookies.get('isLogin')) >  1000 * 60 * 20 : false
-        console.log(isLogin)
+        const isLogin =  Cookies.get('isLogin') ? (Date.now() - Cookies.get('isLogin')) <  1000 * 60 * 20 : false
         if (isLogin) {
             next()
         } else {

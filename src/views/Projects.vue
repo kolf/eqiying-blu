@@ -222,6 +222,7 @@ export default {
 }
 
 .project {
+  margin-bottom: 20px;
   @include mobile() {
     padding: 10px;
   }

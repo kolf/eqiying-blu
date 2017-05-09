@@ -1,6 +1,6 @@
 <template>
   <div class="tab-content">
-    <h2 class="title">我的私信 <button class="button is-pulled-right is-primary" @click="showSendMsg=true">发送私信</button></h2>
+    <h2 class="title">我的私信 <button class="button is-pulled-right is-primary" @click="showSendMsg=true"><i class="iconfont icon-bianji"></i>发送私信</button></h2>
     <hr>
     <div class="msgs" v-if="msgs.length>0">
       <article class="media msg" v-for="(msg, index) in msgs">
@@ -74,7 +74,7 @@ export default {
         }
 
         this.msgs = data.map(item => {
-          item.PanelOtherInfo1 = ROOT + item.PanelOtherInfo1
+          item.PanelOtherInfo1 = item.PanelOtherInfo1 ? ROOT + '/' + item.PanelOtherInfo1 : ''
           return item
         })
         this.total = recordCount || 0

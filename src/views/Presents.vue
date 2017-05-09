@@ -59,9 +59,8 @@
           <p class="title">{{curPresent.PresentName}}</p>
           <ul class="param-list">
             <li><span class="param-name">礼品介绍:</span>{{curPresent.PresentDesc}}</li>
-            <li><span class="param-name">积分:</span>{{curPresent.PresentPoint}}</li>
-            <li><span class="param-name">兑换个数:</span>{{curPresent.PresentPoint}}</li>
-            <li><span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime}}</li>
+            <li><span class="param-name">兑换积分:</span>{{curPresent.PresentPoint}}</li>
+            <li><span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime | fromatDate(true)}}</li>
             <li>
               <input-number style="width:80px" :val="1" v-model="changeNum" :on-change="changePresentNum"></input-number>
             </li>

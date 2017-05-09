@@ -48,8 +48,8 @@ export default {
 			'toggleLogin',
 			'saveUser'
 		]),
-		close(cb) {
-			this.$emit('close', cb)
+		close() {
+			this.$emit('close')
 		},
 		validateForm(scope) {
 			this.$validator.validateAll(scope).then(result => {

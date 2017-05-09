@@ -73,7 +73,7 @@
 
 .slider-item {
     background-position: center center!important;
-    background-size: cover!important;
+    background-size: auto 100% !important
 }
 
 

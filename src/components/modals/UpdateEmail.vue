@@ -1,5 +1,5 @@
 <template>
-	<modal title="修改邮箱" transition="fadeDown" :is-show="visible" :show-footer="!isSuccess" :show-header="!isSuccess">
+	<modal title="修改邮箱" transition="fadeDown" @close="close" :is-show="visible" :show-footer="!isSuccess" :show-header="!isSuccess">
 		<form v-if="!isSuccess" @submit.prevent="validateForm()" class="pad-h is-10 column is-offset-1">
 			<div class="control is-horizontal">
 				<div class="control-label">
@@ -22,6 +22,7 @@
 					<a :href="getEmailUrl()" class="button is-primary is-success is-medium" target="_blank">验证邮箱</a>
 				</p>
 			</div>
+			<a class="delete" @click="close"></a>
 		</div>
 		<div slot="footer"><a class="button" @click="close">取消</a> <a class="button is-primary" @click="validateForm">确定</a></div>
 	</modal>
@@ -42,8 +43,9 @@ export default {
 
 	},
 	methods: {
-		close(cb) {
-			this.$emit('close', cb)
+		close() {
+			// window.location.reload()
+			this.$emit('close')
 		},
 		getEmailUrl() {
 			const { newEmail } = this.emailForm
