@@ -464,8 +464,8 @@ $primary: #6bafdc;
 // <i class="iconfont icon--8"></i>
 .index {
   &-banner {
-    background: url(../assets/index.jpg) no-repeat center;
-    background-size: cover;
+    background-image: url(../assets/index.jpg);
+    // background-size: cover;
     height: 600px;
     @include mobile {
       height: 200px;

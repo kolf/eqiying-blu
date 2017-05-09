@@ -44,7 +44,7 @@
               </div>
               <div class="media-content column">
                 <div class="content project-content">
-                  <p class="subtitle">[{{project.ProjectColumnName}}]
+                  <p class="subtitle">
                     <router-link :to="'/projects/' + project.PjId">{{project.ProjectName}}</router-link>
                   </p>
                   <p class="project-desc">{{project.ProjectDesc}}</p>
@@ -59,6 +59,7 @@
                 </div>
               </div>
             </article>
+            <span class="button is-primary is-medium project-badge">{{project.ProjectColumnName}}</span>
           </div>
         </div>
         <div class="box is-gray" v-if="projects.length>0">
@@ -171,6 +172,11 @@ export default {
 
         this.columns = data.projectColumnList
         this.allProjects = allProjects
+
+        if(allProjects.length===0){
+          this.$notify.warning({ content: '您还没有任何可以参与的活动！' })
+          this.$router.push({ path: '/index' })
+        }
       })
     },
     // queryProject(pageNum) {
@@ -223,11 +229,18 @@ export default {
 
 .project {
   margin-bottom: 20px;
+  position: relative;
+  &-badge{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0
+  }
   @include mobile() {
     padding: 10px;
   }
-  border: 4px solid #fff;
-  padding: 12px;
+  // border: 4px solid #fff;
+  padding: 20px;
   border-radius: 0;
   &-desc {
     @include mobile() {
@@ -248,7 +261,7 @@ export default {
   @include desktop() {
     &:hover {
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); // background-color: #eee;
-      border-color: #6bafdc // transform: translate3d(0, -2px, 0)
+      // border-color: #6bafdc // transform: translate3d(0, -2px, 0)
     }
   }
 }

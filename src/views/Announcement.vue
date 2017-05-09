@@ -1,18 +1,7 @@
 <template>
     <div class="">
         <app-header></app-header>
-        <section class="hero is-medium is-dark">
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <p class="title">
-                        网站公告
-                    </p>
-                    <p class="subtitle">
-                        精彩，因您的每一刻关注
-                    </p>
-                </div>
-            </div>
-        </section>
+        <div class="banner announcement-banner"></div>
         <div class="section">
             <div class="container">
                 <div class="columns">
@@ -66,9 +55,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.announcement{
-    &-content{
+.announcement {
+    &-content {
         min-height: 500px
+    }
+    &-banner {
+        background-image: url(../assets/startup-banner-3c5415c78064da11455c3ab9b352e04c.jpg);
+        background-size: cover
     }
 }
 </style>

@@ -56,7 +56,8 @@ export default {
 				console.log(scope)
 				if (scope === 'mobileForm') {
 					if (result) {
-						this.sendMsg()
+						// this.sendMsg()
+						this.checkMobile()
 					}
 				} else if (scope === 'msgForm') {
 					if (result) {
@@ -104,6 +105,15 @@ export default {
 				this.saveUser({PanelMobile: newPhone})
 			}).catch((error) => {
 				this.$notify.warning({ content: '修改失败，请稍候再试试！' })
+			})
+		},
+		checkMobile(){
+			const { mobileForm: { newPhone } } = this
+			api.checkUnique({
+				TypeId: 'Mobile',
+				strWord: newPhone
+			}).then(res => {
+				console.log(res)
 			})
 		}
 	}

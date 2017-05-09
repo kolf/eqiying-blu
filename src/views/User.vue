@@ -1,18 +1,7 @@
 <template>
   <div class="user-page">
     <app-header></app-header>
-    <section class="hero is-medium is-dark">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <p class="title">
-            个人中心
-          </p>
-          <p class="subtitle">
-            我们非常乐意倾听您的诉说
-          </p>
-        </div>
-      </div>
-    </section>
+    <div class="banner user-banner"></div>
     <div class="section">
       <div class="container">
         <div class="user-profile">
@@ -186,7 +175,7 @@ export default {
 .user {
   &-banner {
     background-image: url(../assets/startup-banner-3c5415c78064da11455c3ab9b352e04c.jpg);
-    background-position: center;
+    background-size: cover
   }
   &-remark {
     background-color: #eee;

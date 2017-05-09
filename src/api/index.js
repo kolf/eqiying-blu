@@ -52,13 +52,13 @@ export default {
 			panelBaseInfoId
 		}))
 	},
-	checkUnique({ TypeId, strWord }) { // 更新用户说明
+	checkUnique({ TypeId, strWord }) { // 验证手机号、邮箱唯一性
 		return axios.post(apis.common, qs.stringify({
 			action: 'CheckUnique',
 			IsUpdate: 0,
 			AgencyId: 1,
-			PanelRemark,
-			panelBaseInfoId
+			TypeId,
+			strWord
 		}))
 	},
 	updateRemark({ panelBaseInfoId, PanelRemark }) { // 更新用户说明

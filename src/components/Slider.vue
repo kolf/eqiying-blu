@@ -7,7 +7,7 @@
 }
 
 .slider-container {
-    height: 293px;
+    height: 300px;
     /*margin: 20px auto;*/
     /*width: 70%;*/
     position: relative;

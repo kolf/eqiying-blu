@@ -18,7 +18,7 @@
                         </span>
               <br> {{msg.InternalMessageContent | decode}}
             </p>
-            <p><a href="">{{msg.SenderName}}</a> 于 {{msg.CreateTime | fromatDate}} 发送</p>
+            <p><a>{{msg.SenderName}}</a> 于 {{msg.CreateTime | fromatDate}} 发送</p>
           </div>
         </div>
       </article>
