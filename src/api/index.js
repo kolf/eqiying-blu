@@ -26,7 +26,7 @@ export default {
 			endIndex: 999999
 		}))
 	},
-	getAnnouncement({ AnnounceId }) { // 查询公告
+	getAnnouncement({ AnnounceId }) { // 查询公告详情
 		return axios.post(apis.announce, qs.stringify({
 			action: 'queryByAnnounceId',
 			AnnounceId
@@ -49,6 +49,15 @@ export default {
 		return axios.post(apis.panelBaseInfo, qs.stringify({
 			action: 'updateheadpath',
 			headPath,
+			panelBaseInfoId
+		}))
+	},
+	checkUnique({ TypeId, strWord }) { // 更新用户说明
+		return axios.post(apis.common, qs.stringify({
+			action: 'CheckUnique',
+			IsUpdate: 0,
+			AgencyId: 1,
+			PanelRemark,
 			panelBaseInfoId
 		}))
 	},
@@ -155,7 +164,7 @@ export default {
 			PjId
 		}))
 	},
-	getProjectInfo({ id }) { // 获取参与链接
+	getProjectInfo({ id }) { // 获取活动详情
 		return axios.post(apis.projectInfo, qs.stringify({
 			action: 'queryByPjId',
 			PjId: id
@@ -189,7 +198,7 @@ export default {
 		}
 		return axios.post(apis.internalMessage, qs.stringify(Object.assign(defaultParams, params)))
 	},
-	deteleMsg({ InternalMessageId }) { //发送消息
+	deteleMsg({ InternalMessageId }) { //删除消息
 		return axios.post(apis.internalMessage, qs.stringify({
 			action: 'delete',
 			InternalMessageId
