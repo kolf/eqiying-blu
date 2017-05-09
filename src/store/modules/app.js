@@ -1,12 +1,12 @@
 import * as types from '../mutation-types'
 import router from 'src/router'
 import storage from 'src/utils/localStorage'
-import Cookie from 'js-cookie'
+import * as Cookies from "js-cookie"
 
 const state = {
   current: {
     page: '',
-    isLogin: Cookie.get('isLogin') ? (Date.now() - Cookie.get('isLogin')) >  1000 * 60 * 20 : false
+    isLogin: Cookies.get('isLogin') ? (Date.now() - Cookies.get('isLogin')) >  1000 * 60 * 20 : false
   },
   device: {
     isMobile: false,
@@ -45,9 +45,10 @@ const mutations = {
     console.log('app.js', status)
     if(status){
       // storage.set('isLogin', 1)
-      Cookie.set('isLogin', Date.now())
+      const t =  Date.now() + ''
+      Cookies.set('isLogin', t)
     }else{
-      Cookie.remove('isLogin')
+      Cookies.remove('isLogin')
       storage.remove('user')
     }
   },

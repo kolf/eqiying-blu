@@ -11,7 +11,7 @@ import store from './store'
 import filters from './filters'
 import { TOGGLE_PAGE, TOGGLE_MENU, TOGGLE_LOGIN } from 'vuex-store/mutation-types'
 import indicator from './assets/indicator.png'
-import Cookie from 'js-cookie'
+import * as Cookies from "js-cookie"
 import { mapActions, mapGetters } from 'vuex'
 
 Vue.use(NProgress)
@@ -48,7 +48,7 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.matched.some(r => r.meta.requireAuth)) {
-        const isLogin =  Cookie.get('isLogin') ? (Date.now() - Cookie.get('isLogin')) >  1000 * 60 * 20 : false
+        const isLogin =  Cookies.get('isLogin') ? (Date.now() - Cookies.get('isLogin')) >  1000 * 60 * 20 : false
         console.log(isLogin)
         if (isLogin) {
             next()
