@@ -2,7 +2,7 @@
   <div class="projects-page">
     <app-header></app-header>
     <slider v-if="allProjects.length>0" :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
-    <section v-else class="hero is-medium is-dark">
+    <!--<section v-else class="hero is-medium is-dark">
       <div class="hero-body">
         <div class="container has-text-centered">
           <p class="title">
@@ -13,8 +13,8 @@
           </p>
         </div>
       </div>
-    </section>
-    <div class="section is-gray">
+    </section>-->
+    <div class="section is-gray main">
       <div class="container" v-if="allProjects.length>0">
         <div class="columns">
           <div class="column">
@@ -52,7 +52,8 @@
                   <p><i class="iconfont icon-jifen"></i> 活动积分: <strong class="text-danger">{{project.projectPointList[0].Cpoint}}</strong></p>
                   <p class="is-hidden-mobile">
                     <!--<button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button>-->
-                    <button class="button is-primary" @click="getInternalLink(project.PjId, index)">立即参与</button>
+                    <!--<button class="button is-primary" @click="getInternalLink(project.PjId, index)">立即参与</button>-->
+                    <a class="button is-primary" target="_black" :href="project.ProjectUserLink">立即参与</a>
                     <router-link class="button is-link" :to="'/projects/' + project.PjId">查看详情</router-link>
                   </p>
                 </div>
@@ -64,7 +65,7 @@
           <pagination :total="total" :page-size="pageSize" layout="pager" :change="changePage"></pagination>
         </div>
       </div>
-      <div v-else class="container">
+      <!--<div v-else class="container">
         <div class="section msg-box has-text-centered">
           <div class="">
             <i class="iconfont icon-tishi icon is—info"></i>
@@ -78,7 +79,7 @@
             </p>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
     <app-footer></app-footer>
   </div>
@@ -193,9 +194,10 @@ export default {
         }
 
         // window.location.href= data.InternalLink
-        window.open(data.InternalLink)
+        // window.open(data.InternalLink)
         // this.projects[index].href = data.InternalLink
-
+        this.$router.push({ path: '/projects' })
+        
         console.log(this.projects[index].href)
       })
     },

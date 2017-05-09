@@ -19,7 +19,7 @@
       <li><span class="name">加入日期：</span>{{user.CreatedTime | fromatDate(true)}}</li>
       <li><span class="name">注册IP：</span>{{user.PanelRegistIp || '---'}}</li>
       <li><span class="name">用户状态：</span>{{user.PanelStatus | panelStatus}}</li>
-      <li><span class="name">我的积分：</span><strong class="text-danger">{{user.PanelPersonIncome}}</strong></li>
+      <li><span class="name">我的积分：</span><strong class="text-danger">{{user.PanelPoint}}</strong></li>
     </ul>
     <update-email :visible="showEmailModal" :orgEmail="user.PanelEmail" @close="closeEmailModal"></update-email>
     <update-mobile :visible="showMobileModal" :orgPhone="user.PanelMobile" @close="closeMobileModal"></update-mobile>

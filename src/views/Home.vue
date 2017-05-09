@@ -110,7 +110,7 @@ export default {
       sysMsgs: [],
     }
   },
-  created() {
+  beforeMount() {
     this.queryAnnouncement()
   },
   methods: {

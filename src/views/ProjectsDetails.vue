@@ -111,8 +111,8 @@ export default {
           return false
         }
 
-        // window.location.href= data.InternalLink
-        window.open(data.InternalLink)
+        window.location.href= data.InternalLink
+        // window.open(data.InternalLink)
       })
     },
   }

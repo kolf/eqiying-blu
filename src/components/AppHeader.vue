@@ -24,7 +24,7 @@
 	
 					<span class="nav-item is-tab" v-if="!current.isLogin"><router-link class="" to="/signup">注册</router-link></span>
 					<span class="nav-item is-tab" v-if="!current.isLogin"><router-link class="button is-primary" to="/signin">登陆</router-link></span>
-					<router-link title="我的积分" v-if="current.isLogin" class="nav-item is-badge is-hidden-mobile" to="/user/presents"><i class="iconfont icon-jifen21 header-icon"></i><span class="tag is-primary">{{user.PanelPersonIncome}}</span></router-link>
+					<router-link title="我的积分" v-if="current.isLogin" class="nav-item is-badge is-hidden-mobile" to="/user/presents"><i class="iconfont icon-jifen21 header-icon"></i><span class="tag is-primary">{{user.PanelPoint}}</span></router-link>
 					<router-link title="我和私信" v-if="current.isLogin" class="nav-item  is-badge is-hidden-mobile" to="/user/msgs"><i class="fa fa-bell-o header-icon"></i><span v-if="user.NoreadCount" class="tag is-primary">{{user.NoreadCount}}</span></router-link>
 					<router-link title="个人资料" to="/user" class="nav-item is-hidden-mobile" v-if="current.isLogin">
 						<avatar :size="40" :src="'http://show.eqiying.com/' + user.PanelOtherInfo1" :username="user.PanelLoginName"></avatar>
