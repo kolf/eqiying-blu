@@ -204,6 +204,11 @@ export default {
 			InternalMessageId
 		}))
 	},
+	updateMsgStatus() { //将所以消息置为已读
+		return axios.post(apis.internalMessage, qs.stringify({
+			action: 'updateByReciptorId'
+		}))
+	},
 	getUserId({ nickname }) { //获取用户Id
 		return axios.post(apis.panelBaseInfo, qs.stringify({
 			action: 'NickNameIsExist',

@@ -8,7 +8,7 @@
                 <ul :style="{'margin-top': -index*20 + 'px'}">
                     <li v-for="(item, index) in msgs">
                         <span class="is-pulled-right">{{item.CreateTime | fromatDate(true)}}</span>
-                        <a @click="toAnnouncement(item.AnnounceId)">{{item.AnnounceTitle}}</a>
+                        <a @click="toAnnouncement(item.AnnounceId)">{{item.AnnounceTitle}} <i v-if="computeNew(item.CreateTime)" class="iconfont icon-new"></i></a>
                         <!--<router-link :to="'/announcement/'+item.AnnounceId">{{item.AnnounceTitle}}</router-link>-->
                     </li>
                 </ul>
@@ -36,6 +36,9 @@ export default {
         toAnnouncement(id) {
             // window.open('#/announcement/'+id)
             this.$router.push({ path: '/announcement/' + id })
+        },
+        computeNew(date){
+            return Date.now() - new Date(date).getTime() < 1000*60*60*24*3
         }
     },
     computed: {
@@ -55,8 +58,14 @@ export default {
     margin-left: -10px;
     &>ul {
         transition: margin-top .2s;
+        li{
+            height: 20px;
+            overflow: hidden;
+        }
         a {
-
+            .iconfont{
+                color: #f40
+            }
         }
     }
 }

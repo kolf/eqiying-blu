@@ -1,19 +1,7 @@
 <template>
   <div class="present-page">
     <app-header></app-header>
-    <!--<section class="hero is-dark">
-              <div class="hero-body">
-                <div class="container has-text-centered">
-                  <p class="title">
-                    积分商城
-                  </p>
-                  <p class="subtitle">
-                    国内领先的积分商城服务商
-                  </p>
-                </div>
-              </div>
-            </section>-->
-    <slider :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
+    <slider v-if="banners.length>0" :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
   
     <div class="section is-gray main">
       <div class="container">
@@ -93,7 +81,7 @@ export default {
       isShowModal: false,
       changeNum: 1,
       curPresent: {},
-      banners: [],
+      presentsTop5: [],
       //滑动配置[obj]
       sliderinit: {
         currentPage: 0,//当前页码
@@ -104,6 +92,15 @@ export default {
         infinite: 1,//无限滚动前后遍历数
         slidesToScroll: 1,//每次滑动项数
       }
+    }
+  },
+  computed: {
+    banners(){
+      return this.presentsTop5.slice(0, 5).map(item => {
+        return {
+          style: item.PresentAnnouncePic ? { 'background-image': 'url(http://show.eqiying.com' + item.PresentAnnouncePic + ')' } : { 'background-color': '#333' }
+        }
+      })
     }
   },
   created() {
@@ -119,10 +116,7 @@ export default {
           return false
         }
 
-        this.banners = data ? data.map(item => {
-          item.style = item.PresentAnnouncePic ? { 'background-image': 'url(' + ROOT + item.PresentAnnouncePic + ')' } : { 'background-color': '#333' }
-          return item
-        }) : []
+        this.presentsTop5 = data
 
       })
     },

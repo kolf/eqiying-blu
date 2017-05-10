@@ -1,18 +1,7 @@
 <template>
   <div class="projects-page">
     <app-header></app-header>
-    <section class="hero is-dark">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <p class="title">
-            活动专区
-          </p>
-          <p class="subtitle">
-            丰富的活动等你来参加还可以获得积分哟
-          </p>
-        </div>
-      </div>
-    </section>
+    <slider v-if="banners.length>0" :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
     <div class="section">
       <div class="container">
         <div class="columns">
@@ -73,21 +62,43 @@
 import api from 'src/api'
 import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
+import Slider from 'components/Slider.vue'
 const { ROOT } = process.env
 
 export default {
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    Slider
   },
   data() {
     return {
-      project: {}
+      project: {},
+      allProjects: [],
+      sliderinit: {
+        currentPage: 0,//当前页码
+        // thresholdDistance: 500,//滑动判定距离
+        // thresholdTime: 100,//滑动判定时间
+        autoplay: 3000,//自动滚动[ms]
+        loop: true,//循环滚动
+        infinite: 1,//无限滚动前后遍历数
+        slidesToScroll: 1,//每次滑动项数
+      }
     }
   },
   created() {
     const { id } = this.$route.params
+    this.queryProjectColumn()
     this.getProjectInfo(id)
+  },
+  computed: {
+    banners() {
+      return this.allProjects.slice(0, 5).map(item => {
+        return {
+          style: item.ProjectPicAnnouncePath ? { 'background-image': 'url(http://show.eqiying.com' + item.ProjectPicAnnouncePath + ')' } : { 'background-color': '#333' }
+        }
+      })
+    }
   },
   methods: {
     getProjectInfo(id) {
@@ -111,8 +122,31 @@ export default {
           return false
         }
 
-        window.location.href= data.InternalLink
+        window.location.href = data.InternalLink
         // window.open(data.InternalLink)
+      })
+    },
+    queryProjectColumn() {
+      api.queryColumns().then(res => {
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
+          return false
+        }
+
+        const allProjects = data.projectColumnList.reduce((result, item) => {
+          if (item.projectInfoList) {
+            // result = result.concat(item.projectInfoList)
+            item.projectInfoList.forEach(project => {
+              project.ProjectColumnName = item.ProjectColumnName
+              project.ProjectPicPath = ROOT + project.ProjectPicPath
+              result.push(project)
+            })
+          }
+          return result
+        }, [])
+
+        this.allProjects = allProjects
       })
     },
   }

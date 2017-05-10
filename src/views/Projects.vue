@@ -1,19 +1,7 @@
 <template>
   <div class="projects-page">
     <app-header></app-header>
-    <slider v-if="allProjects.length>0" :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
-    <!--<section v-else class="hero is-medium is-dark">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <p class="title">
-            活动积分
-          </p>
-          <p class="subtitle">
-            丰富的活动等你来参加还可以获得积分哟
-          </p>
-        </div>
-      </div>
-    </section>-->
+    <slider v-if="banners.length>0" :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
     <div class="section is-gray main">
       <div class="container" v-if="allProjects.length>0">
         <div class="columns">

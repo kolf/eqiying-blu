@@ -1,7 +1,18 @@
 <template>
     <div class="">
         <app-header></app-header>
-        <div class="banner announcement-banner"></div>
+        <section class="hero is-medium is-primary is-bold banner announcement-banner">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h1 class="title">
+                        网站公告
+                    </h1>
+                    <h2 class="subtitle">
+                        Website announcement
+                    </h2>
+                </div>
+            </div>
+        </section>
         <div class="section">
             <div class="container">
                 <div class="columns">
@@ -60,7 +71,7 @@ export default {
         min-height: 500px
     }
     &-banner {
-        background-image: url(../assets/startup-banner-3c5415c78064da11455c3ab9b352e04c.jpg);
+        background-image: url(../assets/user_banner.jpg) !important;
         background-size: cover
     }
 }

@@ -7,7 +7,7 @@
 				</div>
 				<div class="control has-addons">
 					<input class="input is-expanded" name="newPhone" type="number" placeholder="请输入你的新手机号" v-model="mobileForm.newPhone" v-validate="'required|numeric'" :class="{'is-danger': errors.has('mobileForm.newPhone')}">
-					<button class="button is-primary" @click="validateForm('mobileForm')" :disabled="num>0" v-text="btnText"></button>
+					<button class="button is-primary" :disabled="num>0" v-text="btnText"></button>
 				</div>
 			</form>
 	
@@ -20,7 +20,10 @@
 				</div>
 			</form>
 		</div>
-		<div slot="footer"><a class="button" @click="close">取消</a> <a class="button is-primary" @click="validateForm('msgForm')">确定</a></div>
+		<div slot="footer">
+			<a class="button" @click="close">取消</a>
+			<a class="button is-primary" @click="validateForm('msgForm')" :disabled="!mobileForm.newPhone">确定</a>
+		</div>
 	</modal>
 </template>
 <script>
@@ -54,6 +57,7 @@ export default {
 		validateForm(scope) {
 			this.$validator.validateAll(scope).then(result => {
 				console.log(scope)
+				console.log(result)
 				if (scope === 'mobileForm') {
 					if (result) {
 						// this.sendMsg()
@@ -102,18 +106,24 @@ export default {
 					return false;
 				}
 
-				this.saveUser({PanelMobile: newPhone})
+				this.saveUser({ PanelMobile: newPhone })
 			}).catch((error) => {
 				this.$notify.warning({ content: '修改失败，请稍候再试试！' })
 			})
 		},
-		checkMobile(){
+		checkMobile() {
 			const { mobileForm: { newPhone } } = this
 			api.checkUnique({
-				TypeId: 'Mobile',
+				TypeId: '1',
 				strWord: newPhone
 			}).then(res => {
-				console.log(res)
+				const { msg, result, OK } = res.data
+				if (result !== 'ok' && result !== 'NotExist') {
+					this.$notify.warning({ content: '该手机号已存在，请重试' });
+					return false;
+				}
+
+				this.sendMsg()
 			})
 		}
 	}
@@ -122,9 +132,9 @@ export default {
 <style lang="scss" scoped>
 @import '~bulma/sass/utilities/mixins';
 
-.input{
-	&.is-expanded{
-		@include mobile{
+.input {
+	&.is-expanded {
+		@include mobile {
 			width: 160px
 		}
 	}

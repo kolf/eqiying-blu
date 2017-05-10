@@ -15,7 +15,9 @@
         <div class="columns has-text-centered">
           <div class="column">
             <div class="feature feature-1">
-              <h2 class="title feature-title">活动专区 <small>Activity zone</small></h2>
+              <h2 class="title feature-title">活动专区
+                <small>Activity zone</small>
+              </h2>
               <div class="box">
                 <i class="iconfont icon--3"></i>
                 <i class="iconfont icon--7"></i>
@@ -30,7 +32,9 @@
           </div>
           <div class="column">
             <div class="feature feature-2">
-              <h2 class="title feature-title">积分商城 <small>Points mall</small></h2>
+              <h2 class="title feature-title">积分商城
+                <small>Points mall</small>
+              </h2>
               <div class="box">
                 <i class="iconfont icon--1 i1"></i>
                 <i class="iconfont icon--1 i2"></i>
@@ -44,9 +48,16 @@
           </div>
           <div class="column">
             <div class="feature feature-3">
-              <h2 class="title feature-title">个人中心 <small>Personal center</small></h2>
-              <div class="box">积分<small>Integral</small>活跃度<small>Activity</small></div>
-              <div class="user-icon"><i class="iconfont icon--2"></i></div>
+              <h2 class="title feature-title">个人中心
+                <small>Personal center</small>
+              </h2>
+              <div class="box">积分
+                <small>Integral</small>活跃度
+                <small>Activity</small>
+              </div>
+              <div class="user-icon">
+                <i class="iconfont icon--2"></i>
+              </div>
               <p class="text">丰富的活动等你来参加还可以获得积分哟</p>
               <div class="bg"></div>
               <router-link class="button" to="/user/profile">点击进入</router-link>
@@ -63,27 +74,39 @@
         </div>
         <ul class="steps columns is-multiline is-mobile">
           <li class="column is-half-mobile step-item">
-            <h3 class="step-title">发送邀请 <span>点击发送邀请</span></h3>
+            <h3 class="step-title">发送邀请
+              <span>点击发送邀请</span>
+            </h3>
             <i class="iconfont icon-fasongyaoqing"></i>
           </li>
           <li class="column is-half-mobile step-item">
-            <h3 class="step-title">参与活动 <span>查看活动并参与</span></h3>
+            <h3 class="step-title">参与活动
+              <span>查看活动并参与</span>
+            </h3>
             <i class="iconfont icon-canyuhuodong"></i>
           </li>
           <li class="column is-half-mobile step-item">
-            <h3 class="step-title">获取积分 <span>根据规则获取积分</span></h3>
+            <h3 class="step-title">获取积分
+              <span>根据规则获取积分</span>
+            </h3>
             <i class="iconfont icon-huoqujifen"></i>
           </li>
           <li class="column is-half-mobile step-item">
-            <h3 class="step-title">积分兑换 <span>使用积分兑换礼品</span></h3>
+            <h3 class="step-title">积分兑换
+              <span>使用积分兑换礼品</span>
+            </h3>
             <i class="iconfont icon-jifenduihuan"></i>
           </li>
           <li class="column is-half-mobile step-item">
-            <h3 class="step-title">礼品审核 <span>管理员进行审核</span></h3>
+            <h3 class="step-title">礼品审核
+              <span>管理员进行审核</span>
+            </h3>
             <i class="iconfont icon-lipinshenhe"></i>
           </li>
           <li class="column is-half-mobile step-item">
-            <h3 class="step-title">礼品发放 <span>礼品发放</span></h3>
+            <h3 class="step-title">礼品发放
+              <span>礼品发放</span>
+            </h3>
             <i class="iconfont icon-lipinfafang"></i>
           </li>
         </ul>
@@ -147,6 +170,7 @@ $primary: #6bafdc;
   overflow: hidden;
   height: 0; // box-shadow: 0 8px 20px #eee;
   border-radius: 4px;
+  box-shadow: 0 5px 50px #e6e6e6;
   &-title {
     font-size: 36px;
     position: absolute;
@@ -257,7 +281,8 @@ $primary: #6bafdc;
           font-size: 160px;
           left: 53px;
           top: 18px;
-          color: #6bafdc
+          color: #6bafdc;
+                //  animation: rotate 15s linear infinite;
         }
       }
     }
@@ -330,6 +355,7 @@ $primary: #6bafdc;
         font-size: 80px;
         color: $primary;
         position: absolute;
+        // animation: down 2s linear infinite;
       }
       .i1 {
         left: 28px;
@@ -353,6 +379,7 @@ $primary: #6bafdc;
         background: url(../assets/c.png);
         background-size: cover;
         position: absolute;
+        animation: rotate 15s linear infinite;
         top: 80px
       }
       .i4 {
@@ -405,7 +432,9 @@ $primary: #6bafdc;
     }
     .user-icon {
       margin-top: -60%;
+      animation: down 2s linear infinite;
       .icon--2 {
+
         color: #6bafdc;
         font-size: 160px;
         line-height: 1;
@@ -464,8 +493,7 @@ $primary: #6bafdc;
 // <i class="iconfont icon--8"></i>
 .index {
   &-banner {
-    background-image: url(../assets/index.jpg);
-    // background-size: cover;
+    background-image: url(../assets/index.jpg); // background-size: cover;
     height: 600px;
     @include mobile {
       height: 200px;
@@ -509,6 +537,24 @@ $primary: #6bafdc;
       font-size: 14px;
       color: #999
     }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes down {
+  0% {
+    transform: translateY(0)
+  }
+  50% {
+    transform: translateY(10px)
   }
 }
 </style>

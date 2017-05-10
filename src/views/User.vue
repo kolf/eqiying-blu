@@ -1,7 +1,19 @@
 <template>
   <div class="user-page">
     <app-header></app-header>
-    <div class="banner user-banner"></div>
+    <!--<div class="banner user-banner"></div>-->
+    <section class="hero is-medium is-primary is-bold banner user-banner">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title">
+            个人中心
+          </h1>
+          <h2 class="subtitle">
+            Personal Center
+          </h2>
+        </div>
+      </div>
+    </section>
     <div class="section">
       <div class="container">
         <div class="user-profile">
@@ -23,21 +35,29 @@
                 <aside class="menu">
                   <ul class="menu-list">
                     <li>
-                      <router-link to="/user/profile"><i class="iconfont icon-ziliao"></i>个人资料</router-link>
+                      <router-link to="/user/profile">
+                        <i class="iconfont icon-ziliao"></i>个人资料</router-link>
                     </li>
                     <li>
-                      <router-link to="/user/projects"><i class="iconfont icon-huodong5050"></i>活动参与记录</router-link>
+                      <router-link to="/user/projects">
+                        <i class="iconfont icon-huodong5050"></i>活动参与记录</router-link>
                     </li>
                     <li>
-                      <router-link to="/user/presents"><i class="iconfont icon-lipin"></i>礼品兑换记录</router-link>
+                      <router-link to="/user/presents">
+                        <i class="iconfont icon-lipin"></i>礼品兑换记录</router-link>
                     </li>
                     <li>
-                      <router-link to="/user/msgs"><i class="iconfont icon-xiaoxi1"></i>我的私信</router-link>
+                      <router-link to="/user/msgs">
+                        <i class="iconfont icon-xiaoxi1"></i>我的私信</router-link>
                     </li>
                     <li>
-                      <a @click="showModifyPassword=true"><i class="iconfont icon-Password"></i>修改密码</a>
+                      <a @click="showModifyPassword=true">
+                        <i class="iconfont icon-Password"></i>修改密码</a>
                     </li>
-                    <li><a @click="logout"><i class="iconfont icon-tuichu"></i>退出登陆</a></li>
+                    <li>
+                      <a @click="logout">
+                        <i class="iconfont icon-tuichu"></i>退出登陆</a>
+                    </li>
                     <!--<li><a><i class="iconfont icon-zhuxiao1"></i>注销用户</a></li>-->
                   </ul>
                 </aside>
@@ -174,7 +194,7 @@ export default {
 <style lang="scss" scoped>
 .user {
   &-banner {
-    background-image: url(../assets/startup-banner-3c5415c78064da11455c3ab9b352e04c.jpg);
+    background-image: url(../assets/user_banner.jpg) !important;
     background-size: cover
   }
   &-remark {

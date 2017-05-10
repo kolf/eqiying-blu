@@ -4,7 +4,7 @@
 			<div class="container">
 				<div class="nav-left">
 					<router-link class="nav-item is-brand" to="/index">
-						<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+						<img src="../assets/logo.png" alt="E起赢">
 					</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/index">首页{{page}}</router-link>
 					<router-link class="nav-item is-tab is-hidden-mobile" to="/projects">活动专区</router-link>

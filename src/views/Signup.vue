@@ -5,8 +5,8 @@
         <nav class="nav">
           <div class="container">
             <div class="nav-left">
-              <router-link class="nav-item is-brand" to="/">
-                <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+              <router-link class="nav-item is-brand" to="/index">
+                <img src="../assets/logo.png" alt="E起赢">
               </router-link>
             </div>
             <span class="nav-toggle" :class="{'is-active': device.isMobile && menu.opened}" @click="toggleMenu(!menu.opened)">

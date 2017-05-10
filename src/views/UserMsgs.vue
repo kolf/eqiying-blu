@@ -1,6 +1,9 @@
 <template>
   <div class="tab-content">
-    <h2 class="title">我的私信 <button class="button is-pulled-right is-primary" @click="showSendMsg=true"><i class="iconfont icon-bianji"></i>发送私信</button></h2>
+    <h2 class="title">我的私信
+      <button class="button is-pulled-right is-primary" @click="showSendMsg=true">
+        <i class="iconfont icon-bianji"></i>发送私信</button>
+    </h2>
     <hr>
     <div class="msgs" v-if="msgs.length>0">
       <article class="media msg" v-for="(msg, index) in msgs">
@@ -13,12 +16,13 @@
             <p>
               <strong>{{msg.MessageTitle}}</strong>
               <span class="tag is-dark is-pulled-right" @click="openConfirm(msg.InternalMessageId)">
-                          删除
-                          <button class="delete is-small"></button>
-                        </span>
+                删除
+                <button class="delete is-small"></button>
+              </span>
               <br> {{msg.InternalMessageContent | decode}}
             </p>
-            <p><a>{{msg.SenderName}}</a> 于 {{msg.CreateTime | fromatDate}} 发送</p>
+            <p>
+              <a>{{msg.SenderName}}</a> 于 {{msg.CreateTime | fromatDate}} 发送</p>
           </div>
         </div>
       </article>
@@ -94,10 +98,24 @@ export default {
     },
     sendSuccess() {
       this.showSendMsg = false
+    },
+    updateMsgStatus() {
+      api.updateMsgStatus().then(res => {
+        console.log(res)
+
+        const { msg, result, data } = res.data
+        if (result !== 'ok') {
+          this.$notify.warning({ content: msg })
+          return false
+        }
+
+
+      })
     }
   },
   created() {
     this.queryMsg(1)
+    this.updateMsgStatus()
   }
 }
 </script>
