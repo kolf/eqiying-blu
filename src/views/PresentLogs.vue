@@ -19,7 +19,7 @@
             <td><a @click="getPresent(item.PresentId)">{{item.PresentName}}</a></td>
             <td>{{item.PresentPoint}}</td>
             <td>{{item.ChangeTotal}}</td>
-            <td>{{item.ChangeTotal}}</td>
+            <td>{{item.ChangeTotal*item.PresentPoint}}</td>
             <td><span class="tag" :class="statusTag(item.CheckStatus)">{{item.statusName}}</span></td>
             <td>{{item.ReleaseTime | fromatDate(true)}}</td>
           </tr>
@@ -47,8 +47,10 @@
           <ul class="param-list">
             <li><span class="param-name">礼品介绍:</span>{{curPresent.PresentDesc}}</li>
             <li><span class="param-name">积分:</span>{{curPresent.PresentPoint}}</li>
-            <li><span class="param-name">兑换个数:</span>{{curPresent.PresentPoint}}</li>
+            <li><span class="param-name">兑换数量:</span>{{curPresent.ChangeTotal}}</li>
             <li><span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime}}</li>
+            <li><span class="param-name">兑换状态:</span>{{curPresent.statusName}}</li>
+            <li><span class="param-name">兑换日期:</span>{{curPresent.ReleaseTime}}</li>
           </ul>
         </div>
       </article>

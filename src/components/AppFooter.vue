@@ -72,7 +72,7 @@
 export default {
 	data() {
 		return {
-
+			copyright: '京ICP备14016765号-2'
 		}
 	},
 	methods: {

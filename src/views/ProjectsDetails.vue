@@ -3,7 +3,7 @@
     <app-header></app-header>
     <slider v-if="banners.length>0" :pages="banners" :sliderinit="sliderinit" class="banner"></slider>
     <div class="section">
-      <div class="container">
+      <div class="container" style="padding: 40px 0">
         <div class="columns">
           <div class="column is-6 box">
             <div class="image is-1by1">
