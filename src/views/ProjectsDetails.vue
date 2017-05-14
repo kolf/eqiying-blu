@@ -47,7 +47,7 @@
             <div class="content project-content">
               <p>{{project.ProjectDesc}}</p>
               <p>
-                <button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button>
+                <button class="button is-primary is-fullwidth is-medium" @click="getInternalLink(project.PjId)">立即参与</button>
               </p>
             </div>
           </div>

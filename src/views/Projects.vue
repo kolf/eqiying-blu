@@ -42,7 +42,7 @@
                     <!--<button class="button is-primary" @click="getInternalLink(project.PjId)">立即参与</button>-->
                     <!--<button class="button is-primary" @click="getInternalLink(project.PjId, index)">立即参与</button>-->
                     <a class="button is-primary" target="_black" :href="project.ProjectUserLink">立即参与</a>
-                    <router-link class="button is-link" :to="'/projects/' + project.PjId">查看详情</router-link>
+                    <router-link class="button is-primary is-outlined" :to="'/projects/' + project.PjId">查看详情</router-link>
                   </p>
                 </div>
               </div>
@@ -221,7 +221,7 @@ export default {
   &-badge{
     position: absolute;
     right: 0;
-    top: 0;
+    top: 10px;
     border-radius: 0
   }
   @include mobile() {

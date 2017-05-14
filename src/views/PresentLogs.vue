@@ -16,7 +16,7 @@
         </thead>
         <tbody v-if="presentLogs.length>0">
           <tr v-for="(item, index) in presentLogs">
-            <td><a @click="getPresent(item.PresentId)">{{item.PresentName}}</a></td>
+            <td><a @click="getPresent(item)">{{item.PresentName}}</a></td>
             <td>{{item.PresentPoint}}</td>
             <td>{{item.ChangeTotal}}</td>
             <td>{{item.ChangeTotal*item.PresentPoint}}</td>
@@ -35,8 +35,8 @@
       <pagination :total="total" layout="pager" :page-size="pageSize" :change="queryPresentLog"></pagination>
     </div>
   
-    <modal title="兑换详情" transition="fadeDown" :is-show="isShowModal" @close="hideModal" :show-footer="false">
-      <article class="columns">
+    <modal title="兑换详情" transition="fadeDown" :is-show="isShowModal" @close="hideModal">
+      <article class="columns present-modal">
         <div class="column is-6">
           <figure class="image is-square">
             <img v-lazy="curPresent.PresentPic" :alt="curPresent.PresentName">
@@ -46,14 +46,15 @@
           <p class="title">{{curPresent.PresentName}}</p>
           <ul class="param-list">
             <li><span class="param-name">礼品介绍:</span>{{curPresent.PresentDesc}}</li>
-            <li><span class="param-name">积分:</span>{{curPresent.PresentPoint}}</li>
-            <li><span class="param-name">兑换数量:</span>{{curPresent.ChangeTotal}}</li>
             <li><span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime}}</li>
+            <li><span class="param-name">兑换积分:</span>{{curPresent.PresentPoint}}</li>
+            <li><span class="param-name">兑换数量:</span>{{curPresent.ChangeTotal}}</li>
             <li><span class="param-name">兑换状态:</span>{{curPresent.statusName}}</li>
             <li><span class="param-name">兑换日期:</span>{{curPresent.ReleaseTime}}</li>
           </ul>
         </div>
       </article>
+      <div slot="footer"><a class="button is-primary" @click="hideModal">确定</a></div>
     </modal>
   </div>
 </template>
@@ -85,18 +86,21 @@ export default {
         this.total = recordCount || 0
       })
     },
-    getPresent(id) {
-      api.getPresentInfo({ id }).then(res => {
-        const { msg, result, data } = res.data
-        if (result !== 'ok') {
-          this.$notify.warning({ content: msg })
-          return false
-        }
-
-        this.curPresent = data
-        this.curPresent.PresentPic = ROOT + data.PresentPic
+    getPresent(present) {
+        this.curPresent = present
+        this.curPresent.PresentPic = /http/.test(present.PresentPic) ? present.PresentPic : ROOT + present.PresentPic
         this.isShowModal = true
-      })
+      // api.getPresentInfo({ id }).then(res => {
+      //   const { msg, result, data } = res.data
+      //   if (result !== 'ok') {
+      //     this.$notify.warning({ content: msg })
+      //     return false
+      //   }
+
+      //   this.curPresent = data
+      //   this.curPresent.PresentPic = ROOT + data.PresentPic
+      //   this.isShowModal = true
+      // })
     },
     showModal(present) {
       this.isShowModal = true
@@ -122,6 +126,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import '~bulma/sass/utilities/mixins';
 
+.present{
+  &-modal{
+    @include desktop{
+      padding: 10px;
+    }
+  }
+}
 </style>

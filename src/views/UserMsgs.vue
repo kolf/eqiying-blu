@@ -15,10 +15,10 @@
           <div class="content">
             <p>
               <strong>{{msg.MessageTitle}}</strong>
-              <span class="tag is-dark is-pulled-right" @click="openConfirm(msg.InternalMessageId)">
+              <a class="tag is-dark is-pulled-right" @click="openConfirm(msg.InternalMessageId)">
                 删除
-                <button class="delete is-small"></button>
-              </span>
+                <i class="delete is-small"></i>
+              </a>
               <br> {{msg.InternalMessageContent | decode}}
             </p>
             <p>
@@ -60,6 +60,7 @@ export default {
   methods: {
     openConfirm(InternalMessageId) {
       this.$modal.confirm({
+        transition: 'fadeDown',
         content: '确定删除这条信息?',
         cancelText: '取消',
         okText: '确定',
