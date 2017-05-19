@@ -160,7 +160,7 @@
 
 @media screen and (max-width:414px) {
     .slider-container {
-        height: 200px;
+        height: 120px;
         /*margin: 20px auto;
         width: 90%;*/
     }
