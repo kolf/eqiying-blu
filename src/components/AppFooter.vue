@@ -52,15 +52,15 @@
 			<div class="container">
 				<div class="columns">
 					<div class="column is-half">
-						<div class="links">
+						<!--<div class="links">
 							<a href="#">网站声明</a>
 							<a href="#">隐私保护条款</a>
 							<a href="#">联系我们</a>
 							<a href="#">积分兑换规则</a>
-						</div>
+						</div>-->
 					</div>
 					<div class="column is-half has-text-right">
-						Copyright © 2016 EQYING Inc. All Rights Reserved
+						Copyright © 2016 EQYING Inc. All Rights Reserved 京ICP备14016765号-2
 					</div>
 				</div>
 			</div>
