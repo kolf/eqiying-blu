@@ -1,23 +1,33 @@
 <template>
   <modal title="重置密码" transition="fadeDown" :is-show="visible" @close="close" :show-footer="!isSuccess" :show-header="!isSuccess">
     <form @submit.prevent="validateForm()" class="is-10 column is-offset-1" v-if="!isSuccess">
-      <div class="control is-horizontal">
-        <div class="control-label">
-          <label class="label">邮箱</label>
+      <div class="field">
+        <div class="control is-horizontal">
+          <div class="control-label">
+            <label class="label">邮箱</label>
+          </div>
+          <div class="control">
+            <input class="input" type="email" placeholder="请输入邮箱" name="email" v-model="emailForm.value" v-validate="'required'" :class="{'is-danger': errors.has('email')}">
+          </div>
         </div>
-        <div class="control">
-          <input class="input" type="emall" placeholder="请输入邮箱" name="emall" v-model="emailForm.value" v-validate="'required'" :class="{'is-danger': errors.has('emall')}">
-        </div>
+        <span class="help is-danger is-horizontal" v-show="errors.has('email')">{{ errors.first('email') }}</span>
       </div>
-      <div class="control is-horizontal">
-        <div class="control-label">
-          <label class="label">验证码</label>
+  
+      <div class="field">
+        <div class="control is-horizontal">
+          <div class="control-label">
+            <label class="label">验证码</label>
+          </div>
+          <div class="control  has-addons validateCode-input">
+            <input class="input" type="text" placeholder="请输入验证码" name="ValidateCode" v-model="emailForm.verificationCode" v-validate="'required'" :class="{'is-danger': errors.has('ValidateCode')}">
+            <a @click="getValidateCode" class="button">
+              <img :src="validateCode" />
+            </a>
+          </div>
         </div>
-        <div class="control  has-addons validateCode-input">
-          <input class="input" type="text" placeholder="请输入验证码" name="ValidateCode" v-model="emailForm.verificationCode" v-validate="'required'" :class="{'is-danger': errors.has('ValidateCode')}">
-          <a @click="getValidateCode" class="button"><img :src="validateCode" /></a>
-        </div>
+        <span v-show="errors.has('ValidateCode')" class="help is-danger is-horizontal">{{ errors.first('ValidateCode') }}</span>
       </div>
+
     </form>
     <div v-else class="section msg-box has-text-centered">
       <div class="">
@@ -32,7 +42,10 @@
         </p>
       </div>
     </div>
-    <div slot="footer"><a class="button" @click="close">取消</a> <a class="button is-primary" @click="validateForm">确定</a></div>
+    <div slot="footer">
+      <a class="button" @click="close">取消</a>
+      <a class="button is-primary" @click="validateForm">确定</a>
+    </div>
   </modal>
 </template>
 <script>

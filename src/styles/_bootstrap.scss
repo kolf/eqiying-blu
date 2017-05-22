@@ -207,7 +207,9 @@ ul {
 .menu {
     box-shadow: none;
 }
-
+.help{
+    &.is-horizontal{margin:-5px 0 10px 94px }
+}
 // modal
 .modal-card {
     border-radius: 2px;

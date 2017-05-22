@@ -1,30 +1,43 @@
 <template>
     <modal title="修改密码" transition="fadeDown" :is-show="visible" @close="close" ok-text="确定" cancel-text="取消">
         <form @submit.prevent="validateForm" class="pad-h is-10 column is-offset-1">
-            <div class="control is-horizontal">
-                <div class="control-label">
-                    <label class="label">原密码</label>
+
+           <div class="field">
+                <div class="control is-horizontal">
+                   <div class="control-label">
+                       <label class="label">原密码</label>
+                   </div>
+                   <div class="control">
+                       <input class="input" type="password" placeholder="请输入原密码" name="orgPasssword" v-model="passwordForm.orgPasssword" v-validate="'required'" :class="{'is-danger': errors.has('orgPasssword')}">
+                   </div>
+               </div>
+               <span class="help is-danger is-horizontal" v-show="errors.has('orgPasssword')">{{ errors.first('orgPasssword') }}</span>
+           </div>
+
+            <div class="field">
+                <div class="control is-horizontal">
+                    <div class="control-label">
+                        <label class="label">新密码</label>
+                    </div>
+                    <div class="control">
+                        <input class="input" type="password" placeholder="请输入新密码" name="newPassword" v-model="passwordForm.newPassword" v-validate="'required'" :class="{'is-danger': errors.has('newPassword')}">
+                    </div>
                 </div>
-                <div class="control">
-                    <input class="input" type="password" placeholder="请输入原密码" name="orgPasssword" v-model="passwordForm.orgPasssword" v-validate="'required'" :class="{'is-danger': errors.has('orgPasssword')}">
-                </div>
+                <span class="help is-danger is-horizontal" v-show="errors.has('newPassword')">{{ errors.first('newPassword') }}</span>
             </div>
-            <div class="control is-horizontal">
-                <div class="control-label">
-                    <label class="label">新密码</label>
-                </div>
-                <div class="control">
-                    <input class="input" type="password" placeholder="请输入新密码" name="newPassword" v-model="passwordForm.newPassword" v-validate="'required'" :class="{'is-danger': errors.has('newPassword')}">
-                </div>
-            </div>
-            <div class="control is-horizontal">
-                <div class="control-label">
-                    <label class="label">确认新密码</label>
-                </div>
-                <div class="control">
-                    <input class="input" type="password" placeholder="请再次输入新密码" name="rePassword" v-model="passwordForm.rePassword" v-validate="'required'" :class="{'is-danger': errors.has('rePassword')}">
-                </div>
-            </div>
+
+           <div class="field">
+                <div class="control is-horizontal">
+                   <div class="control-label">
+                       <label class="label">确认新密码</label>
+                   </div>
+                   <div class="control">
+                       <input class="input" type="password" placeholder="请再次输入新密码" name="rePassword" v-model="passwordForm.rePassword" v-validate="'required'" :class="{'is-danger': errors.has('rePassword')}">
+                   </div>
+               </div>
+               <span class="help is-danger is-horizontal" v-show="errors.has('rePassword')">{{ errors.first('rePassword') }}</span>
+           </div>
+
         </form>
         <div slot="footer"><a class="button" @click="close">取消</a> <a class="button is-primary" @click="validateForm">确定</a></div>
     </modal>

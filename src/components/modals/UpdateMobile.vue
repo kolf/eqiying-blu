@@ -1,23 +1,29 @@
 <template>
 	<modal title="修改手机号" transition="fadeDown" :is-show="visible" @close="close">
 		<div class="pad-h is-10 column is-offset-1">
-			<form @submit.prevent="validateForm('mobileForm')" data-vv-scope="mobileForm" class="control is-horizontal">
-				<div class="control-label">
-					<label class="label">新手机号</label>
+			<form @submit.prevent="validateForm('mobileForm')" data-vv-scope="mobileForm" class="field">
+				<div class="control is-horizontal">
+					<div class="control-label">
+						<label class="label">新手机号</label>
+					</div>
+					<div class="control has-addons">
+						<input class="input is-expanded" name="mobile" type="number" placeholder="请输入你的新手机号" v-model="mobileForm.newPhone" v-validate="'required'" :class="{'is-danger': errors.has('mobileForm.mobile')}">
+						<button class="button is-primary" :disabled="num>0" v-text="btnText"></button>
+					</div>
 				</div>
-				<div class="control has-addons">
-					<input class="input is-expanded" name="newPhone" type="number" placeholder="请输入你的新手机号" v-model="mobileForm.newPhone" v-validate="'required|numeric'" :class="{'is-danger': errors.has('mobileForm.newPhone')}">
-					<button class="button is-primary" :disabled="num>0" v-text="btnText"></button>
-				</div>
+				<span class="help is-danger is-horizontal" v-show="errors.has('mobileForm.mobile')">{{ errors.first('mobileForm.mobile') }}</span>
 			</form>
 	
-			<form @submit.prevent="validateForm('msgForm')" data-vv-scope="msgForm" class="control is-horizontal">
-				<div class="control-label">
-					<label class="label">验证码</label>
+			<form @submit.prevent="validateForm('msgForm')" data-vv-scope="msgForm" class="field">
+				<div class="control is-horizontal">
+					<div class="control-label">
+						<label class="label">验证码</label>
+					</div>
+					<div class="control">
+						<input class="input" type="text" placeholder="请输入收到的验证码" name="ValidateCode" v-model="mobileForm.smsCode" v-validate="'required'" :class="{'is-danger': errors.has('msgForm.ValidateCode')}">
+					</div>
 				</div>
-				<div class="control">
-					<input class="input" type="text" placeholder="请输入收到的验证码" name="msg" v-model="mobileForm.smsCode" v-validate="'required'" :class="{'is-danger': errors.has('msgForm.msg')}">
-				</div>
+				<span class="help is-danger is-horizontal" v-show="errors.has('msgForm.ValidateCode')">{{ errors.first('msgForm.ValidateCode') }}</span>
 			</form>
 		</div>
 		<div slot="footer">

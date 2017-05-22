@@ -31,20 +31,20 @@
                 <h1 class="title has-text-centered">登陆</h1>
                 <label class="label">用户名</label>
                 <p class="control">
-                  <input class="input" type="text" placeholder="请输入您的用户名" name="userName" v-model="loginForm.userName" v-validate="'required'" :class="{'is-danger': errors.has('userName')}">
-                  <!--<span class="help is-danger" v-show="errors.has('userName')">{{ errors.first('userName') }}</span>-->
+                  <input class="input" type="text" placeholder="请输入您的用户名" name="name" v-model="loginForm.userName" v-validate="'required'" :class="{'is-danger': errors.has('name')}">
+                  <span class="help is-danger" v-show="errors.has('name')">{{ errors.first('name') }}</span>
                 </p>
                 <label class="label">密码</label>
                 <p class="control">
-                  <input class="input" type="password" placeholder="请输入您的密码" name="userPwd" v-model="loginForm.userPwd" v-validate="'required'" :class="{'is-danger': errors.has('userPwd')}">
-                  <!--<span class="help is-danger" v-show="errors.has('userPwd')">{{ errors.first('userPwd') }}</span>-->
+                  <input class="input" type="password" placeholder="请输入您的密码" name="password" v-model="loginForm.userPwd" v-validate="'required'" :class="{'is-danger': errors.has('password')}">
+                  <span class="help is-danger" v-show="errors.has('password')">{{ errors.first('password') }}</span>
                 </p>
                 <label class="label">验证码</label>
                 <p class="control has-addons validateCode-input">
                   <input class="input" type="text" placeholder="请输入验证码" name="ValidateCode" v-model="loginForm.ValidateCode" v-validate="'required'" :class="{'is-danger': errors.has('ValidateCode')}">
                   <a @click="getValidateCode" class="button"><img :src="validateCode" /></a>
                 </p>
-                <!--<span v-show="errors.has('ValidateCode')" class="help is-danger">{{ errors.first('ValidateCode') }}</span>-->
+                <span v-show="errors.has('ValidateCode')" class="help is-danger">{{ errors.first('ValidateCode') }}</span>
                 <hr>
                 <p class="control">
                   <button type="submit" class="button is-primary is-fullwidth is-medium">登陆</button>
@@ -63,7 +63,7 @@
       <footer class="footer">
         <div class="container">
           <div class="content has-text-centered">
-            ©2016 EQYING 京ICP备14016765号-2
+            Copyright © 2016 EQYING Inc. All Rights Reserved 京ICP备14016765号-2
           </div>
         </div>
       </footer>

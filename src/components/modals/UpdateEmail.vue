@@ -1,13 +1,17 @@
 <template>
 	<modal title="修改邮箱" transition="fadeDown" @close="close" :is-show="visible" :show-footer="!isSuccess" :show-header="!isSuccess">
 		<form v-if="!isSuccess" @submit.prevent="validateForm()" class="pad-h is-10 column is-offset-1">
-			<div class="control is-horizontal">
-				<div class="control-label">
-					<label class="label">您的新邮箱</label>
+			<div class="field">
+				<div class="control is-horizontal">
+					<div class="control-label">
+						<label class="label">您的新邮箱</label>
+					</div>
+					<div class="control">
+						<input class="input" type="emall" placeholder="请输入新邮箱" name="email" v-model="emailForm.newEmail" v-validate="'required'" :class="{'is-danger': errors.has('email')}">
+						
+					</div>
 				</div>
-				<div class="control">
-					<input class="input" type="emall" placeholder="请输入新邮箱" name="newEmail" v-model="emailForm.newEmail" v-validate="'required'" :class="{'is-danger': errors.has('newEmail')}">
-				</div>
+				<span class="help is-danger is-horizontal" v-show="errors.has('email')">{{ errors.first('email') }}</span>
 			</div>
 		</form>
 		<div v-else class="section msg-box has-text-centered">
