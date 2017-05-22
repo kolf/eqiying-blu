@@ -47,7 +47,7 @@
                 </div>
               </div>
             </article>
-            <span class="button is-primary is-medium project-badge">{{project.ProjectColumnName}}</span>
+            <span class="button is-primary is-medium project-badge is-hidden-mobile">{{project.ProjectColumnName}}</span>
           </div>
         </div>
         <div class="box is-gray" v-if="projects.length>0">
