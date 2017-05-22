@@ -63,7 +63,7 @@
       <footer class="footer">
         <div class="container">
           <div class="content has-text-centered">
-            Copyright © 2016 EQYING Inc. All Rights Reserved
+            ©2016 EQYING 京ICP备14016765号-2
           </div>
         </div>
       </footer>
