@@ -39,7 +39,7 @@
 						</div>
 						<div class="column is-half has-text-right">
 							<div class="icons">
-								<a href=""><i class="iconfont icon-youjian1"></i></a>
+								<a href="mailto:service@eqiying.com"><i class="iconfont icon-youjian1"></i></a>
 								<a href=""><i class="iconfont icon-weixin1"></i></a>
 								<a href=""><i class="iconfont icon-weibo1"></i></a>
 							</div>

@@ -22,7 +22,8 @@
                   </div>
                 </div>
                 <div class="content">
-                  <p class=""><strong class="title is-4 text-danger">{{present.PresentPoint}}</strong> 积分
+                  <p class="">
+                    <strong class="title is-4 text-danger">{{present.PresentPoint}}</strong> 积分
                     <button @click="showModal(present)" class="button is-primary is-outlined is-pulled-right is-hidden-mobile">兑换</button>
                   </p>
                 </div>
@@ -46,17 +47,24 @@
         <div class="column">
           <p class="title">{{curPresent.PresentName}}</p>
           <ul class="param-list">
-            <li><span class="param-name">礼品介绍:</span>{{curPresent.PresentDesc}}</li>
-            <li><span class="param-name">兑换积分:</span>{{curPresent.PresentPoint}}</li>
-            <li><span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime | fromatDate(true)}}</li>
+            <li>
+              <span class="param-name">礼品介绍:</span>{{curPresent.PresentDesc}}</li>
+            <li>
+              <span class="param-name">兑换积分:</span>{{curPresent.PresentPoint}}</li>
+            <li>
+              <span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime | fromatDate(true)}}</li>
             <li>
               <input-number style="width:80px" :val="1" v-model="changeNum" :on-change="changePresentNum"></input-number>
             </li>
-            <li>共需 <strong class="text-danger">{{curPresent.PresentPoint*changeNum}}</strong> 积分</li>
+            <li>共需
+              <strong class="text-danger">{{curPresent.PresentPoint*changeNum}}</strong> 积分</li>
           </ul>
         </div>
       </div>
-      <div slot="footer"><a class="button" @click="hideModal">取消</a> <a :disabled="changeNum==0" class="button is-primary" @click="exchange">兑换</a></div>
+      <div slot="footer">
+        <a class="button" @click="hideModal">取消</a>
+        <a :disabled="changeNum==0" class="button is-primary" @click="exchange">兑换</a>
+      </div>
     </modal>
   </div>
 </template>
@@ -65,6 +73,7 @@
 import api from 'src/api'
 import AppHeader from 'components/AppHeader.vue'
 import AppFooter from 'components/AppFooter.vue'
+import { mapActions, mapGetters } from 'vuex'
 import Slider from 'components/Slider.vue'
 const { ROOT } = process.env
 
@@ -95,7 +104,14 @@ export default {
     }
   },
   computed: {
-    banners(){
+    ...mapGetters({
+			current: 'current',
+			device: 'device',
+			menu: 'menu',
+			user: 'user'
+		}),
+
+    banners() {
       return this.presentsTop5.slice(0, 5).map(item => {
         return {
           style: item.PresentAnnouncePic ? { 'background-image': 'url(http://show.eqiying.com' + item.PresentAnnouncePic + ')' } : { 'background-color': '#333' }
@@ -108,6 +124,10 @@ export default {
     this.queryPresentBanner()
   },
   methods: {
+    ...mapActions([
+      'toggleLogin',
+      'saveUser'
+    ]),
     queryPresentBanner() {
       api.queryPresentBanner().then(res => {
         const { msg, result, data } = res.data
@@ -142,14 +162,15 @@ export default {
     },
     hideModal() {
       this.isShowModal = false
-      this.curPresent = {}
+      // this.curPresent = {}
     },
     changePresentNum(val) {
       this.changeNum = val
     },
     exchange() {
       // console.log(this.curPresent)
-      api.exchange(this.curPresent.PresentId, this.changeNum).then(res => {
+      const {PanelPoint, PresentId} = this.curPresent
+      api.exchange(PresentId, this.changeNum).then(res => {
         this.hideModal()
 
         const { msg, result, data } = res.data
@@ -157,6 +178,10 @@ export default {
           this.$notify.warning({ content: msg })
           return false
         }
+
+        const PanelPoint = this.user.PanelPoint - this.curPresent.PresentPoint*this.changeNum
+
+        this.saveUser({ PanelPoint})
 
         this.$notify.success({ content: msg || '兑换成功！' })
       })
@@ -168,14 +193,15 @@ export default {
 <style lang="scss" scoped>
 @import '~bulma/sass/utilities/mixins';
 
-.presents{
-  @include mobile{
+.presents {
+  @include mobile {
     margin: -15px;
   }
 }
+
 .present {
-  @include mobile{
-    padding:5px
+  @include mobile {
+    padding: 5px
   }
   .card {
     transition: all .2s;

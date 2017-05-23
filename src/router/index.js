@@ -70,6 +70,10 @@ export default new Router({
       component: loadView('Signup')
     },
     {
+      path: '/activate',
+      component: loadView('ActivateUser')
+    },
+    {
       path: '/signin',
       component: loadView('Signin')
     },

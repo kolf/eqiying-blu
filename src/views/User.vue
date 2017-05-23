@@ -162,6 +162,7 @@ export default {
           return false
         }
 
+        this.user.PanelOtherInfo1 = path
         this.saveUser({ PanelOtherInfo1: path })
       }).catch((error) => {
         console.log(error)
