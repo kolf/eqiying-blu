@@ -106,7 +106,7 @@ export default {
 
         const { msg, result, data } = res.data
         if (result !== 'ok') {
-          this.$notify.warning({ content: msg })
+          // this.$notify.warning({ content: msg })
           return false
         }
 

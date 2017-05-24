@@ -208,7 +208,14 @@ ul {
     box-shadow: none;
 }
 .help{
-    &.is-horizontal{margin:-5px 0 10px 96px }
+    &.is-horizontal{
+        // margin:-5px 0 10px 96px 
+        margin-top: -5px;
+        margin-bottom: 10px;
+        @include desktop() {
+            margin-left: 96px;
+        }
+    }
 }
 // modal
 .modal-card {

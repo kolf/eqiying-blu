@@ -17,7 +17,7 @@
           <tr v-for="(item, index) in projectLogs">
             <td>{{item.ProjectId}}</td>
             <td>
-              <router-link class="card-image" :to="'/projects/' + item.PjId">{{item.ProjectName}}</router-link>
+              <router-link :to="{path: '/projects/' + item.PjId, query: {code: item.PstatusCode.replace(/\s+/, '')}}">{{item.ProjectName}}</router-link>
               </a>
             </td>
             <td><span class="tag" :class="statusTag(item.ProjectStatus)">{{item.Pstatus}}</span></td>

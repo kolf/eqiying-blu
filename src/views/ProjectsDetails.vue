@@ -41,13 +41,19 @@
                   </td>
                   <td>线上</td>
                 </tr>
+                <tr>
+                  <td class="has-text-right" width="100">
+                    <strong>参与状态</strong>
+                  </td>
+                  <td>{{projectStatus}}</td>
+                </tr>
               </tbody>
             </table>
             <br>
             <div class="content project-content">
               <p>{{project.ProjectDesc}}</p>
               <p>
-                <button class="button is-primary is-fullwidth is-medium" @click="getInternalLink(project.PjId)">立即参与</button>
+                <button :disabled="projectStatus" class="button is-primary is-fullwidth is-medium" @click="getInternalLink(project.PjId)">立即参与</button>
               </p>
             </div>
           </div>
@@ -73,6 +79,7 @@ export default {
   },
   data() {
     return {
+      projectStatus: false,
       project: {},
       allProjects: [],
       sliderinit: {
@@ -87,7 +94,8 @@ export default {
     }
   },
   created() {
-    const { id } = this.$route.params
+    const {params: {id}, query: {code}} = this.$route
+    this.projectStatus = code ? 'CSQ'.indexOf(code)!=-1 : false
     this.queryProjectColumn()
     this.getProjectInfo(id)
   },
