@@ -104,7 +104,7 @@ export default {
       menu: 'menu'
     })
   },
-  created() {
+  async mounted() {
     this.getValidateCode()
   },
   methods: {
@@ -131,7 +131,7 @@ export default {
       })
     },
     getValidateCode() {
-      this.validateCode = api.validateCode()
+      this.validateCode = api.validateCode  + '?cc=' + Date.now()
     },
     getUserInfo() {
       api.getUserInfo().then(res => {

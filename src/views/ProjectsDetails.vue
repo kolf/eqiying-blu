@@ -103,7 +103,7 @@ export default {
     banners() {
       return this.allProjects.slice(0, 5).map(item => {
         return {
-          style: item.ProjectPicAnnouncePath ? { 'background-image': 'url(http://show.eqiying.com' + item.ProjectPicAnnouncePath + ')' } : { 'background-color': '#333' }
+          style: item.ProjectPicAnnouncePath ? { 'background-image': 'url(' + ROOT + item.ProjectPicAnnouncePath + ')' } : { 'background-color': '#333' }
         }
       })
     }

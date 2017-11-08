@@ -13,6 +13,7 @@ import { TOGGLE_PAGE, TOGGLE_MENU, TOGGLE_LOGIN } from 'vuex-store/mutation-type
 import indicator from './assets/indicator.png'
 import * as Cookies from "js-cookie"
 import { mapActions, mapGetters } from 'vuex'
+import VueClipboard from 'vue-clipboard2'
 
 const dictionary = {
   zh_CN: {
@@ -31,8 +32,9 @@ const dictionary = {
      ValidateCode: '验证码'
     }
   }
-};
+}
 
+Vue.use(VueClipboard)
 Vue.use(NProgress)
 Validator.addLocale(zh)
 Validator.updateDictionary(dictionary)

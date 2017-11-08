@@ -31,7 +31,7 @@
         <div class="columns is-vcentered">
           <div class="column is-10 is-offset-1">
             <div class="columns section" v-if="isSuccess==false">
-              <form @submit.prevent="validateForm" class="column is-6 is-offset-3">
+              <form class="column is-6 is-offset-3" @submit.prevent="validateForm">
                 <h1 class="title has-text-centered">注册</h1>
                 <div class="field">
                   <label class="label">* 登录名</label>
@@ -52,13 +52,6 @@
                   <p class="control">
                     <input name="rePassword" :class="{'is-danger': errors.has('rePassword')}" v-model="userForm.RPanelPw" v-validate="'required'" type="password" class="input" placeholder="请填写确认密码">
                     <span class="help is-danger" v-show="errors.has('password')">{{ errors.first('rePassword') }}</span>
-                  </p>
-                </div>
-                <div class="field">
-                  <label class="label">* 手机号</label>
-                  <p class="control">
-                    <input name="mobile" :class="{'is-danger': errors.has('mobile')}" v-model="userForm.PanelMobile" v-validate="'required'" type="number" class="input" placeholder="请填写手机号">
-                    <span class="help is-danger" v-show="errors.has('mobile')">{{ errors.first('mobile') }}</span>
                   </p>
                 </div>
                 <div class="field">
@@ -126,6 +119,29 @@
                   </p>
                 </div>
                 <div class="field">
+                  <label class="label">* 手机号</label>
+                  <!--<p class="control">
+                      <input name="mobile" :class="{'is-danger': errors.has('mobile')}" v-model="userForm.PanelMobile" v-validate="'required'" type="number" class="input" placeholder="请填写手机号">
+                      <span class="help is-danger" v-show="errors.has('mobile')">{{ errors.first('mobile') }}</span>
+                    </p>-->
+                    <div class="control">
+                      <div class="control has-addons">
+                        <input class="input is-expanded" name="mobile" type="number" placeholder="请输入你的手机号" v-model="userForm.PanelMobile" v-validate="'required'" :class="{'is-danger': errors.has('mobile')}">
+                        <button class="button is-primary" type="button" :disabled="num>0" @click="checkMobile" v-text="btnText"></button>
+                      </div>
+                    </div>
+                    <span class="help is-danger" v-show="errors.has('mobile')">{{ errors.first('mobile') }}</span>
+                </div>
+  
+                <div class="field">
+                  <label class="label">* 短信验证码</label>
+                  <p class="control">
+                    <input type="text" v-model="userForm.MobileCode" name="ValidateCode" class="input" :class="{'is-danger': errors.has('ValidateCode')}" placeholder="请填写短信验证码" v-validate="'required'">
+                    <span class="help is-danger" v-show="errors.has('ValidateCode')">{{ errors.first('ValidateCode') }}</span>
+                  </p>
+                </div>
+  
+                <div class="field">
                   <label class="checkbox">
                     <input name="check" v-validate="'required'" type="checkbox" checked> 同意一起赢
                   </label>
@@ -138,7 +154,7 @@
                     <textarea type="text" row="3" v-model="userForm.PanelRemark" class="textarea" placeholder="请填写个人介绍" />
                   </p>
                   <p class="control">
-                    <button class="button is-primary is-fullwidth is-medium">提交</button>
+                    <button class="button is-primary is-fullwidth is-medium" type="submit">提交</button>
                   </p>
                 </div>
               </form>
@@ -300,6 +316,7 @@ export default {
   data() {
     return {
       isSuccess: false,
+      num: 0,
       userForm: {
         PanelLoginName: '',
         PanelPw: '',
@@ -335,7 +352,10 @@ export default {
       current: 'current',
       device: 'device',
       menu: 'menu'
-    })
+    }),
+    btnText() {
+      return this.num === 0 ? '获取短信验证码' : this.num + '秒后重新获取'
+    }
   },
   created() {
     this.queryByParenterCode('100000')
@@ -364,6 +384,17 @@ export default {
         const { year, month, day } = this.ageVal
 
         this.userForm.PanelBirthday = parseInt(year) + '-' + parseInt(month) + '-' + parseInt(day)
+
+        const {inviteUser, misc} = this.$route.query
+
+        if(inviteUser){
+          this.userForm.inviteUser = inviteUser
+        }
+
+        if(misc){
+          this.userForm.misc = misc
+        }
+
         api.signup({ ...this.userForm }).then(res => {
           const { msg, result } = res.data;
           if (result !== 'ok') {
@@ -412,7 +443,51 @@ export default {
           this.ageOptons.day.push(i + '日')
         }
       }
-    }
+    },
+    checkMobile() {
+			const { userForm: { PanelMobile } } = this
+
+      if(!PanelMobile){
+        // this.errors.add('mobile', '请填写手机号')
+        return false
+      }
+
+			api.checkUnique({
+				TypeId: '1',
+				strWord: PanelMobile
+			}).then(res => {
+				const { msg, result, OK } = res.data
+				if (result !== 'ok' && result !== 'NotExist') {
+					this.$notify.warning({ content: '该手机号已存在，请重试' });
+					return false;
+				}
+
+				this.sendMsg()
+			})
+		},
+    sendMsg() {
+			this.num = 60
+			const timer = setInterval(() => {
+				if (this.num === 0) {
+					clearInterval(timer)
+				} else {
+					this.num--
+				}
+			}, 1000)
+
+			const { PanelMobile } = this.userForm
+			api.sendSms({ PanelMobiles: PanelMobile}).then(res => {
+				const { msg, result, OK } = res.data
+
+				if (OK || result == 1) {
+					this.$notify.success({ content: '验证码发送成功，请注意查收' })
+				} else {
+					this.$notify.warning({ content: '验证码发送失败，请稍候重试！' })
+				}
+			}).catch((error) => {
+				this.$notify.warning({ content: '验证码发送失败，请稍候重试！' })
+			})
+		}
   }
 }
 </script>
@@ -428,8 +503,8 @@ export default {
   }
 }
 
-.agreement{
-  &-btn{
+.agreement {
+  &-btn {
     position: relative;
     top: -2px
   }

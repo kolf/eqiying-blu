@@ -114,7 +114,7 @@ export default {
     banners() {
       return this.presentsTop5.slice(0, 5).map(item => {
         return {
-          style: item.PresentAnnouncePic ? { 'background-image': 'url(http://show.eqiying.com' + item.PresentAnnouncePic + ')' } : { 'background-color': '#333' }
+          style: item.PresentAnnouncePic ? { 'background-image': 'url(' + ROOT + item.PresentAnnouncePic + ')' } : { 'background-color': '#333' }
         }
       })
     }

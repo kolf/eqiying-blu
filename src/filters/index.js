@@ -20,7 +20,7 @@ export default {
         return data[str]
     },
     assetsUrl(url) {
-        return ROOT + '' + url
+        return /http/.test(url) ? url : ROOT + '/' + url
     },
     filterHTML(str) {
         str = str.replace(/<\/?[^>]+>/g, '')

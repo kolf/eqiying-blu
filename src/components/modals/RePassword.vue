@@ -62,8 +62,8 @@ export default {
       }
     }
   },
-  created() {
-    this.getValidateCode()
+  async mounted() {
+    // this.getValidateCode()
   },
   methods: {
     close() {
@@ -89,12 +89,20 @@ export default {
       })
     },
     getValidateCode() {
-      this.validateCode = api.validateCode()
+      this.validateCode = api.validateCode  + '?cc=' + Date.now()
     },
     getEmailUrl() {
       const { value } = this.emailForm
       return 'http://mail.' + value.split('@')[1]
     },
+  },
+  watch: {
+    visible(show){
+      if(show){
+        this.getValidateCode()
+      }
+      // console.log(show)
+    }
   }
 }
 </script>

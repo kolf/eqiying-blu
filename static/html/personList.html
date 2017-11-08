@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .personMap {
+      width: 500px;
+      height: 500px;
+      float: left;
+      margin: 10px;
+    }
+
+  </style>
+  <script src="https://cdn.bootcss.com/jquery/1.2.3/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/echarts/3.6.1/echarts.min.js"></script>
+  <script>
+    $(function () {
+      fatchData();
+
+      function draw(obj, title, data) {
+        console.log(obj)
+        var option = {
+          title: {
+            text: getName(title),
+            x: 'center'
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+          },
+          legend: {
+            orient: 'vertical',
+            x: 'left',
+            data: data.map(function (item) {
+              console.log(item);
+              return item
+            })
+          },
+          toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+              dataView: {
+                readOnly: false
+              },
+              restore: {},
+              saveAsImage: {}
+            }
+          },
+          series: [{
+            name: '评分',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: data || [],
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }]
+        };
+
+        obj.setOption(option);
+      }
+
+      function fatchData() {
+        $.post('http://canyin.eqiying.com/controller/Answer.ashx?action=queryreport', {
+          // areaId: 1,
+          // restaurantsId: 2,
+          questionnairId: 2
+        }, function (res) {
+          const resData = JSON.parse(res);
+          if (resData.result == 'success') {
+            console.log(resData)
+            var list = resData.data.QuestionInfos.forEach(function (item) {
+              if (item.OptionList && item.OptionList.length) {
+                $('<div class="personMap"></div>').data('data', item).appendTo($('.personMaps'))
+              }
+            });
+
+            $('.personMap').each(function () {
+              var obj = echarts.init(this);
+              var title = $(this).data('data').QuestionInfo.QuestionName;
+              var data = $(this).data('data').OptionList.map(function (item, i) {
+                return {
+                  value: item.Other1,
+                  name: item.OptionName
+                }
+              });
+
+              draw(obj, title, data)
+            })
+          }
+        })
+      }
+
+      function getName(title) {
+        var data = {
+          '餐次': '餐次',
+          '总体满意度': '总体满意度',
+          '就餐过程满意度': '就餐过程满意度',
+          '菜牌': '菜牌清晰度',
+          '排队等候时间': '排队等候时间',
+          '排队是否有秩序': '排队秩序',
+          '餐具是否干净卫生': '餐具卫生',
+          '刷饭卡的过程是否方便快捷': '刷饭卡快捷满意度',
+          '退餐具的过程是否方便快捷': '退餐具方便满意度',
+          '您偏好的菜系': '菜系',
+          '其他': '其他',
+          '99分': '无所谓',
+        }
+
+        for (var key in data) {
+          if (new RegExp(key).test(title)) {
+            title = data[key]
+          }
+        }
+        return title
+      }
+    })
+
+  </script>
+</head>
+
+<body>
+  <div class="personMaps">
+  </div>
+</body>
+
+</html>

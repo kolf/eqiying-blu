@@ -23,7 +23,7 @@
                 <div class="has-text-centered block">
                   <div class="avatar-wrap">
                     <div class="avatar image is-1by1">
-                      <img v-lazy="'http://show.eqiying.com/' + user.PanelOtherInfo1">
+                      <img v-lazy="'http://www.eqiying.com/' + user.PanelOtherInfo1">
                       <upload-avatar :server="upload.server" :api="upload.api" :filename="upload.filename" :params="upload.params" @success="upsuccess" :crop="upload.crop" class="iconfont avatar-upload" :width="upload.width" :height="upload.height" :ok="upload.ok" :cancel="upload.cancel">
                       </upload-avatar>
                     </div>

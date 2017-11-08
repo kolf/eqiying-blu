@@ -68,6 +68,11 @@ export default {
 			panelBaseInfoId
 		}))
 	},
+	getInviteLink() { // 获取邀请链接
+		return axios.post(apis.panelBaseInfo, qs.stringify({
+			action: 'getInviteLink'
+		}))
+	},
 	sendSms({ PanelMobiles }) { // 发送短信
 		return axios.post(apis.common, qs.stringify({
 			action: 'sendsmscode',
@@ -98,9 +103,7 @@ export default {
 		}, params)
 		return axios.post(apis.panelBaseInfo, qs.stringify(params))
 	},
-	validateCode(param) { // 获取验证码
-		return apis.validateCode + '?cc=' + Date.now()
-	},
+	validateCode: apis.validateCode,
 	queryPresent(pageNum) { // 查询礼品
 		const pageSize = 12
 		return axios.post(apis.present, qs.stringify({

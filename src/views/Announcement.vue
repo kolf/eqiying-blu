@@ -18,10 +18,10 @@
                 <div class="columns">
                     <div class="column is-8 is-offset-2">
                         <!--<h3 class="title">{{announcement.AnnounceTitle}}</h3>-->
-                        <div class="content announcement-content">
-                            <h1 class="has-text-centered">{{announcement.AnnounceTitle}}</h1>
+                        <div class="announcement-content">
+                            <h1 class="has-text-centered title">{{announcement.AnnounceTitle}}</h1>
                             <p class="has-text-right">{{announcement.CreateTime | fromatDate(true)}}</p>
-                            <p>{{decodeURI(announcement.AnnounceContent) | filterHTML}}</p>
+                            <div v-html="decodeURI(announcement.AnnounceContent)"></div>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,8 @@ export default {
 <style lang="scss" scoped>
 .announcement {
     &-content {
-        min-height: 500px
+        min-height: 500px;
+        padding: 2em 0 4em
     }
     &-banner {
         background-image: url(../assets/user_banner.jpg) !important;
