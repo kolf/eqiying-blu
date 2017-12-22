@@ -51,6 +51,7 @@
                 </p>
                 <p class="control">
                   <a @click="showRepassword=true">忘记密码？</a>
+                  <router-link class="pull-right" to="/signup">立即注册</router-link>
                 </p>
               </form>
             </div>
