@@ -45,7 +45,7 @@
                   <td class="has-text-right" width="100">
                     <strong>参与状态</strong>
                   </td>
-                  <td>{{projectStatus}}</td>
+                  <td>{{projectStatus === true ? '是' : '否'}}</td>
                 </tr>
               </tbody>
             </table>
