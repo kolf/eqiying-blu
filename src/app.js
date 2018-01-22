@@ -29,7 +29,9 @@ const dictionary = {
      newPassword: '新密码',
      mobile: '手机号',
      email: '邮箱',
-     ValidateCode: '验证码'
+     ValidateCode: '验证码',
+     carBrand: '汽车品牌',
+     carModels: '汽车型号'
     }
   }
 }
