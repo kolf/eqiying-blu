@@ -118,6 +118,54 @@
                     <!--<span class="help" v-show="errors.has('PanelCity')">{{ errors.first('PanelCity') }}</span>-->
                   </p>
                 </div>
+                 <div class="field">
+                  <label class="label">是否拥有汽车</label>
+                  <p class="control">
+                    <radio-group v-model="hasCar">
+                      <radio val="1">是</radio>
+                      <radio val="0">否</radio>
+                    </radio-group>
+                  </p>
+                </div>
+                 <template v-if="hasCar==='1'">
+                   <div class="field">
+                  <label class="label">汽车品牌</label>
+                  <p class="control">
+                    <input name="carBrand" :class="{'is-danger': errors.has('carBrand')}" v-model="userForm.carBrand" v-validate="'required'" type="text" class="input" placeholder="请填写汽车品牌">
+                    <span class="help is-danger" v-show="errors.has('carBrand')">{{ errors.first('carBrand') }}</span>
+                  </p>
+                </div>
+                <div class="field">
+                  <label class="label">汽车型号</label>
+                  <p class="control">
+                    <input name="carModels" :class="{'is-danger': errors.has('carModels')}" v-model="userForm.carModels" v-validate="'required'" type="text" class="input" placeholder="请填写汽车型号">
+                    <span class="help is-danger" v-show="errors.has('carModels')">{{ errors.first('carModels') }}</span>
+                  </p>
+                </div>
+                 <div class="field">
+                  <label class="label">汽车购买日期</label>
+                  <p class="control">
+                    <span class="select">
+                      <select :class="{'is-danger': errors.has('carYear')}" name="carYear" v-model="carDateVal.year" v-validate="'required'" @change="changeCarDate('year')">
+                        <option value="">请选择年</option>
+                        <option :value="item" v-for="(item, index) in carDateOptions.year">{{item}}</option>
+                      </select>
+                    </span>
+                    <span class="select">
+                      <select :class="{'is-danger': errors.has('carMonth')}" name="carMonth" v-model="carDateVal.month" v-validate="'required'" @change="changeCarDate('month')">
+                        <option value="">请选择月</option>
+                        <option :value="item" v-for="(item, index) in carDateOptions.month">{{item}}</option>
+                      </select>
+                    </span>
+                    <span class="select">
+                      <select :class="{'is-danger': errors.has('carDay')}" name="carDay" v-model="carDateVal.day" v-validate="'required'">
+                        <option value="">请选择日</option>
+                        <option :value="item" v-for="(item, index) in carDateOptions.day">{{item}}</option>
+                      </select>
+                    </span>
+                  </p>
+                </div>
+                 </template>
                 <div class="field">
                   <label class="label">* 手机号</label>
                   <!--<p class="control">
@@ -308,8 +356,8 @@
 </template>
 
 <script>
-import api from 'src/api/index.js'
-import { mapActions, mapGetters } from 'vuex'
+import api from "src/api/index.js";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   // name: 'signup',
@@ -318,19 +366,19 @@ export default {
       isSuccess: false,
       num: 0,
       userForm: {
-        PanelLoginName: '',
-        PanelPw: '',
-        RPanelPw: '',
-        PanelEmail: '',
-        PanelCode: '',
-        PanelRealName: '',
-        PanelRemark: '',
-        PanelWebId: '1',
-        Panelprovince: '',
-        PanelCity: '',
-        PanelGender: '1',
-        PanelBirthday: '',
-        PanelMobile: ''
+        PanelLoginName: "",
+        PanelPw: "",
+        RPanelPw: "",
+        PanelEmail: "",
+        PanelCode: "",
+        PanelRealName: "",
+        PanelRemark: "",
+        PanelWebId: "1",
+        Panelprovince: "",
+        PanelCity: "",
+        PanelGender: "1",
+        PanelBirthday: "",
+        PanelMobile: ""
       },
       provinceOptions: [],
       cityOptions: [],
@@ -340,81 +388,105 @@ export default {
         day: []
       },
       ageVal: {
-        year: '1985年',
-        month: '1月',
-        day: '1日'
+        year: "1985年",
+        month: "1月",
+        day: "1日"
       },
-      showAgreement: false
-    }
+      carDateOptions: {
+        year: [],
+        month: [],
+        day: []
+      },
+      carDateVal: {
+        year: "2010年",
+        month: "1月",
+        day: "1日"
+      },
+      showAgreement: false,
+      hasCar: "1"
+    };
   },
   computed: {
     ...mapGetters({
-      current: 'current',
-      device: 'device',
-      menu: 'menu'
+      current: "current",
+      device: "device",
+      menu: "menu"
     }),
     btnText() {
-      return this.num === 0 ? '获取短信验证码' : this.num + '秒后重新获取'
+      return this.num === 0 ? "获取短信验证码" : this.num + "秒后重新获取";
     }
   },
   created() {
-    this.queryByParenterCode('100000')
+    this.queryByParenterCode("100000");
 
-    const year = new Date().getFullYear() + 1
+    const year = new Date().getFullYear() + 1;
     for (let i = year - 99; i < year; i++) {
-      this.ageOptons.year.push(i + '年')
+      this.ageOptons.year.push(i + "年");
+      this.carDateOptions.year.push(i + "年");
     }
     for (let i = 1; i < 13; i++) {
-      this.ageOptons.month.push(i + '月')
+      this.ageOptons.month.push(i + "月");
+      this.carDateOptions.month.push(i + "月");
     }
 
-    this.changeAge('month')
+    this.changeAge("month");
+    this.changeCarDate("month");
   },
   methods: {
-    ...mapActions([
-      'toggleMenu'
-    ]),
+    ...mapActions(["toggleMenu"]),
     getEmailUrl() {
-      const { PanelEmail } = this.userForm
-      return 'http://mail.' + PanelEmail.split('@')[1]
+      const { PanelEmail } = this.userForm;
+      return "http://mail." + PanelEmail.split("@")[1];
     },
     validateForm() {
-      this.$validator.validateAll().then(() => {
-        console.log(this.ageVal)
-        const { year, month, day } = this.ageVal
+      this.$validator.validateAll().then((res) => {
+        if(!res){
+          return false
+        }
+        
+        const { year, month, day } = this.ageVal;
+        this.userForm.PanelBirthday =
+          parseInt(year) + "-" + parseInt(month) + "-" + parseInt(day);
 
-        this.userForm.PanelBirthday = parseInt(year) + '-' + parseInt(month) + '-' + parseInt(day)
-
-        const {inviteUser, misc} = this.$route.query
-
-        if(inviteUser){
-          this.userForm.inviteUser = inviteUser
+        if (this.hasCar === "1") {
+          const { year, month, day } = this.carDateVal;
+          this.userForm.carBuyDate =
+            parseInt(year) + "-" + parseInt(month) + "-" + parseInt(day);
         }
 
-        if(misc){
-          this.userForm.misc = misc
+        const { inviteUser, misc } = this.$route.query;
+
+        if (inviteUser) {
+          this.userForm.inviteUser = inviteUser;
         }
 
-        api.signup({ ...this.userForm }).then(res => {
-          const { msg, result } = res.data;
-          if (result !== 'ok') {
-            this.$notify.warning({ content: msg || '注册失败' });
-            return false;
-          }
+        if (misc) {
+          this.userForm.misc = misc;
+        }
 
-          // this.$notify.success({ content: msg || '注册成功' });
-          // this.$router.push({ path: '/signin' })
-          this.isSuccess = true
-        }).catch((error) => {
-          console.log(error)
-        })
-      })
+        api
+          .signup({ ...this.userForm })
+          .then(res => {
+            const { msg, result } = res.data;
+            if (result !== "ok") {
+              this.$notify.warning({ content: msg || "注册失败" });
+              return false;
+            }
+
+            // this.$notify.success({ content: msg || '注册成功' });
+            // this.$router.push({ path: '/signin' })
+            this.isSuccess = true;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      });
     },
     queryByParenterCode(ParenterCode) {
       api.queryByParenterCode({ ParenterCode }).then(res => {
-        const { msg, result, data } = res.data
-        if (result !== 'ok') {
-          this.$notify.warning({ content: msg || '查询省市失败' });
+        const { msg, result, data } = res.data;
+        if (result !== "ok") {
+          this.$notify.warning({ content: msg || "查询省市失败" });
           return false;
         }
 
@@ -422,91 +494,109 @@ export default {
           return {
             value: item.ParamsValues,
             label: item.ParamsName
-          }
-        })
-        // this.provinceOptions = 
-        if (ParenterCode === '100000') {
-          this.provinceOptions = options
-          this.userForm.PanelCity = ''
+          };
+        });
+        // this.provinceOptions =
+        if (ParenterCode === "100000") {
+          this.provinceOptions = options;
+          this.userForm.PanelCity = "";
         } else {
-          this.cityOptions = options
+          this.cityOptions = options;
         }
-      })
+      });
     },
     changeAge(type) {
-      if (type === 'month') {
-        this.ageOptons.day = []
+      if (type === "month") {
+        this.ageOptons.day = [];
         // this.ageVal.day = ''
-        const { year, month } = this.ageVal
-        const dayLength = new Date(parseInt(year), parseInt(month), 0).getDate() + 1
+        const { year, month } = this.ageVal;
+        const dayLength =
+          new Date(parseInt(year), parseInt(month), 0).getDate() + 1;
         for (let i = 1; i < dayLength; i++) {
-          this.ageOptons.day.push(i + '日')
+          this.ageOptons.day.push(i + "日");
+        }
+      }
+    },
+    changeCarDate(type) {
+      if (type === "month") {
+        this.carDateOptions.day = [];
+        // this.ageVal.day = ''
+        const { year, month } = this.carDateVal;
+        const dayLength =
+          new Date(parseInt(year), parseInt(month), 0).getDate() + 1;
+        for (let i = 1; i < dayLength; i++) {
+          this.carDateOptions.day.push(i + "日");
         }
       }
     },
     checkMobile() {
-			const { userForm: { PanelMobile } } = this
+      const { userForm: { PanelMobile } } = this;
 
-      if(!PanelMobile){
+      if (!PanelMobile) {
         // this.errors.add('mobile', '请填写手机号')
-        return false
+        return false;
       }
 
-			api.checkUnique({
-				TypeId: '1',
-				strWord: PanelMobile
-			}).then(res => {
-				const { msg, result, OK } = res.data
-				if (result !== 'ok' && result !== 'NotExist') {
-					this.$notify.warning({ content: '该手机号已存在，请重试' });
-					return false;
-				}
+      api
+        .checkUnique({
+          TypeId: "1",
+          strWord: PanelMobile
+        })
+        .then(res => {
+          const { msg, result, OK } = res.data;
+          if (result !== "ok" && result !== "NotExist") {
+            this.$notify.warning({ content: "该手机号已存在，请重试" });
+            return false;
+          }
 
-				this.sendMsg()
-			})
-		},
+          this.sendMsg();
+        });
+    },
     sendMsg() {
-			this.num = 60
-			const timer = setInterval(() => {
-				if (this.num === 0) {
-					clearInterval(timer)
-				} else {
-					this.num--
-				}
-			}, 1000)
+      this.num = 60;
+      const timer = setInterval(() => {
+        if (this.num === 0) {
+          clearInterval(timer);
+        } else {
+          this.num--;
+        }
+      }, 1000);
 
-			const { PanelMobile } = this.userForm
-			api.sendSms({ PanelMobiles: PanelMobile}).then(res => {
-				const { msg, result, OK } = res.data
+      const { PanelMobile } = this.userForm;
+      api
+        .sendSms({ PanelMobiles: PanelMobile })
+        .then(res => {
+          const { msg, result, OK } = res.data;
 
-				if (OK || result == 1) {
-					this.$notify.success({ content: '验证码发送成功，请注意查收' })
-				} else {
-					this.$notify.warning({ content: '验证码发送失败，请稍候重试！' })
-				}
-			}).catch((error) => {
-				this.$notify.warning({ content: '验证码发送失败，请稍候重试！' })
-			})
-		}
+          if (OK || result == 1) {
+            this.$notify.success({ content: "验证码发送成功，请注意查收" });
+          } else {
+            this.$notify.warning({ content: "验证码发送失败，请稍候重试！" });
+          }
+        })
+        .catch(error => {
+          this.$notify.warning({ content: "验证码发送失败，请稍候重试！" });
+        });
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .field {
-  margin-bottom: 15px
+  margin-bottom: 15px;
 }
 
 .select {
   select {
-    width: 100%
+    width: 100%;
   }
 }
 
 .agreement {
   &-btn {
     position: relative;
-    top: -2px
+    top: -2px;
   }
 }
 </style>

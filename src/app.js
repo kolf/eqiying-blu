@@ -1,7 +1,7 @@
 import Vue from "vue";
 import NProgress from "vue-nprogress";
 import VueBlu from "vue-blu";
-import zh from "vee-validate/dist/locale/zh_CN";
+// import zh from "vee-validate/dist/locale/zh_CN";
 import VeeValidate, { Validator } from "vee-validate";
 import VueLazyload from "vue-lazyload";
 import { sync } from "vuex-router-sync";
@@ -19,16 +19,35 @@ import * as Cookies from "js-cookie";
 import { mapActions, mapGetters } from "vuex";
 import VueClipboard from "vue-clipboard2";
 
-// const dictionary = {};
-
-// console.log(Validator.addLocale);
+const dictionary = {
+  zh_CN: {
+    messages: {
+      required: field => "请填写" + field
+    },
+    attributes: {
+      check: "用户注册协议",
+      name: "用户名",
+      password: "密码",
+      rePassword: "确认密码",
+      orgPasssword: "原始密码",
+      newPassword: "新密码",
+      mobile: "手机号",
+      email: "邮箱",
+      ValidateCode: "验证码",
+      carBrand: "汽车品牌",
+      carModels: "汽车型号"
+    }
+  }
+};
+Vue.use(VeeValidate, {
+  locale: 'zh_CN',
+  dictionary
+});
 
 Vue.use(VueClipboard);
 Vue.use(NProgress);
-// Validator.localize("zh_CN");
-// Validator.addLocale(zh);
-// Validator.updateDictionary(dictionary);
-// Validator.addLocale(zh);
+// Validator.localize("zh_CN", dictionary.zh_CN);
+
 Vue.use(VueBlu);
 Vue.use(VueLazyload, {
   // preLoad: 1.3,
@@ -52,26 +71,7 @@ Vue.use(VueLazyload, {
     }
   }
 });
-Vue.use(VeeValidate, {
-  locale: "zh_CN",
-  dictionary: {
-    zh_CN: {
-      messages: zh,
-      attributes: {
-        check: "用户注册协议",
-        name: "用户名",
-        password: "密码",
-        rePassword: "确认密码",
-        orgPasssword: "原始密码",
-        newPassword: "新密码",
-        mobile: "手机号",
-        email: "邮箱",
-        ValidateCode: "验证码"
-      }
-    }
-  }
-});
-// Enable devtools
+
 Vue.config.devtools = true;
 
 sync(store, router);

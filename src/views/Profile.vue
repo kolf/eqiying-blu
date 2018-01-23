@@ -50,6 +50,12 @@
                   </td>
                   <td>{{user.PanelProvinceName}}，{{user.PanelCityName}}</td>
                 </tr>
+                <tr v-if="user.carBrand">
+                  <td class="has-text-right">
+                    <strong>我的汽车：</strong>
+                  </td>
+                  <td>{{user.carBrand}} {{user.carModels}} ( {{user.carBuyDate}})</td>
+                </tr>
                 <tr>
                   <td class="has-text-right">
                     <strong>加入日期：</strong>
@@ -94,10 +100,10 @@
 </template>
 
 <script>
-import api from 'src/api'
-import { mapActions, mapGetters } from 'vuex'
-import UpdateEmail from 'src/components/modals/UpdateEmail.vue'
-import UpdateMobile from 'src/components/modals/UpdateMobile.vue'
+import api from "src/api";
+import { mapActions, mapGetters } from "vuex";
+import UpdateEmail from "src/components/modals/UpdateEmail.vue";
+import UpdateMobile from "src/components/modals/UpdateMobile.vue";
 
 export default {
   components: {
@@ -108,70 +114,65 @@ export default {
     return {
       showEmailModal: false,
       showMobileModal: false,
-      inviteLink: ''
-    }
+      inviteLink: ""
+    };
   },
-  created(){
-    this.getInviteLink()
+  created() {
+    this.getInviteLink();
   },
   computed: {
-    ...mapGetters([
-      'user'
-    ])
+    ...mapGetters(["user"])
   },
   methods: {
-        ...mapActions([
-      'toggleLogin',
-      'saveUser'
-    ]),
+    ...mapActions(["toggleLogin", "saveUser"]),
     closeEmailModal() {
-      this.showEmailModal = false
+      this.showEmailModal = false;
     },
     closeMobileModal() {
-      this.showMobileModal = false
+      this.showMobileModal = false;
     },
     getInviteLink() {
       api.getInviteLink().then(res => {
         const { msg, result, data } = res.data;
-        if (result !== 'ok') {
+        if (result !== "ok") {
           // this.$notify.warning({ content: msg || '获取用户信息失败，请重新登陆' });
           return false;
         }
 
-        this.inviteLink = data
-      })
+        this.inviteLink = data;
+      });
     }
   },
   filters: {
     panelStatus(value) {
       const data = {
-        '-1': '已删除',
-        '0': '未激活',
-        '1': '正常',
-        '-2': '黑名单'
-      }
-      return data[value]
+        "-1": "已删除",
+        "0": "未激活",
+        "1": "正常",
+        "-2": "黑名单"
+      };
+      return data[value];
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 $primary: #6bafdc;
-@import '~bulma/sass/utilities/mixins';
+@import "~bulma/sass/utilities/mixins";
 
 .line-list {
   li {
     padding: 10px 5px;
     border-bottom: 1px dotted #ccc;
-    &.columns{
+    &.columns {
       margin: 0;
-      .column{
-        padding: 0
+      .column {
+        padding: 0;
       }
     }
 
-    &>.name {
+    & > .name {
       display: inline-block;
       text-align: right;
       width: 100px;
