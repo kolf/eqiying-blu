@@ -52,7 +52,7 @@
             <li>
               <span class="param-name">兑换积分:</span>{{curPresent.PresentPoint}}</li>
             <li>
-              <span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime | fromatDate(true)}}</li>
+              <span class="param-name">礼品上架时间:</span>{{curPresent.ReleaseTime | fromatDate(true)}}</li>
             <li>
               <input-number style="width:80px" :val="1" v-model="changeNum" :on-change="changePresentNum"></input-number>
             </li>

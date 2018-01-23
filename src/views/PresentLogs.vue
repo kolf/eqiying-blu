@@ -21,7 +21,7 @@
             <td>{{item.ChangeTotal}}</td>
             <td>{{item.ChangeTotal*item.PresentPoint}}</td>
             <td><span class="tag" :class="statusTag(item.CheckStatus)">{{item.statusName}}</span></td>
-            <td>{{item.ReleaseTime | fromatDate(true)}}</td>
+            <td>{{item.CreateTime | fromatDate(true)}}</td>
           </tr>
         </tbody>
         <tbody v-else>
@@ -46,11 +46,11 @@
           <p class="title">{{curPresent.PresentName}}</p>
           <ul class="param-list">
             <li><span class="param-name">礼品介绍:</span>{{curPresent.PresentDesc}}</li>
-            <li><span class="param-name">礼品上架时间:</span>{{curPresent.CreateTime | fromatDate(true)}}</li>
+            <li><span class="param-name">礼品上架时间:</span>{{curPresent.ReleaseTime | fromatDate(true)}}</li>
             <li><span class="param-name">兑换积分:</span>{{curPresent.PresentPoint}}</li>
             <li><span class="param-name">兑换数量:</span>{{curPresent.ChangeTotal}}</li>
             <li><span class="param-name">兑换状态:</span>{{curPresent.statusName}}</li>
-            <li><span class="param-name">兑换日期:</span>{{curPresent.ReleaseTime | fromatDate(true)}}</li>
+            <li><span class="param-name">兑换日期:</span>{{curPresent.CreateTime | fromatDate(true)}}</li>
           </ul>
         </div>
       </article>
